@@ -28,6 +28,32 @@ body {
     rgb(var(--background-start-rgb)); */
 }
 
+
+
+.myborder{
+	position: relative;
+}
+
+.myborder:before{
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 0;
+	border-bottom: solid 3px #02b290;
+	animation: border_anim .4s linear forwards;
+}
+
+
+@keyframes border_anim {
+	0%{
+		width: 0%;
+	}
+	100%{
+		width: 100%;
+	}
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

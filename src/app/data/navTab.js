@@ -1,6 +1,6 @@
 export const tabs = [
     {
-        name:"demos",
+        name:"Demos",
         link:"",
         subTabs:[
            {
@@ -88,7 +88,7 @@ export const tabs = [
              link:"./vintage"
             },
             {
-             name:"Standard",
+             name:"abcd",
              link:"./standard"
             },
          ]
