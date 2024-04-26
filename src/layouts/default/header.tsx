@@ -12,7 +12,7 @@ import Container from '@components/ui/container';
 import Logo from '@components/ui/logo';
 import HeaderMenu from '@layouts/header/header-menu';
 import Search from '@components/common/search';
-import LanguageSwitcher from '@components/ui/language-switcher';
+// import LanguageSwitcher from '@components/ui/language-switcher';
 import UserIcon from '@components/icons/user-icon';
 import SearchIcon from '@components/icons/search-icon';
 import { useModalAction } from '@components/common/modal/modal.context';
@@ -66,6 +66,8 @@ function Header({ lang }: { lang: string }) {
         {/* End of Mobile search */}
         <Container className="flex items-center justify-between h-16 py-3 top-bar lg:h-auto">
           <Logo className="logo -mt-1.5 md:-mt-1 " />
+          {/* <h1>LIHA</h1> */}
+
           {/* End of logo */}
 
           <Search
@@ -77,7 +79,7 @@ function Header({ lang }: { lang: string }) {
 
           <div className="flex shrink-0 -mx-2.5 xl:-mx-3.5">
             <div className="xl:mx-3.5 mx-2.5">
-              <LanguageSwitcher lang={lang} />
+              {/* <LanguageSwitcher lang={lang} /> */}
             </div>
             <CartButton
               className="hidden lg:flex mx-2.5 xl:mx-3.5"
@@ -103,7 +105,7 @@ function Header({ lang }: { lang: string }) {
 
         <div className="hidden navbar bg-brand-light lg:block">
           <Container className="flex items-center justify-between h-16">
-            <Logo className="!w-0 transition-all duration-200 ease-in-out opacity-0 navbar-logo" />
+            {/* <Logo className="!w-0 transition-all duration-200 ease-in-out opacity-0 navbar-logo" /> */}
             {/* End of logo */}
 
             <HeaderMenu
