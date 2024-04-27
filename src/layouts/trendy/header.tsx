@@ -18,6 +18,7 @@ import useOnClickOutside from '@utils/use-click-outside';
 import { useModalAction } from '@components/common/modal/modal.context';
 import Search from '@components/common/search';
 import SearchIcon from '@components/icons/search-icon';
+
 const AuthMenu = dynamic(() => import('@layouts/header/auth-menu'), {
   ssr: false,
 });

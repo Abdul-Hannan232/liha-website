@@ -18,7 +18,8 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: 'BoroBazar',
+  title: 'Liha',
+  // title: 'BoroBazar',
 };
 
 export default function RootLayout({
