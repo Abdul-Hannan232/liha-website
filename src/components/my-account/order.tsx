@@ -1,12 +1,12 @@
 import OrderTable from '@components/order/order-table';
 import { useOrdersQuery } from '@framework/order/get-all-orders';
 
-export default function OrdersTablePage({ lang }: { lang: string }) {
+export default function OrdersTablePage() {
   const { data, isLoading } = useOrdersQuery({});
   return (
     <div className="pt-4">
       {!isLoading ? (
-        <OrderTable orders={data?.data} lang={lang} />
+        <OrderTable orders={data?.data} />
       ) : (
         <div>Loading...</div>
       )}

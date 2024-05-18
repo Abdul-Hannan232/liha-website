@@ -31,7 +31,6 @@ const breakpoints = {
 };
 
 interface BannerProps {
-  lang: string;
   data: any;
   className?: string;
   buttonSize?: 'default' | 'small';
@@ -41,21 +40,19 @@ const BannerAllCarousel: React.FC<BannerProps> = ({
   data,
   className = 'mb-6',
   buttonSize = 'default',
-  lang,
 }) => {
   return (
     <div className={className}>
       <Carousel
-        autoplay={false}
+        autoplay={false} 
         breakpoints={breakpoints}
         buttonSize={buttonSize}
         prevActivateId="all-banner-carousel-button-prev"
         nextActivateId="all-banner-carousel-button-next"
-        lang={lang}
       >
         {data?.map((banner: any) => (
           <SwiperSlide key={`all-banner--key${banner.id}`}>
-            <BannerCard banner={banner} effectActive={true} lang={lang} />
+            <BannerCard banner={banner} effectActive={true}  />
           </SwiperSlide>
         ))}
       </Carousel>

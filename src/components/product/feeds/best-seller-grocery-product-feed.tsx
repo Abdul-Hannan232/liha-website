@@ -6,13 +6,11 @@ import ProductsGridBlock from '../products-grid-block';
 import { LIMITS } from '@framework/utils/limits';
 
 interface ProductFeedProps {
-  lang: string;
   className?: string;
   variant?: string;
 }
 
 const BestSellerGroceryProductFeed: FC<ProductFeedProps> = ({
-  lang,
   className,
   variant,
 }) => {
@@ -30,7 +28,6 @@ const BestSellerGroceryProductFeed: FC<ProductFeedProps> = ({
       limit={LIMITS.BEST_SELLER_GROCERY_PRODUCTS_LIMITS}
       uniqueKey="best-sellers"
       variant={variant}
-      lang={lang}
     />
   );
 };

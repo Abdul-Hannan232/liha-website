@@ -3,13 +3,11 @@ import { TiPencil } from 'react-icons/ti';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { RadioGroup } from '@headlessui/react';
 import { useModalAction } from '@components/common/modal/modal.context';
-import { useTranslation } from 'src/app/i18n/client';
 
-const ContactBox: React.FC<{ items?: any; lang: string }> = ({
+const ContactBox: React.FC<{ items?: any }> = ({
   items: { data },
-  lang,
 }) => {
-  const { t } = useTranslation(lang, 'common');
+
   let [contactData, setContactData] = useState(data);
   const { openModal } = useModalAction();
 
@@ -35,7 +33,7 @@ const ContactBox: React.FC<{ items?: any; lang: string }> = ({
           className="grid grid-cols-1 gap-5 md:grid-cols-2 auto-rows-auto"
         >
           <RadioGroup.Label className="sr-only">
-            {t('text-default')}
+          Default
           </RadioGroup.Label>
           {contactData?.map((item: any, index: any) => (
             <RadioGroup.Option
@@ -74,7 +72,7 @@ const ContactBox: React.FC<{ items?: any; lang: string }> = ({
             onClick={handlePopupView}
           >
             <AiOutlinePlus size={18} className="ltr:mr-2 rtl:ml-2" />
-            {t('text-add-phone-number')}
+            Add Phone Number
           </button>
         </RadioGroup>
       </div>

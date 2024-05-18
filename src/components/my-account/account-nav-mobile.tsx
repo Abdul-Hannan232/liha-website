@@ -6,7 +6,7 @@ import { FaChevronDown } from 'react-icons/fa';
 import { usePathname, useRouter } from 'next/navigation';
 import { useLogoutMutation } from '@framework/auth/use-logout';
 import LogoutIcon from '@components/icons/account-logout';
-import { useTranslation } from 'src/app/i18n/client';
+
 type Option = {
   name: string;
   slug: string;
@@ -15,12 +15,10 @@ type Option = {
 
 export default function AccountNavMobile({
   options,
-  lang,
 }: {
   options: Option[];
-  lang: string;
 }) {
-  const { t } = useTranslation(lang, 'common');
+
   const router = useRouter();
   const pathname = usePathname();
   const pathnameSplit = pathname.split('/');
@@ -39,9 +37,9 @@ export default function AccountNavMobile({
 
   function handleItemClick(slugs: any) {
     setSelectedItem(slugs);
-    router.push(`/${lang}${slugs.slug}`);
+    router.push(`${slugs.slug}`);
   }
-  const { mutate: logout } = useLogoutMutation(lang);
+  const { mutate: logout } = useLogoutMutation();
 
   return (
     <Listbox value={selectedItem} onChange={handleItemClick}>
@@ -50,7 +48,7 @@ export default function AccountNavMobile({
           <Listbox.Button className="relative flex items-center w-full p-4 border rounded cursor-pointer text-brand-dark md:p-5 ltr:text-left rtl:text-right focus:outline-none border-border-base">
             {selectedItem?.icon}
             <span className="flex truncate items-center text-sm md:text-15px font-medium ltr:pl-2.5 rtl:pr-2.5 relative">
-              {t(selectedItem?.name)}
+              {selectedItem?.name}
             </span>
             <span className="absolute inset-y-0 flex items-center pointer-events-none ltr:right-4 rtl:left-4 md:ltr:right-5 md:rtl:left-5">
               <FaChevronDown
@@ -90,7 +88,7 @@ export default function AccountNavMobile({
                           selected ? 'font-medium' : 'font-normal'
                         }`}
                       >
-                        {t(option?.name)}
+                        {option?.name}
                       </span>
                       {selected ? (
                         <span
@@ -110,7 +108,7 @@ export default function AccountNavMobile({
                   <LogoutIcon className="w-5 md:w-[22px] h-5 md:h-[22px]" />
                 </span>
                 <span className="block truncate ltr:pl-2.5 rtl:pr-2.5 md:ltr:pl-3 md:rtl:pr-3">
-                  {t('text-logout')}
+                Logout
                 </span>
               </button>
             </Listbox.Options>

@@ -19,7 +19,7 @@ const data = [
         className="transform scale-75 xl:scale-90 3xl:scale-100"
       />
     ),
-    title: 'feature-title-one',
+    title: 'Refer friends & get 10% discount on all item.',
     href: ROUTES.SEARCH,
     bgColor: '#FFEED6',
   },
@@ -31,7 +31,7 @@ const data = [
         className="transform scale-75 xl:scale-90 3xl:scale-100"
       />
     ),
-    title: 'feature-title-two',
+    title: 'Fastest delivery system that we ever built.',
     href: ROUTES.SEARCH,
     bgColor: '#CCEDFF',
   },
@@ -43,7 +43,7 @@ const data = [
         className="transform scale-75 xl:scale-90 3xl:scale-100"
       />
     ),
-    title: 'feature-title-three',
+    title: 'Join inner cycle to help us improve our system.',
     href: ROUTES.SEARCH,
     bgColor: '#D7F1EC',
   },
@@ -55,14 +55,13 @@ const data = [
         className="transform scale-75 xl:scale-90 3xl:scale-100"
       />
     ),
-    title: 'feature-title-four',
+    title: 'Share your feedback with others and get prize.',
     href: ROUTES.SEARCH,
     bgColor: '#FFE1E1',
   },
 ];
 
 interface Props {
-  lang: string;
   className?: string;
 }
 
@@ -86,7 +85,6 @@ const breakpoints = {
 
 const FeatureGrid: React.FC<Props> = ({
   className = 'mb-12 md:mb-14 xl:mb-16',
-  lang,
 }) => {
   const { width } = useWindowSize();
   return (
@@ -97,11 +95,10 @@ const FeatureGrid: React.FC<Props> = ({
           breakpoints={breakpoints}
           prevActivateId="featured-carousel-button-prev"
           nextActivateId="featured-carousel-button-next"
-          lang={lang}
         >
           {data?.map((item) => (
             <SwiperSlide key={`featured-key-${item.id}`}>
-              <FeaturedCard item={item} lang={lang} />
+              <FeaturedCard item={item} />
             </SwiperSlide>
           ))}
         </Carousel>
@@ -111,7 +108,6 @@ const FeatureGrid: React.FC<Props> = ({
             <FeaturedCard
               item={item}
               key={`featured-key-${item.id}`}
-              lang={lang}
             />
           ))}
         </div>

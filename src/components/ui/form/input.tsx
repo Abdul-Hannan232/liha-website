@@ -1,9 +1,7 @@
 import cn from 'classnames';
 import React, { InputHTMLAttributes } from 'react';
-import { useTranslation } from 'src/app/i18n/client';
 
 export interface Props extends InputHTMLAttributes<HTMLInputElement> {
-  lang: string;
   className?: string;
   inputClassName?: string;
   labelClassName?: string;
@@ -27,7 +25,6 @@ const classes = {
 const Input = React.forwardRef<HTMLInputElement, Props>(
   (
     {
-      lang,
       className = 'block',
       label,
       name,
@@ -54,7 +51,7 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
       },
       inputClassName,
     );
-    const { t } = useTranslation(lang);
+    // const { t } = useTranslation(lang);
     return (
       <div className={className}>
         {label && (
@@ -64,7 +61,7 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
               labelClassName || 'text-brand-dark text-opacity-70'
             }`}
           >
-            {t(label)}
+           {label}
           </label>
         )}
         <input
@@ -73,7 +70,7 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
           type={type}
           ref={ref}
           // @ts-ignore
-          placeholder={t(placeholder)}
+          placeholder={placeholder}
           className={rootClassName}
           autoComplete="off"
           spellCheck="false"
@@ -82,7 +79,7 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
         />
         {error && (
           <p className="my-2 text-13px text-brand-danger text-opacity-70">
-            {t(error)}
+            {error}
           </p>
         )}
       </div>

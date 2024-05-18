@@ -3,10 +3,9 @@ import Link from '@components/ui/link';
 import { IoIosArrowForward } from 'react-icons/io';
 import Image from '@components/ui/image';
 import { ROUTES } from '@utils/routes';
-import { useTranslation } from 'src/app/i18n/client';
 
 function SidebarMenuItem({ className, item, depth = 0, lang }: any) {
-  const { t } = useTranslation(lang, 'common');
+
   const { name, children: items, icon } = item;
   return (
     <>
@@ -18,7 +17,8 @@ function SidebarMenuItem({ className, item, depth = 0, lang }: any) {
         }`}
       >
         <Link
-          href={`/${lang}${ROUTES.SEARCH}`}
+          href={`${ROUTES.SEARCH}`}
+
           className={cn(
             'flex items-center w-full ltr:text-left rtl:text-right outline-none focus:outline-none focus:ring-0 focus:text-brand-dark',
           )}
@@ -27,7 +27,8 @@ function SidebarMenuItem({ className, item, depth = 0, lang }: any) {
             <div className="inline-flex w-8 shrink-0 3xl:h-auto">
               <Image
                 src={icon ?? '/assets/placeholder/category-small.svg'}
-                alt={name || t('text-category-thumbnail')}
+                alt={name || `text-category-thumbnail`}
+                // alt={name || t('text-category-thumbnail')}
                 width={25}
                 height={25}
                 style={{ width: 'auto' }}
@@ -76,11 +77,7 @@ function SidebarMenu({ items, className, lang }: any) {
       )}
     >
       {items?.map((item: any) => (
-        <SidebarMenuItem
-          key={`${item.slug}-key-${item.id}`}
-          item={item}
-          lang={lang}
-        />
+        <SidebarMenuItem key={`${item.slug}-key-${item.id}`} item={item} />
       ))}
     </ul>
   );

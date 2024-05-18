@@ -5,7 +5,7 @@ import ProductsCarousel from '@components/product/products-carousel';
 import { ROUTES } from '@utils/routes';
 import { LIMITS } from '@framework/utils/limits';
 
-export default function ChipsProductFeed({ lang }: { lang: string }) {
+export default function ChipsProductFeed() {
   const { data, isLoading, error } = useChipsProductsQuery({
     limit: LIMITS.CHIPS_PRODUCTS_LIMITS,
   });
@@ -18,7 +18,6 @@ export default function ChipsProductFeed({ lang }: { lang: string }) {
       error={error?.message}
       limit={LIMITS.CHIPS_PRODUCTS_LIMITS}
       uniqueKey="chips-product"
-      lang={lang}
     />
   );
 }

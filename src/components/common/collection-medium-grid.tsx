@@ -32,7 +32,6 @@ const data = [
 ];
 
 interface Props {
-  lang: string;
   className?: string;
   headingPosition?: 'left' | 'center';
 }
@@ -53,7 +52,6 @@ const breakpoints = {
 };
 
 const CollectionMediumGrid: React.FC<Props> = ({
-  lang,
   className = 'mb-12 lg:mb-14 xl:mb-16',
   headingPosition = 'left',
 }) => {
@@ -64,7 +62,6 @@ const CollectionMediumGrid: React.FC<Props> = ({
         sectionHeading="text-curated-collections"
         headingPosition={headingPosition}
         className="pb-6 lg:mb-4 xl:mb-2.5"
-        lang={lang}
       />
       {width! < 1536 ? (
         <Carousel
@@ -75,7 +72,6 @@ const CollectionMediumGrid: React.FC<Props> = ({
           className="-mx-1.5 md:-mx-2 xl:-mx-2.5 -my-4"
           prevActivateId="collection-carousel-button-prev"
           nextActivateId="collection-carousel-button-next"
-          lang={lang}
         >
           {data?.map((item) => (
             <SwiperSlide
@@ -86,7 +82,6 @@ const CollectionMediumGrid: React.FC<Props> = ({
                 key={item.id}
                 collection={item}
                 href={`${ROUTES.BUNDLE}/${item.slug}`}
-                lang={lang}
               />
             </SwiperSlide>
           ))}
@@ -98,7 +93,6 @@ const CollectionMediumGrid: React.FC<Props> = ({
               key={item.id}
               collection={item}
               href={`${ROUTES.BUNDLE}/${item.slug}`}
-              lang={lang}
             />
           ))}
         </div>

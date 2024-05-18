@@ -3,10 +3,9 @@ import Image from '@components/ui/image';
 import { IoIosArrowForward } from 'react-icons/io';
 import { Category } from '@framework/types';
 import cn from 'classnames';
-import { useTranslation } from 'src/app/i18n/client';
+// import { useTranslation } from 'src/app/i18n/client';
 
 interface Props {
-  lang: string;
   category: Category;
   href: LinkProps['href'];
   className?: string;
@@ -18,12 +17,12 @@ const CategoryListCard: React.FC<Props> = ({
   className,
   href,
   variant = 'default',
-  lang,
 }) => {
   const { name, icon } = category;
-  const { t } = useTranslation(lang, 'common');
+
   return (
-    <Link href={`/${lang}${href}`} legacyBehavior>
+
+    <Link href={`${href}`} legacyBehavior>
       <a
         className={cn(
           'group flex transition',
@@ -60,7 +59,7 @@ const CategoryListCard: React.FC<Props> = ({
           >
             <Image
               src={icon ?? '/assets/placeholder/category-small.svg'}
-              alt={name || t('text-category-thumbnail')}
+              alt={name || 'Category Thumbnail'}
               width={variant === 'antique' ? 80 : 40}
               height={variant === 'antique' ? 80 : 40}
               className="aspect-square"

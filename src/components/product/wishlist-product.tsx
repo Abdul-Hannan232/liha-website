@@ -6,12 +6,10 @@ import cn from 'classnames';
 
 interface ProductWishlistProps {
   className?: string;
-  lang: string;
 }
 
 export default function ProductWishlistGrid({
   className = '',
-  lang,
 }: ProductWishlistProps) {
   const limit = 35;
   const { data, isLoading, error } = useWishlistProductsQuery({
@@ -34,7 +32,6 @@ export default function ProductWishlistGrid({
                 <WishlistProductCard
                   key={`product--key${product.id}`}
                   product={product}
-                  lang={lang}
                 />
               ))}
         </div>

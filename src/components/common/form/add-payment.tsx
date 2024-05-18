@@ -13,7 +13,7 @@ interface ContactFormValues {
   default: boolean;
 }
 
-const AddPaymentForm: React.FC<{ lang: string }> = ({ lang }) => {
+const AddPaymentForm: React.FC<{ lang: string }> = () => {
   const { data } = useModalState();
   const {
     register,
@@ -46,7 +46,6 @@ const AddPaymentForm: React.FC<{ lang: string }> = ({ lang }) => {
             label="Title"
             {...register('title', { required: 'Title Required' })}
             error={errors.title?.message}
-            lang={lang}
           />
         </div>
         <div className="grid grid-cols-1 mb-6 md:grid-cols-2 gap-7">
@@ -55,35 +54,30 @@ const AddPaymentForm: React.FC<{ lang: string }> = ({ lang }) => {
             label="Name"
             {...register('name', { required: 'Name Required' })}
             error={errors.country?.message}
-            lang={lang}
           />
           <Input
             variant="solid"
             label="Country"
             {...register('country', { required: 'City Required' })}
             error={errors.country?.message}
-            lang={lang}
           />
           <Input
             variant="solid"
             label="Type"
             {...register('type', { required: 'type Required' })}
             error={errors.type?.message}
-            lang={lang}
           />
           <Input
             variant="solid"
             label="Card Number"
             {...register('number', { required: 'type Required' })}
             error={errors.number?.message}
-            lang={lang}
           />
           <Input
             variant="solid"
             label="ZIP"
             {...register('zip', { required: 'ZIP Required' })}
             error={errors.zip?.message}
-            lang={lang}
           />
         </div>
         <div className="mb-6">

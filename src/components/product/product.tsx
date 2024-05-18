@@ -25,10 +25,9 @@ import SocialShareBox from '@components/ui/social-share-box';
 import ProductDetailsTab from '@components/product/product-details/product-tab';
 import VariationPrice from './variation-price';
 import isEqual from 'lodash/isEqual';
-import { useTranslation } from 'src/app/i18n/client';
 
-const ProductSingleDetails: React.FC<{ lang: string }> = ({ lang }) => {
-  const { t } = useTranslation(lang, 'common');
+const ProductSingleDetails = () => {
+
   const pathname = useParams();
   const { slug } = pathname;
   const { width } = useWindowSize();
@@ -99,7 +98,7 @@ const ProductSingleDetails: React.FC<{ lang: string }> = ({ lang }) => {
     setAddToWishlistLoader(true);
     setFavorite(!favorite);
     const toastStatus: string =
-      favorite === true ? t('text-remove-favorite') : t('text-added-favorite');
+      favorite === true ? 'Remove from favorite list' : 'Added to favorite list';
     setTimeout(() => {
       setAddToWishlistLoader(false);
     }, 1500);
@@ -123,7 +122,6 @@ const ProductSingleDetails: React.FC<{ lang: string }> = ({ lang }) => {
               gallery={data?.gallery}
               thumbnailClassName="xl:w-[700px] 2xl:w-[900px]"
               galleryClassName="xl:w-[150px] 2xl:w-[170px]"
-              lang={lang}
             />
           ) : (
             <div className="flex items-center justify-center w-auto">
@@ -154,7 +152,6 @@ const ProductSingleDetails: React.FC<{ lang: string }> = ({ lang }) => {
                 selectedVariation={selectedVariation}
                 minPrice={data?.min_price}
                 maxPrice={data?.max_price}
-                lang={lang}
               />
             )}
 
@@ -169,7 +166,7 @@ const ProductSingleDetails: React.FC<{ lang: string }> = ({ lang }) => {
                       {basePrice}
                     </del>
                     <span className="inline-block rounded font-bold text-xs md:text-sm bg-brand-tree bg-opacity-20 text-brand-tree uppercase px-2 py-1 ltr:ml-2.5 rtl:mr-2.5">
-                      {discount} {t('text-off')}
+                      {discount} Off
                     </span>
                   </>
                 )}
@@ -194,15 +191,15 @@ const ProductSingleDetails: React.FC<{ lang: string }> = ({ lang }) => {
               <>
                 {Number(quantity) > 0 || !outOfStock ? (
                   <span className="text-sm font-medium text-yellow">
-                    {t('text-only') +
+                   Only +
                       ' ' +
                       quantity +
                       ' ' +
-                      t('text-left-item')}
+                      item left!
                   </span>
                 ) : (
                   <div className="text-base text-red-500 whitespace-nowrap">
-                    {t('text-out-stock')}
+                    Out Of Stock
                   </div>
                 )}
               </>
@@ -212,13 +209,13 @@ const ProductSingleDetails: React.FC<{ lang: string }> = ({ lang }) => {
               <span className="text-sm font-medium text-yellow">
                 {selectedVariation?.is_disable ||
                 selectedVariation.quantity === 0
-                  ? t('text-out-stock')
+                  ? 'Out Of Stock'
                   : `${
-                      t('text-only') +
+                    'Only' +
                       ' ' +
                       selectedVariation.quantity +
                       ' ' +
-                      t('text-left-item')
+                      'item left!'
                     }`}
               </span>
             )}
@@ -238,7 +235,6 @@ const ProductSingleDetails: React.FC<{ lang: string }> = ({ lang }) => {
                     Number(item.stock)
                   : selectedQuantity >= Number(item.stock)
               }
-              lang={lang}
             />
             <Button
               onClick={addToCart}
@@ -247,7 +243,7 @@ const ProductSingleDetails: React.FC<{ lang: string }> = ({ lang }) => {
               loading={addToCartLoader}
             >
               <CartIcon color="#ffffff" className="ltr:mr-3 rtl:ml-3" />
-              {t('text-add-to-cart')}
+              Add to Cart
             </Button>
             <div className="grid grid-cols-2 gap-2.5">
               <Button
@@ -264,7 +260,7 @@ const ProductSingleDetails: React.FC<{ lang: string }> = ({ lang }) => {
                   <IoIosHeartEmpty className="text-2xl md:text-[26px] ltr:mr-2 rtl:ml-2 transition-all group-hover:text-brand" />
                 )}
 
-                {t('text-wishlist')}
+Wishlist
               </Button>
               <div className="relative group">
                 <Button
@@ -275,7 +271,7 @@ const ProductSingleDetails: React.FC<{ lang: string }> = ({ lang }) => {
                   onClick={handleChange}
                 >
                   <IoArrowRedoOutline className="text-2xl md:text-[26px] ltr:mr-2 rtl:ml-2 transition-all group-hover:text-brand" />
-                  {t('text-share')}
+                  Share
                 </Button>
                 <SocialShareBox
                   className={`absolute z-10 ltr:right-0 rtl:left-0 w-[300px] md:min-w-[400px] transition-all duration-300 ${
@@ -284,7 +280,6 @@ const ProductSingleDetails: React.FC<{ lang: string }> = ({ lang }) => {
                       : 'opacity-0 invisible top-[130%]'
                   }`}
                   shareUrl={productUrl}
-                  lang={lang}
                 />
               </div>
             </div>
@@ -292,7 +287,7 @@ const ProductSingleDetails: React.FC<{ lang: string }> = ({ lang }) => {
           {data?.tag && (
             <ul className="pt-5 xl:pt-6">
               <li className="relative inline-flex items-center justify-center text-sm md:text-15px text-brand-dark text-opacity-80 ltr:mr-2 rtl:ml-2 top-1">
-                <LabelIcon className="ltr:mr-2 rtl:ml-2" /> {t('text-tags')}:
+                <LabelIcon className="ltr:mr-2 rtl:ml-2" /> Tags:
               </li>
               {data?.tag?.map((item: any) => (
                 <li className="inline-block p-[3px]" key={`tag-${item.id}`}>
@@ -303,7 +298,7 @@ const ProductSingleDetails: React.FC<{ lang: string }> = ({ lang }) => {
           )}
         </div>
       </div>
-      <ProductDetailsTab lang={lang} />
+      <ProductDetailsTab  />
     </div>
   );
 };

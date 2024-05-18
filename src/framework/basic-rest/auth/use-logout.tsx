@@ -14,7 +14,7 @@ async function logout() {
     message: 'Logout Successful!',
   };
 }
-export const useLogoutMutation = (lang: string) => {
+export const useLogoutMutation = () => {
   const { unauthorize } = useUI();
   const router = useRouter();
   return useMutation({
@@ -22,7 +22,8 @@ export const useLogoutMutation = (lang: string) => {
     onSuccess: (_data) => {
       Cookies.remove('auth_token');
       unauthorize();
-      router.push(`/${lang}`);
+      // router.push(`/${lang}`);
+      router.push(`/`);
     },
     onError: (data) => {
       console.log(data, 'logout error response');

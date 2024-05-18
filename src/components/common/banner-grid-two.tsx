@@ -5,14 +5,12 @@ import Carousel from '@components/ui/carousel/carousel';
 import { SwiperSlide } from '@components/ui/carousel/slider';
 
 interface BannerProps {
-  lang: string;
   data: any;
   className?: string;
   girdClassName?: string;
 }
 
 const BannerGridTwo: React.FC<BannerProps> = ({
-  lang,
   data,
   className = 'mb-3 md:mb-4 lg:mb-5 xl:mb-6',
   girdClassName = '2xl:gap-5',
@@ -24,11 +22,10 @@ const BannerGridTwo: React.FC<BannerProps> = ({
         <Carousel
           prevActivateId="banner-carousel-button-prev"
           nextActivateId="banner-carousel-button-next"
-          lang={lang}
         >
           {data?.map((banner: any) => (
             <SwiperSlide key={`banner-key-${banner.id}`}>
-              <BannerCard banner={banner} effectActive={true} lang={lang} />
+              <BannerCard banner={banner} effectActive={true} />
             </SwiperSlide>
           ))}
         </Carousel>
@@ -42,7 +39,6 @@ const BannerGridTwo: React.FC<BannerProps> = ({
               banner={banner}
               effectActive={true}
               className="w-full overflow-hidden rounded"
-              lang={lang}
             />
           ))}
         </div>

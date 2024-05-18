@@ -17,7 +17,7 @@ import 'swiper/css/pagination';
 import { Swiper as SwiperTypes } from 'swiper/types';
 
 type CarouselPropsType = {
-  lang: string;
+  // lang: string;
   className?: string;
   buttonGroupClassName?: string;
   prevActivateId?: string;
@@ -37,7 +37,7 @@ type CarouselPropsType = {
 };
 
 export default function Carousel({
-  lang,
+  // lang,
   children,
   className = '',
   buttonGroupClassName = '',
@@ -55,7 +55,8 @@ export default function Carousel({
   onSlideChange,
   ...props
 }: React.PropsWithChildren<CarouselPropsType>) {
-  const dir = getDirection(lang);
+  // const dir = getDirection(lang);
+  const dir = getDirection('rtl');
   const prevRef = useRef<HTMLDivElement>(null);
   const nextRef = useRef<HTMLDivElement>(null);
   let nextButtonClasses = cn(

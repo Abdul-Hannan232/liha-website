@@ -4,23 +4,21 @@ import SearchIcon from '@components/icons/search-icon';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import type { FC } from 'react';
-import { useTranslation } from 'src/app/i18n/client';
 
 interface HeroSearchBoxProps {
-  lang: string;
   style?: 'default' | 'slider' | 'medium' | 'antique';
   button?: {
     text?: string;
   };
 }
 
-const HeroSearchBox: FC<HeroSearchBoxProps> = ({ lang, style, button }) => {
-  const { t } = useTranslation(lang, 'forms');
+const HeroSearchBox: FC<HeroSearchBoxProps> = ({ style, button }) => {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   function onSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
-    router.push(`/${lang}/search?q=${searchTerm}`);
+    router.push(`/search?q=${searchTerm}`);
+    // router.push(`/${lang}/search?q=${searchTerm}`);
   }
   return (
     <form
@@ -39,7 +37,7 @@ const HeroSearchBox: FC<HeroSearchBoxProps> = ({ lang, style, button }) => {
               ? 'ltr:pl-5 rtl:pr-5 md:ltr:pl-6 md:rtl:pr-6 ltr:pr-14 rtl:pl-14 md:ltr:pr-16 md:rtl:pl-16 md:h-16 shadow-heroSearch placeholder:text-brand-dark/50 rounded-md'
               : 'ltr:pl-16 rtl:pr-16 h-[70px] shadow-searchBox placeholder:text-brand-dark/30 rounded-lg'
           } lg:text-base focus:ring-2 focus:ring-brand`}
-          placeholder={t('placeholder-search') as string}
+          placeholder='What are you looking...'
           aria-label="Search"
           autoComplete="off"
           value={searchTerm}

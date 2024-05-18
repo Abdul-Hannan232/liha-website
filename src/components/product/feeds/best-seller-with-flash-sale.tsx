@@ -13,7 +13,6 @@ import { SwiperSlide } from 'swiper/react';
 import useWindowSize from '@utils/use-window-size';
 
 interface BestSellerProps {
-  lang: string;
   className?: string;
 }
 
@@ -73,7 +72,6 @@ const options = {
 };
 
 export default function BestSellerWithFlashSale({
-  lang,
   className,
 }: BestSellerProps) {
   const { width } = useWindowSize();
@@ -88,14 +86,13 @@ export default function BestSellerWithFlashSale({
         sectionHeading="text-best-grocery-near-you"
         sectionSubHeading="text-fresh-grocery-items"
         headingPosition="center"
-        lang={lang}
       />
       <div className="grid grid-cols-1 gap-y-6 md:gap-5 md:grid-cols-2 xl:grid-cols-12 lg:gap-5 xl:gap-7">
         <div className="grid grid-cols-1 gap-3 3xl:grid-cols-3 xl:col-span-8 3xl:col-span-9 md:gap-4 2xl:gap-5">
           {error ? (
             <Alert message={error?.message} className="col-span-full" />
           ) : width! < 1780 ? (
-            <Carousel {...options} lang={lang}>
+            <Carousel {...options} >
               {isLoading
                 ? Array.from({ length: limit! }).map((_, idx) => (
                     <SwiperSlide key={`popular-product-${idx}`}>
@@ -104,7 +101,7 @@ export default function BestSellerWithFlashSale({
                   ))
                 : data?.slice(1, 10)?.map((product: any) => (
                     <SwiperSlide key={`popular-product-${product.id}`}>
-                      <ProductCardMaple product={product} lang={lang} />
+                      <ProductCardMaple product={product} />
                     </SwiperSlide>
                   ))}
             </Carousel>
@@ -122,7 +119,6 @@ export default function BestSellerWithFlashSale({
                 <ProductCardMaple
                   product={product}
                   key={`popular-product-${product.id}`}
-                  lang={lang}
                 />
               ))
           )}
@@ -131,7 +127,6 @@ export default function BestSellerWithFlashSale({
           <ProductFlashSaleGobies
             product={data?.[0]!}
             date={Date.now() + 4000000 * 60}
-            lang={lang}
           />
         </div>
       </div>

@@ -9,42 +9,40 @@ import DeliveryNotes from './delivery-instruction';
 import DeliverySchedule from './schedule';
 import DeliveryTips from './delivery-tips';
 import StripeCheckoutInlineForm from './stripe-checkout-inline-form';
-import { useTranslation } from 'src/app/i18n/client';
 import { useIsMounted } from '@utils/use-is-mounted';
 
-const CheckoutDetails: React.FC<{ lang: string }> = ({ lang }) => {
-  const { t } = useTranslation(lang, 'common');
+const CheckoutDetails= () => {
   const [bindIndex, setBindIndex] = useState(0);
   const data = [
     {
       id: 1,
       title: 'text-delivery-address',
-      component: <Address lang={lang} />,
+      component: <Address />,
     },
     {
       id: 2,
       title: 'text-delivery-schedule',
-      component: <DeliverySchedule lang={lang} />,
+      component: <DeliverySchedule  />,
     },
     {
       id: 3,
       title: 'text-contact-number',
-      component: <Contact lang={lang} />,
+      component: <Contact/>,
     },
     {
       id: 4,
       title: 'text-payment-option',
-      component: <StripeCheckoutInlineForm lang={lang} />,
+      component: <StripeCheckoutInlineForm  />,
     },
     {
       id: 5,
       title: 'text-delivery-instructions',
-      component: <DeliveryNotes lang={lang} />,
+      component: <DeliveryNotes />,
     },
     {
       id: 6,
       title: 'text-delivery-tip',
-      component: <DeliveryTips lang={lang} />,
+      component: <DeliveryTips  />,
     },
   ];
   const changeItem = (itemIndex: any) => {
@@ -75,7 +73,7 @@ const CheckoutDetails: React.FC<{ lang: string }> = ({ lang }) => {
                 <span className="flex items-center justify-center font-semibold border-2 border-current rounded-full h-9 w-9 text-brand ltr:mr-3 rtl:ml-3">
                   {index + 1}
                 </span>
-                <Heading>{t(item?.title)}</Heading>
+                <Heading>{item?.title}</Heading>
               </div>
 
               <div
@@ -90,7 +88,7 @@ const CheckoutDetails: React.FC<{ lang: string }> = ({ lang }) => {
                       variant="formButton"
                       className="px-4 py-3 text-sm font-semibold rounded bg-brand text-brand-light"
                     >
-                      {t('button-next-steps')}
+                     Next Steps
                     </Button>
                   </div>
                 ) : (

@@ -13,16 +13,15 @@ import ShopSidebarDrawer from '@components/shops/shop-sidebar-drawer';
 import AllProductFeed from '@components/product/feeds/all-products-feed';
 import useWindowSize from '@utils/use-window-size';
 import motionProps from '@components/common/drawer/motion';
-import { useTranslation } from 'src/app/i18n/client';
 
-export default function ShopsSingleDetails({ lang }: { lang: string }) {
-  const { t } = useTranslation(lang, 'common');
+export default function ShopsSingleDetails() {
+
   const pathname = useParams();
   const { slug } = pathname;
   const { data, isLoading } = useShopQuery(slug as string);
   const { openShop, displayShop, closeShop } = useUI();
   const { width } = useWindowSize();
-  const dir = getDirection(lang);
+  const dir = getDirection('ltr');
   const contentWrapperCSS = dir === 'ltr' ? { left: 0 } : { right: 0 };
 
   if (isLoading) return <p>Loading...</p>;
@@ -58,7 +57,7 @@ export default function ShopsSingleDetails({ lang }: { lang: string }) {
             className="block text-sm font-medium transition-all text-brand hover:text-brand-muted"
             onClick={openShop}
           >
-            {t('text-more-info')}
+            More Info
           </button>
         </div>
       </div>
@@ -70,12 +69,12 @@ export default function ShopsSingleDetails({ lang }: { lang: string }) {
         >
           <div className="shrink-0 hidden lg:block lg:w-80 xl:w-[350px] 2xl:w-96 lg:sticky lg:top-20 category-mobile-sidebar">
             <div className="border border-[#EFF2F4] shadow-vendorSidebar rounded-lg">
-              <ShopSidebar data={data} lang={lang} />
+              <ShopSidebar data={data} />
             </div>
           </div>
 
           <div className="w-full lg:ltr:pl-7 lg:rtl:pr-7">
-            <AllProductFeed lang={lang} />
+            <AllProductFeed />
           </div>
         </Element>
       </Container>
@@ -89,7 +88,7 @@ export default function ShopsSingleDetails({ lang }: { lang: string }) {
         contentWrapperStyle={contentWrapperCSS}
         {...motionProps}
       >
-        <ShopSidebarDrawer data={data} lang={lang} />
+        <ShopSidebarDrawer data={data} />
       </Drawer>
     </>
   );

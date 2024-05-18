@@ -1,6 +1,5 @@
 import TextArea from '@components/ui/form/text-area';
 import { useForm } from 'react-hook-form';
-import { useTranslation } from 'src/app/i18n/client';
 import Text from '@components/ui/text';
 
 interface ContactFormValues {
@@ -8,11 +7,10 @@ interface ContactFormValues {
   default: boolean;
 }
 
-const DeliveryInstructions: React.FC<{ data?: any; lang: string }> = ({
+const DeliveryInstructions: React.FC<{ data?: any}> = ({
   data,
-  lang,
+
 }) => {
-  const { t } = useTranslation(lang);
   const {
     register,
     handleSubmit,
@@ -38,7 +36,6 @@ const DeliveryInstructions: React.FC<{ data?: any; lang: string }> = ({
               inputClassName="focus:border-2 focus:outline-none focus:border-brand"
               label="forms:label-delivery-instructions-note"
               {...register('instructionNote')}
-              lang={lang}
             />
           </div>
           <div className="mb-6">
@@ -52,10 +49,10 @@ const DeliveryInstructions: React.FC<{ data?: any; lang: string }> = ({
               htmlFor="default-type"
               className="font-medium align-middle ltr:ml-3 rtl:mr-3 text-brand-dark text-15px"
             >
-              {t('forms:label-leave-at-my-door')}
+              Leave at my door if I am not around
             </label>
             <Text className="ltr:ml-8 rtl:mr-8 pt-2.5" variant="small">
-              {t('common:text-selecting-this-option')}
+            By selecting this option you accept full responsibility for your order after it has been delivered unattended, including any loss due to theft or damage due to temperature sensitivity.
             </Text>
           </div>
         </form>

@@ -4,7 +4,7 @@ import { OrderItem } from '@framework/types';
 import { useRouter } from 'next/navigation';
 
 import Heading from '@components/ui/heading';
-import { useTranslation } from 'src/app/i18n/client';
+
 const OrderItemCard = ({ product }: { product: OrderItem }) => {
   const { price: itemTotal } = usePrice({
     amount: product.price * product.quantity,
@@ -22,11 +22,10 @@ const OrderItemCard = ({ product }: { product: OrderItem }) => {
     </tr>
   );
 };
-const OrderDetails: React.FC<{ className?: string; lang: string }> = ({
+const OrderDetails: React.FC<{ className?: string }> = ({
   className = 'pt-10 lg:pt-12',
-  lang,
 }) => {
-  const { t } = useTranslation(lang, 'common');
+
   // const {
   //   query: { id },
   // } = useRouter();
@@ -57,16 +56,16 @@ const OrderDetails: React.FC<{ className?: string; lang: string }> = ({
   return (
     <div className={className}>
       <Heading variant="heading" className="mb-6 xl:mb-7">
-        {t('text-order-details')}:
+      Order details:
       </Heading>
       <table className="w-full text-sm font-semibold text-brand-dark lg:text-base">
         <thead>
           <tr>
             <th className="w-1/2 p-4 bg-fill-secondary ltr:text-left rtl:text-right ltr:first:rounded-tl-md rtl:first:rounded-tr-md">
-              {t('text-product')}
+            Product
             </th>
             <th className="w-1/2 p-4 bg-fill-secondary ltr:text-left rtl:text-right ltr:last:rounded-tr-md rtl:last:rounded-tl-md">
-              {t('text-total')}
+            Total
             </th>
           </tr>
         </thead>
@@ -77,11 +76,11 @@ const OrderDetails: React.FC<{ className?: string; lang: string }> = ({
         </tbody>
         <tfoot>
           <tr className="odd:bg-fill-secondary">
-            <td className="p-4 italic">{t('text-sub-total')}:</td>
+            <td className="p-4 italic">Subtotal:</td>
             <td className="p-4">{subtotal}</td>
           </tr>
           <tr className="odd:bg-fill-secondary">
-            <td className="p-4 italic">{t('text-shipping')}:</td>
+            <td className="p-4 italic">Shipping:</td>
             <td className="p-4">
               {shipping}
               <span className="text-[13px] font-normal ltr:pl-1.5 rtl:pr-1.5 inline-block">
@@ -90,16 +89,16 @@ const OrderDetails: React.FC<{ className?: string; lang: string }> = ({
             </td>
           </tr>
           <tr className="odd:bg-fill-secondary">
-            <td className="p-4 italic">{t('text-payment-method')}:</td>
+            <td className="p-4 italic">Payment method:</td>
             <td className="p-4">{order?.payment_gateway}</td>
           </tr>
           <tr className="odd:bg-fill-secondary">
-            <td className="p-4 italic">{t('text-total')}:</td>
+            <td className="p-4 italic">Total:</td>
             <td className="p-4">{total}</td>
           </tr>
           <tr className="odd:bg-fill-secondary">
-            <td className="p-4 italic">{t('text-note')}:</td>
-            <td className="p-4">{t('text-new-order')}</td>
+            <td className="p-4 italic">Note:</td>
+            <td className="p-4">new order</td>
           </tr>
         </tfoot>
       </table>

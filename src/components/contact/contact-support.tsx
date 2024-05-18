@@ -6,7 +6,6 @@ import Image from '@components/ui/image';
 import Heading from '@components/ui/heading';
 import Link from '@components/ui/link';
 import { useIsMounted } from '@utils/use-is-mounted';
-import { useTranslation } from 'src/app/i18n/client';
 
 const supportData = [
   {
@@ -36,20 +35,18 @@ const supportData = [
 ];
 
 interface Props {
-  lang: string;
   image?: HTMLImageElement;
 }
 
-const ContactSupport: FC<Props> = ({ lang }) => {
-  const { t } = useTranslation(lang, 'common');
+const ContactSupport: FC<Props> = () => {
   const mounted = useIsMounted();
   return (
     <div className="mb-0 3xl:ltr:pr-5 3xl:rtl:pl-5">
       <Heading variant="heading" className="mb-3 lg:mb-4 xl:mb-5">
-        {mounted && <>{t('contact-form-info-title')}</>}
+        {mounted && <>Support is our main priority</>}
       </Heading>
       <Text className="xl:leading-8">
-        {mounted && <>{t('contact-form-info-content')}</>}
+        {mounted && <>We created reusable react components, and modern mono repo architecture, so you can build multiple apps with common components. You can use these landing for your react app. It’s super easy to deploy, we have provided complete firebase integration it.</>}
       </Text>
       <div className="flex mt-5 -mx-1">
         {supportData.map((item, idx) => (

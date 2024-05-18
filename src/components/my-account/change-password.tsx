@@ -8,15 +8,13 @@ import {
   useChangePasswordMutation,
   ChangePasswordInputType,
 } from '@framework/customer/use-change-password';
-import { useTranslation } from 'src/app/i18n/client';
 
 const defaultValues = {
   oldPassword: '',
   newPassword: '',
 };
 
-const ChangePassword: React.FC<{ lang: string }> = ({ lang }) => {
-  const { t } = useTranslation(lang);
+const ChangePassword = () => {
   const { mutate: changePassword, isPending } = useChangePasswordMutation();
 
   const {
@@ -32,7 +30,7 @@ const ChangePassword: React.FC<{ lang: string }> = ({ lang }) => {
   return (
     <>
       <Heading variant="titleLarge">
-        {t('common:text-account-details-password')}
+      Change Password
       </Heading>
       <div className="flex flex-col w-full mt-6 lg:w-10/12 2xl:w-9/12 lg:mt-7">
         <form
@@ -41,20 +39,18 @@ const ChangePassword: React.FC<{ lang: string }> = ({ lang }) => {
         >
           <div className="flex flex-col space-y-5 lg:space-y-7">
             <PasswordInput
-              label={t('forms:label-old-password')}
+              label='Old Password'
               error={errors.oldPassword?.message}
               {...register('oldPassword', {
-                required: `${t('forms:password-old-required')}`,
+                required: 'You must need to provide your old password',
               })}
-              lang={lang}
             />
             <PasswordInput
-              label={t('forms:label-new-password')}
+              label='New Password'
               error={errors.newPassword?.message}
               {...register('newPassword', {
-                required: `${t('forms:password-new-required')}`,
+                required: `You must need to provide your new password`,
               })}
-              lang={lang}
             />
 
             <div className="relative mt-3">
@@ -65,7 +61,7 @@ const ChangePassword: React.FC<{ lang: string }> = ({ lang }) => {
                 variant="formButton"
                 className="w-full sm:w-auto"
               >
-                {t('common:text-change-password')}
+                Change Password
               </Button>
             </div>
           </div>

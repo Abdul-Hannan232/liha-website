@@ -1,11 +1,10 @@
 import Image from '@components/ui/image';
 import Link from '@components/ui/link';
 import { LinkProps } from 'next/link';
-import { useTranslation } from 'src/app/i18n/client';
+// import { useTranslation } from 'src/app/i18n/client';
 import cn from 'classnames';
 
 interface Props {
-  lang: string;
   imgWidth?: number | string;
   imgHeight?: number | string;
   className?: string;
@@ -27,17 +26,17 @@ const BundleCardGrid: React.FC<Props> = ({
   className = '',
   effectActive = true,
   href,
-  lang,
 }) => {
   const { image, title } = bundle;
-  const { t } = useTranslation(lang, 'common');
+
   return (
-    <Link href={`/${lang}${href}`} className={cn('group flex', className)}>
+    <Link href={`${href}`} className={cn('group flex', className)}>
+
       <div className="relative flex items-center w-full overflow-hidden">
         <div className="relative flex max-w-full shrink-0">
           <Image
             src={image ?? '/assets/placeholder/collection.svg'}
-            alt={t(title) || t('text-card-thumbnail')}
+            alt={title || 'Card Thumbnail'}
             width={imgWidth as number}
             height={imgHeight as number}
             priority

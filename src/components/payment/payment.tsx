@@ -1,9 +1,8 @@
 import { usePaymentQuery } from '@framework/payment/payment';
 import PaymentBox from './payment-content';
-import { useTranslation } from 'src/app/i18n/client';
 
-const PaymentPage: React.FC<{ lang: string }> = ({ lang }) => {
-  const { t } = useTranslation(lang, 'common');
+const PaymentPage: React.FC<{ lang: string }> = () => {
+
   let { data, isLoading } = usePaymentQuery();
   return !isLoading ? (
     <div className="w-full max-w-[1300px] mx-auto">
@@ -12,7 +11,7 @@ const PaymentPage: React.FC<{ lang: string }> = ({ lang }) => {
         <div className="lg:w-[65%] w-full">
           <div className="p-4 border border-solid rounded md:px-12 md:py-10 border-border-base">
             <h2 className="mb-4 text-xl font-semibold text-brand-dark">
-              {t('text-delivery-payment')}
+            Delivery Payment
             </h2>
             <PaymentBox items={data} />
           </div>

@@ -2,7 +2,6 @@
 
 import { useRef } from 'react';
 import dynamic from 'next/dynamic';
-import { useTranslation } from 'src/app/i18n/client';
 import cn from 'classnames';
 import { ROUTES } from '@utils/routes';
 import { useUI } from '@contexts/ui.context';
@@ -12,11 +11,11 @@ import Container from '@components/ui/container';
 import Logo from '@components/ui/logo';
 import HeaderMenu from '@layouts/header/header-menu';
 import Search from '@components/common/search';
-// import LanguageSwitcher from '@components/ui/language-switcher';
 import UserIcon from '@components/icons/user-icon';
 import SearchIcon from '@components/icons/search-icon';
 import { useModalAction } from '@components/common/modal/modal.context';
 import useOnClickOutside from '@utils/use-click-outside';
+
 const Delivery = dynamic(() => import('@layouts/header/delivery'), {
   ssr: false,
 });
@@ -30,8 +29,7 @@ const CartButton = dynamic(() => import('@components/cart/cart-button'), {
 type DivElementRef = React.MutableRefObject<HTMLDivElement>;
 const { site_header } = siteSettings;
 
-function Header({ lang }: { lang: string }) {
-  const { t } = useTranslation(lang, 'common');
+function Header() {
   const {
     displaySearch,
     displayMobileSearch,
@@ -61,7 +59,6 @@ function Header({ lang }: { lang: string }) {
         <Search
           searchId="mobile-search"
           className="top-bar-search hidden lg:max-w-[600px] absolute z-30 px-4 md:px-6 top-1"
-          lang={lang}
         />
         {/* End of Mobile search */}
         <Container className="flex items-center justify-between h-16 py-3 top-bar lg:h-auto">
@@ -73,29 +70,25 @@ function Header({ lang }: { lang: string }) {
           <Search
             searchId="top-bar-search"
             className="hidden lg:flex lg:max-w-[650px] 2xl:max-w-[800px] lg:ltr:ml-7 lg:rtl:mr-7 lg:ltr:mr-5 lg:rtl:ml-5"
-            lang={lang}
           />
           {/* End of search */}
 
           <div className="flex shrink-0 -mx-2.5 xl:-mx-3.5">
             <div className="xl:mx-3.5 mx-2.5">
-              {/* <LanguageSwitcher lang={lang} /> */}
+              {/* <LanguageSwitcher  /> */}
             </div>
-            <CartButton
-              className="hidden lg:flex mx-2.5 xl:mx-3.5"
-              lang={lang}
-            />
+            <CartButton className="hidden lg:flex mx-2.5 xl:mx-3.5" />
             <div className="items-center hidden lg:flex shrink-0 mx-2.5 xl:mx-3.5">
               <UserIcon className="text-brand-dark text-opacity-40" />
               <AuthMenu
                 isAuthorized={isAuthorized}
-                href={`/${lang}${ROUTES.ACCOUNT}`}
+                href={`${ROUTES.ACCOUNT}`}
                 btnProps={{
-                  children: t('text-sign-in'),
+                  children: 'Sign In', 
                   onClick: handleLogin,
                 }}
               >
-                {t('text-account')}
+                Account
               </AuthMenu>
             </div>
           </div>
@@ -111,7 +104,6 @@ function Header({ lang }: { lang: string }) {
             <HeaderMenu
               data={site_header.menu}
               className="flex transition-all duration-200 ease-in-out"
-              lang={lang}
             />
             {/* End of main menu */}
 
@@ -120,7 +112,6 @@ function Header({ lang }: { lang: string }) {
                 <Search
                   ref={siteSearchRef}
                   className="max-w-[780px] xl:max-w-[830px] 2xl:max-w-[1000px]"
-                  lang={lang}
                 />
               </div>
             )}
@@ -139,25 +130,26 @@ function Header({ lang }: { lang: string }) {
                 </button>
                 {/* End of search handler btn */}
 
-                <CartButton lang={lang} />
+                <CartButton />
                 {/* End of cart btn */}
 
                 <div className="flex items-center shrink-0 ltr:ml-7 rtl:mr-7">
                   <UserIcon className="text-brand-dark text-opacity-40" />
                   <AuthMenu
                     isAuthorized={isAuthorized}
-                    href={`/${lang}${ROUTES.ACCOUNT}`}
+                    // href={`/${lang}${ROUTES.ACCOUNT}`}
+                    href={`${ROUTES.ACCOUNT}`}
                     btnProps={{
-                      children: t('text-sign-in'),
+                      children:'Sign In',
                       onClick: handleLogin,
                     }}
                   >
-                    {t('text-account')}
+                   Account
                   </AuthMenu>
                 </div>
                 {/* End of auth */}
               </div>
-              <Delivery lang={lang} />
+              <Delivery />
             </div>
           </Container>
         </div>

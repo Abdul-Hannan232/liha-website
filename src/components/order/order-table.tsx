@@ -84,9 +84,8 @@ const columns = [
   },
 ];
 
-const OrderTable: React.FC<{ orders?: any; lang: string }> = ({
+const OrderTable: React.FC<{ orders?: any;}> = ({
   orders,
-  lang,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [value, setValue] = useState('');
@@ -136,7 +135,6 @@ const OrderTable: React.FC<{ orders?: any; lang: string }> = ({
             onChange={onChangeSearch}
             placeholder="Search Order list"
             inputClassName=" h-[46px] w-full bg-white border border-[#E3E8EC] rounded-md order-search focus:border-2 focus:outline-none focus:border-brand focus:text-brand-muted"
-            lang={lang}
           />
         </form>
       </div>

@@ -1,14 +1,12 @@
 import cn from 'classnames';
 import MinusIcon from '@components/icons/minus-icon';
 import PlusIcon from '@components/icons/plus-icon';
-import { useTranslation } from 'src/app/i18n/client';
 
 type ButtonEvent = (
   e: React.MouseEvent<HTMLButtonElement | MouseEvent>,
 ) => void;
 
 type CounterProps = {
-  lang: string;
   value: number;
   variant?: 'mercury' | 'cart' | 'single' | 'venus';
   onDecrement: ButtonEvent;
@@ -18,7 +16,6 @@ type CounterProps = {
 };
 
 const Counter: React.FC<CounterProps> = ({
-  lang,
   value,
   variant = 'mercury',
   onDecrement,
@@ -27,7 +24,7 @@ const Counter: React.FC<CounterProps> = ({
   disabled,
 }) => {
   const size = variant === 'single' ? '22' : '14';
-  const { t } = useTranslation(lang, 'common');
+
   return (
     <div
       className={cn(
@@ -58,7 +55,9 @@ const Counter: React.FC<CounterProps> = ({
           },
         )}
       >
-        <span className="sr-only">{t('button-minus')}</span>
+      {/* > */}
+        <span className="sr-only">-</span>
+        {/* <span className="sr-only">{t('button-minus')}</span> */}
         <MinusIcon width={size} height={size} opacity="1" />
       </button>
       <span
@@ -94,7 +93,8 @@ const Counter: React.FC<CounterProps> = ({
         )}
         title={disabled ? 'Out Of Stock' : ''}
       >
-        <span className="sr-only">{t('button-plus')}</span>
+        <span className="sr-only">-</span>
+        {/* <span className="sr-only">{t('button-plus')}</span> */}
         <PlusIcon width={size} height={size} opacity="1" />
       </button>
     </div>

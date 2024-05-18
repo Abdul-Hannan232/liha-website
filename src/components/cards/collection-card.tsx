@@ -7,13 +7,12 @@ import { LinkProps } from 'next/link';
 import Text from '@components/ui/text';
 
 import { collectionPlaceholder } from '@assets/placeholders';
-import { useTranslation } from 'src/app/i18n/client';
+// import { useTranslation } from 'src/app/i18n/client';
 
 interface Props {
   imgWidth?: number | string;
   imgHeight?: number | string;
   href: LinkProps['href'];
-  lang: string;
   collection: {
     image: string;
     title: string;
@@ -26,18 +25,18 @@ const CollectionCard: React.FC<Props> = ({
   imgWidth = 440,
   imgHeight = 280,
   href,
-  lang,
 }) => {
   const { image, title, description } = collection;
-  const { t } = useTranslation(lang, 'common');
+
   return (
     <Link
-      href={`/${lang}${href}`}
+      href={`${href}`}
+
       className="flex flex-col overflow-hidden rounded-md group shadow-card "
     >
       <Image
         src={image ?? collectionPlaceholder}
-        alt={t(title) || t('text-card-thumbnail')}
+        alt={title || 'Card Thumbnail'}
         width={imgWidth as number}
         height={imgHeight as number}
         style={{ width: 'auto' }}
@@ -48,10 +47,10 @@ const CollectionCard: React.FC<Props> = ({
           variant="title"
           className="mb-1 lg:mb-1.5 truncate transition-colors group-hover:text-brand"
         >
-          {t(title)}
+          {title}
         </Heading>
         <Text variant="medium" className="truncate">
-          {t(`${description}`)}
+          {description}
         </Text>
       </div>
     </Link>

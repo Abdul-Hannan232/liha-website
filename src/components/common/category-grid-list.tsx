@@ -7,7 +7,6 @@ import cn from 'classnames';
 import { ROUTES } from '@utils/routes';
 
 interface CategoriesProps {
-  lang: string;
   className?: string;
   limit?: number;
 }
@@ -15,7 +14,6 @@ interface CategoriesProps {
 const CategoryGridList: React.FC<CategoriesProps> = ({
   className = '',
   limit,
-  lang,
 }) => {
   const { data, isLoading, error } = useCategoriesQuery({
     limit: limit,
@@ -49,7 +47,6 @@ const CategoryGridList: React.FC<CategoriesProps> = ({
                   category={category}
                   href={`${ROUTES.SEARCH}?category=${category.slug}`}
                   className="transition border-b border-border-base last:border-b-0 hover:bg-fill-base"
-                  lang={lang}
                 />
               ))
             )}

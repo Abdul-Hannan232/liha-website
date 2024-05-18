@@ -6,7 +6,6 @@ import PhoneIcon from '@components/icons/contact/phone-icon';
 import MailIcon from '@components/icons/contact/mail-icon';
 import Text from '@components/ui/text';
 import Heading from '@components/ui/heading';
-import { useTranslation } from 'src/app/i18n/client';
 
 const data = [
   {
@@ -15,8 +14,8 @@ const data = [
     icon: (
       <LocationIcon className="w-12 lg:w-13 xl:w-[60px] h-12 lg:h-13 xl:h-[60px]" />
     ),
-    name: 'text-office-location',
-    description: 'text-office-location-details',
+    name: 'Office Location',
+    description: '2756  Quiet Valley Lane, Reseda, California, United Stats',
   },
   {
     id: 2,
@@ -24,8 +23,8 @@ const data = [
     icon: (
       <PhoneIcon className="w-12 lg:w-13 xl:w-[60px] h-12 lg:h-13 xl:h-[60px]" />
     ),
-    name: 'text-phone',
-    description: 'text-phone-details',
+    name: 'Call us anytime',
+    description: 'Change the design through a range +89 5631 564    +88 5321 036',
   },
   {
     id: 3,
@@ -33,12 +32,11 @@ const data = [
     icon: (
       <MailIcon className="w-12 lg:w-13 xl:w-[60px] h-12 lg:h-13 xl:h-[60px]" />
     ),
-    name: 'text-email',
-    description: 'text-email-details',
+    name: 'Send Mail',
+    description: 'support@demoagency.com hire.us@demoteam.io',
   },
 ];
-const ContactInformation: FC<{ lang: string }> = ({ lang }) => {
-  const { t } = useTranslation(lang, 'common');
+const ContactInformation: FC<{ lang: string }> = () => {
   return (
     <>
       {data.length > 0 && (
@@ -51,9 +49,9 @@ const ContactInformation: FC<{ lang: string }> = ({ lang }) => {
               <div className="shrink-0 w-14 xl:w-16">{item.icon}</div>
               <div className="mt-4 lg:ltr:pl-3 lg:rtl:pr-3 2xl:ltr:pl-4 2xl:rtl:pr-4 lg:mt-0">
                 <Heading variant="title" className="mb-2 lg:mb-2.5 font-bold">
-                  {t(item.name)}
+                  {item.name}
                 </Heading>
-                <Text>{t(item.description)}</Text>
+                <Text>{item.description}</Text>
               </div>
             </div>
           ))}

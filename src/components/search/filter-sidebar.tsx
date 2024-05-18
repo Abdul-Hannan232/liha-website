@@ -5,10 +5,9 @@ import { IoArrowBack, IoArrowForward } from 'react-icons/io5';
 import { getDirection } from '@utils/get-direction';
 import { usePathname } from 'next/navigation';
 import Heading from '@components/ui/heading';
-import { useTranslation } from 'src/app/i18n/client';
 
-const FilterSidebar = ({ lang }: { lang: string }) => {
-  const { t } = useTranslation(lang, 'common');
+const FilterSidebar = () => {
+
   const { closeFilter } = useUI();
   const pathname = usePathname();
   const dir = getDirection(pathname);
@@ -30,18 +29,18 @@ const FilterSidebar = ({ lang }: { lang: string }) => {
           variant="titleMedium"
           className="w-full text-center ltr:pr-6 rtl:pl-6"
         >
-          {t('text-filters')}
+          Filters
         </Heading>
       </div>
 
       <Scrollbar className="flex-grow mb-auto menu-scrollbar">
         <div className="flex flex-col px-5 py-7 md:px-7 text-heading">
-          <ShopFilters lang={lang} />
+          <ShopFilters />
         </div>
       </Scrollbar>
 
       <div className="flex items-center justify-center leading-4 text-15px md:text-base px-7 shrink-0 h-14 bg-fill-secondary text-brand-dark ">
-        2,683 {t('text-items-found')}
+        2,683 Items Found
       </div>
     </div>
   );

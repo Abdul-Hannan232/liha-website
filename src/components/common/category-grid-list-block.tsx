@@ -12,7 +12,6 @@ import cn from 'classnames';
 import { ROUTES } from '@utils/routes';
 
 interface CategoriesProps {
-  lang: string;
   className?: string;
   variant?: 'antique';
 }
@@ -57,7 +56,6 @@ const antiqueBreakpoints = {
 };
 
 const CategoryGridListBlock: React.FC<CategoriesProps> = ({
-  lang,
   className = 'mb-12 lg:mb-14 xl:mb-16 2xl:mb-20',
   variant,
 }) => {
@@ -74,7 +72,6 @@ const CategoryGridListBlock: React.FC<CategoriesProps> = ({
             sectionHeading="text-choose-categories"
             sectionSubHeading="text-favorite-different-categories"
             headingPosition="center"
-            lang={lang}
           />
         ) : (
           ''
@@ -92,7 +89,6 @@ const CategoryGridListBlock: React.FC<CategoriesProps> = ({
                   className="-mx-1.5 md:-mx-2"
                   prevButtonClassName="ltr:-left-2 rtl:-right-2 md:ltr:-left-2.5 md:rtl:-right-2.5"
                   nextButtonClassName="ltr:-right-2 rtl:-left-2 lg:ltr:-right-2.5 lg:rtl:-left-2.5"
-                  lang={lang}
                 >
                   {isLoading && !data
                     ? Array.from({ length: 18 }).map((_, idx) => {
@@ -116,7 +112,6 @@ const CategoryGridListBlock: React.FC<CategoriesProps> = ({
                             category={category}
                             href={`${ROUTES.SEARCH}?category=${category.slug}`}
                             className="rounded-md text-brand-light shadow-category"
-                            lang={lang}
                           />
                         </SwiperSlide>
                       ))}
@@ -146,7 +141,6 @@ const CategoryGridListBlock: React.FC<CategoriesProps> = ({
                           category={category}
                           href={`${ROUTES.SEARCH}?category=${category.slug}`}
                           className="rounded-md text-brand-light shadow-category"
-                          lang={lang}
                         />
                       </div>
                     ))}
@@ -161,7 +155,6 @@ const CategoryGridListBlock: React.FC<CategoriesProps> = ({
             className="antique-carousel-slider"
             prevButtonClassName="ltr:-left-2 rtl:-right-2 md:ltr:-left-2.5 md:rtl:-right-2.5 -translate-y-1/2"
             nextButtonClassName="ltr:-right-2 rtl:-left-2 lg:ltr:-right-2.5 lg:rtl:-left-2.5 -translate-y-1/2"
-            lang={lang}
           >
             {isLoading && !data
               ? Array.from({ length: 18 }).map((_, idx) => {
@@ -186,7 +179,6 @@ const CategoryGridListBlock: React.FC<CategoriesProps> = ({
                       href={`${ROUTES.SEARCH}?category=${category.slug}`}
                       className="bg-white rounded-lg shadow-category2"
                       variant={variant}
-                      lang={lang}
                     />
                   </SwiperSlide>
                 ))}

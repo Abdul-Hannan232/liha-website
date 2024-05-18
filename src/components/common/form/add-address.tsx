@@ -9,7 +9,6 @@ import {
 import CloseButton from '@components/ui/close-button';
 import Heading from '@components/ui/heading';
 import Map from '@components/ui/map';
-import { useTranslation } from 'src/app/i18n/client';
 
 interface ContactFormValues {
   title: string;
@@ -19,8 +18,8 @@ interface ContactFormValues {
   formatted_address?: string;
 }
 
-const AddAddressForm: React.FC<{ lang: string }> = ({ lang }) => {
-  const { t } = useTranslation(lang);
+const AddAddressForm: React.FC<{ lang: string }> = () => {
+  // const { t } = useTranslation(lang);
   const { data } = useModalState();
 
   const { closeModal } = useModalAction();
@@ -49,7 +48,7 @@ const AddAddressForm: React.FC<{ lang: string }> = ({ lang }) => {
     <div className="w-full md:w-[600px] lg:w-[900px] xl:w-[1000px] mx-auto p-5 sm:p-8 bg-brand-light rounded-md">
       <CloseButton onClick={closeModal} />
       <Heading variant="title" className="mb-8 -mt-1.5">
-        {t('common:text-add-delivery-address')}
+      Add Delivery Address
       </Heading>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className="mb-6">
@@ -58,7 +57,6 @@ const AddAddressForm: React.FC<{ lang: string }> = ({ lang }) => {
             label="Address Title"
             {...register('title', { required: 'Title Required' })}
             error={errors.title?.message}
-            lang={lang}
           />
         </div>
         <div className="grid grid-cols-1 mb-6 gap-7">
@@ -75,17 +73,16 @@ const AddAddressForm: React.FC<{ lang: string }> = ({ lang }) => {
           <TextArea
             label="Address"
             {...register('formatted_address', {
-              required: 'forms:address-required',
+              required: 'Address is required',
             })}
             error={errors.formatted_address?.message}
             className="text-brand-dark"
             variant="solid"
-            lang={lang}
           />
         </div>
         <div className="flex justify-end w-full">
           <Button className="h-11 md:h-12 mt-1.5" type="submit">
-            {t('common:text-save-address')}
+          Save Address
           </Button>
         </div>
       </form>

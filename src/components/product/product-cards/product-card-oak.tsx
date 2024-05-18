@@ -11,25 +11,22 @@ import { useCart } from '@contexts/cart/cart.context';
 
 import { productPlaceholder } from '@assets/placeholders';
 import dynamic from 'next/dynamic';
-import { useTranslation } from 'src/app/i18n/client';
+
 const AddToCart = dynamic(() => import('@components/product/add-to-cart'), {
   ssr: false,
 });
 
 interface ProductProps {
-  lang: string;
   product: Product;
   className?: string;
 }
 function RenderPopupOrAddToCart({
-  lang,
   props,
 }: {
-  lang: string;
   props: Object;
 }) {
   let { data }: any = props;
-  const { t } = useTranslation(lang, 'common');
+
   const { id, quantity, product_type } = data ?? {};
   const { width } = useWindowSize();
   const { openModal } = useModalAction();
@@ -42,7 +39,7 @@ function RenderPopupOrAddToCart({
   if (Number(quantity) < 1 || outOfStock) {
     return (
       <span className="text-[11px] md:text-xs font-bold text-brand-light uppercase inline-block bg-brand-danger rounded-full px-2.5 pt-1 pb-[3px] mx-0.5 sm:mx-1">
-        {t('text-out-stock')}
+        Out Of Stock
       </span>
     );
   }
@@ -54,10 +51,10 @@ function RenderPopupOrAddToCart({
         onClick={handlePopupView}
       >
         <span className="flex items-center justify-center sm:hidden">
-          {t('text-view')}
+        View
         </span>
         <span className="hidden sm:flex sm:items-center sm:justify-center">
-          {t('text-variable-product')}
+        View Products
         </span>
         <span className="w-10 h-10 bg-[#E5E8EC] rounded-tr-[4px] rounded-br-[4px] flex items-center justify-center ml-auto">
           <Eye width={iconSize} height={iconSize} opacity="1" />
@@ -65,16 +62,15 @@ function RenderPopupOrAddToCart({
       </button>
     );
   }
-  return <AddToCart data={data} variant="venus" lang={lang} />;
+  return <AddToCart data={data} variant="venus"  />;
 }
 const ProductCardOak: React.FC<ProductProps> = ({
   product,
   className,
-  lang,
 }) => {
   const { name, image, unit, product_type } = product ?? {};
   const { openModal } = useModalAction();
-  const { t } = useTranslation(lang, 'common');
+  // const { t } = useTranslation(lang, 'common');
   const { price, basePrice, discount } = usePrice({
     amount: product?.sale_price ? product?.sale_price : product?.price,
     baseAmount: product?.price,
@@ -117,7 +113,7 @@ const ProductCardOak: React.FC<ProductProps> = ({
         <div className="w-full h-full absolute top-0 pt-2.5 md:pt-3.5 px-3 md:px-4 lg:px-[18px] z-10 -mx-0.5 sm:-mx-1">
           {discount && (
             <span className="text-[11px] md:text-xs font-bold text-brand-light uppercase inline-block bg-brand rounded-full px-2.5 pt-1 pb-[3px] mx-0.5 sm:mx-1">
-              {t('text-on-sale')}
+              on sale
             </span>
           )}
         </div>
@@ -138,7 +134,7 @@ const ProductCardOak: React.FC<ProductProps> = ({
           {name}
         </h2>
         <div className="mt-auto text-13px sm:text-sm">{unit}</div>
-        <RenderPopupOrAddToCart props={{ data: product }} lang={lang} />
+        <RenderPopupOrAddToCart props={{ data: product }}  />
       </div>
     </article>
   );

@@ -4,7 +4,6 @@ import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { useUI } from '@contexts/ui.context';
 import { useEffect, useState } from 'react';
 import Image from '@components/ui/image';
-import { useTranslation } from 'src/app/i18n/client';
 import { FaCheck } from 'react-icons/fa';
 import useQueryParam from '@utils/use-query-params';
 
@@ -18,9 +17,8 @@ function CategoryFilterMenuItem({
   className = 'hover:bg-fill-base border-t border-border-base first:border-t-0 px-3.5 2xl:px-4 py-3 xl:py-3.5 2xl:py-2.5 3xl:py-3',
   item,
   depth = 0,
-  lang,
 }: any) {
-  const { t } = useTranslation(lang, 'common');
+
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { updateQueryparams } = useQueryParam(pathname ?? '/');
@@ -100,7 +98,8 @@ function CategoryFilterMenuItem({
             <div className="inline-flex shrink-0 2xl:w-12 2xl:h-12 3xl:w-auto 3xl:h-auto ltr:mr-2.5 rtl:ml-2.5 md:ltr:mr-4 md:rtl:ml-4 2xl:ltr:mr-3 2xl:rtl:ml-3 3xl:ltr:mr-4 3xl:rtl:ml-4">
               <Image
                 src={icon ?? '/assets/placeholder/category-small.svg'}
-                alt={name || t('text-category-thumbnail')}
+                // alt={name || t('text-category-thumbnail')}
+                alt={name || 'Category Thumbnail'}
                 width={40}
                 height={40}
                 style={{ width: 'auto' }}
@@ -134,7 +133,7 @@ function CategoryFilterMenuItem({
                   item={currentItem}
                   depth={childDepth}
                   className="px-0 border-t border-border-base first:border-t-0 mx-[3px] bg-transparent"
-                  lang={lang}
+                 
                 />
               );
             })}
@@ -145,14 +144,14 @@ function CategoryFilterMenuItem({
   );
 }
 
-function CategoryFilterMenu({ items, className, lang }: any) {
+function CategoryFilterMenu({ items, className}: any) {
   return (
     <ul className={cn(className)}>
       {items?.map((item: any) => (
         <CategoryFilterMenuItem
           key={`${item.slug}-key-${item.id}`}
           item={item}
-          lang={lang}
+         
         />
       ))}
     </ul>

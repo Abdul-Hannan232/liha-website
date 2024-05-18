@@ -1,7 +1,7 @@
 import { useOrdersQuery } from '@framework/order/get-all-orders';
 import OrderTable from '@components/order/order-table';
 
-export default function OrderLists({ lang }: { lang: string }) {
+export default function OrderLists() {
   const { data, isLoading } = useOrdersQuery({});
   return !isLoading ? (
     <div className="w-full max-w-[1300px] mx-auto">
@@ -9,7 +9,7 @@ export default function OrderLists({ lang }: { lang: string }) {
         <div className="lg:w-[35%] w-full"></div>
         <div className="lg:w-[65%] w-full">
           <div className="p-4 border border-solid rounded md:px-12 md:py-8 border-border-base">
-            <OrderTable orders={data?.data} lang={lang} />
+            <OrderTable orders={data?.data} />
           </div>
         </div>
       </div>

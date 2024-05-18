@@ -3,10 +3,8 @@
 import cn from 'classnames';
 import { Disclosure, Transition } from '@headlessui/react';
 import { MdKeyboardArrowRight } from 'react-icons/md';
-import { useTranslation } from 'src/app/i18n/client';
 
 type CollapseProps = {
-  lang: string;
   item: any;
   translatorNS: string;
   variant?: 'gray' | 'transparent';
@@ -18,7 +16,7 @@ export const Accordion: React.FC<CollapseProps> = ({
   translatorNS,
   variant = 'gray',
 }) => {
-  const { t } = useTranslation(lang, translatorNS);
+
   const { id, title, content } = item;
   return (
     <div className="w-full">
@@ -36,7 +34,7 @@ export const Accordion: React.FC<CollapseProps> = ({
                     },
                   )}
                 >
-                  {t(title)}
+                  {title}
                 </span>
                 <MdKeyboardArrowRight
                   className={`text-xl lg:text-2xl text-brand-dark text-opacity-60 group-hover:text-opacity-100 -mr-2 lg:-mr-1.5 shrink-0 ${
@@ -57,7 +55,7 @@ export const Accordion: React.FC<CollapseProps> = ({
                 {open && (
                   <Disclosure.Panel static>
                     <div className="px-5 pb-4 -mt-1 text-sm leading-7 2xl:pb-7 2xl:px-6 2xl:mt-0 2xl:text-15px text-brand-dark opacity-70">
-                      {t(content)}
+                      {content}
                     </div>
                   </Disclosure.Panel>
                 )}

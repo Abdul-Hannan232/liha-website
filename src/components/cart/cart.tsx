@@ -11,10 +11,10 @@ import cn from 'classnames';
 import Heading from '@components/ui/heading';
 import Text from '@components/ui/text';
 import DeleteIcon from '@components/icons/delete-icon';
-import { useTranslation } from 'src/app/i18n/client';
+// import { useTranslation } from 'src/app/i18n/client';
 
-export default function Cart({ lang }: { lang: string }) {
-  const { t } = useTranslation(lang, 'common');
+export default function Cart() {
+  // const { t } = useTranslation(lang, 'common');
   const { closeDrawer } = useUI();
   const { items, total, isEmpty, resetCart } = useCart();
   const { price: cartTotal } = usePrice({
@@ -24,18 +24,18 @@ export default function Cart({ lang }: { lang: string }) {
   return (
     <div className="flex flex-col justify-between w-full h-full">
       <div className="relative flex items-center justify-between w-full border-b ltr:pl-5 rtl:pr-5 md:ltr:pl-7 md:rtl:pr-7 border-border-base">
-        <Heading variant="titleMedium">{t('text-shopping-cart')}</Heading>
+        <Heading variant="titleMedium">Shopping Cart</Heading>
         <div className="flex items-center">
           {!isEmpty && (
             // @ts-ignore
             <button
               className="flex flex-shrink items-center text-15px transition duration-150 ease-in focus:outline-none text-brand-dark opacity-50 hover:opacity-100 ltr:-mr-1.5 rtl:-ml-1.5"
-              aria-label={t('text-clear-all')}
+              aria-label='Clear All'
               onClick={resetCart}
             >
               <DeleteIcon />
               <span className="ltr:pl-1 lg:rtl:pr-1">
-                {t('text-clear-all')}
+              Clear All
               </span>
             </button>
           )}
@@ -53,19 +53,19 @@ export default function Cart({ lang }: { lang: string }) {
         <Scrollbar className="flex-grow w-full cart-scrollbar ">
           <div className="w-full px-5 md:px-7 h-[calc(100vh_-_300px)]">
             {items?.map((item) => (
-              <CartItem item={item} key={item.id} lang={lang} />
+              <CartItem item={item} key={item.id}  />
             ))}
           </div>
         </Scrollbar>
       ) : (
-        <EmptyCart lang={lang} />
+        <EmptyCart  />
       )}
       <div className="px-5 pt-5 pb-5 border-t border-border-base md:px-7 md:pt-6 md:pb-6">
         <div className="flex pb-5 md:pb-7">
           <div className="ltr:pr-3 rtl:pl-3">
-            <Heading className="mb-2.5">{t('text-sub-total')}:</Heading>
+            <Heading className="mb-2.5">Subtotal:</Heading>
             <Text className="leading-6">
-              {t('text-cart-final-price-discount')}
+            Final price and discounts will be determined at the time of payment processing.
             </Text>
           </div>
           <div className="shrink-0 font-semibold text-base md:text-lg text-brand-dark -mt-0.5 min-w-[80px] ltr:text-right rtl:text-left">
@@ -74,7 +74,7 @@ export default function Cart({ lang }: { lang: string }) {
         </div>
         <div className="flex flex-col" onClick={closeDrawer}>
           <Link
-            href={isEmpty === false ? `/${lang}${ROUTES.CHECKOUT}` : `/${lang}`}
+            href={isEmpty === false ? `${ROUTES.CHECKOUT}` : `/`}
             className={cn(
               'w-full px-5 py-3 md:py-4 flex items-center justify-center bg-heading rounded font-semibold text-sm sm:text-15px text-brand-light bg-brand focus:outline-none transition duration-300 hover:bg-opacity-90',
               {
@@ -83,7 +83,7 @@ export default function Cart({ lang }: { lang: string }) {
               },
             )}
           >
-            <span className="py-0.5">{t('text-proceed-to-checkout')}</span>
+            <span className="py-0.5">Proceed To Checkout</span>
           </Link>
         </div>
       </div>

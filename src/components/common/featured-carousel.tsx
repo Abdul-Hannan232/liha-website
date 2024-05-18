@@ -18,8 +18,8 @@ const data = [
         className="transform scale-75 xl:scale-90 3xl:scale-100"
       />
     ),
-    title: 'feature-title-five',
-    description: 'feature-title-five-description',
+    title: 'Digital Coupons',
+    description: 'Save time & money, load before you go',
   },
   {
     id: 2,
@@ -29,8 +29,8 @@ const data = [
         className="transform scale-75 xl:scale-90 3xl:scale-100"
       />
     ),
-    title: 'feature-title-six',
-    description: 'feature-title-six-description',
+    title: 'Weekly Newsfeed',
+    description: 'Browse our weekly newsfeed and add items to your cart',
   },
   {
     id: 3,
@@ -42,8 +42,8 @@ const data = [
         className="transform scale-75 xl:scale-90 3xl:scale-100"
       />
     ),
-    title: 'feature-title-seven',
-    description: 'feature-title-seven-description',
+    title: 'Digital Spotlight',
+    description: 'Find products easily & navigate store with the appn',
   },
   {
     id: 4,
@@ -53,8 +53,8 @@ const data = [
         className="transform scale-75 xl:scale-90 3xl:scale-100"
       />
     ),
-    title: 'feature-title-eight',
-    description: 'feature-title-eight-description',
+    title: 'Online Promotion',
+    description: 'Select an online shopping store to see current offers.',
   },
   {
     id: 5,
@@ -66,13 +66,12 @@ const data = [
         className="transform scale-75 xl:scale-90 3xl:scale-100"
       />
     ),
-    title: 'feature-title-nine',
-    description: 'feature-title-nine-description',
+    title: 'Support 24/7',
+    description: 'Member Services is always here to help.',
   },
 ];
 
 interface Props {
-  lang: string;
   className?: string;
 }
 
@@ -99,7 +98,6 @@ const breakpoints = {
 };
 
 const FeatureCarousel: React.FC<Props> = ({
-  lang,
   className = 'mb-12 md:mb-14 xl:mb-[74px]',
 }) => {
   return (
@@ -109,11 +107,10 @@ const FeatureCarousel: React.FC<Props> = ({
         breakpoints={breakpoints}
         prevActivateId="featured-carousel-button-prev"
         nextActivateId="featured-carousel-button-next"
-        lang={lang}
       >
         {data?.map((item) => (
           <SwiperSlide key={`featured-key-${item.id}`}>
-            <FeaturedCard item={item} lang={lang} />
+            <FeaturedCard item={item} />
           </SwiperSlide>
         ))}
       </Carousel>

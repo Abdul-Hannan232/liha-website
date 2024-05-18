@@ -5,7 +5,7 @@ interface Props {
   btnProps: React.ButtonHTMLAttributes<any>;
   isAuthorized: boolean;
 }
-
+ 
 export default function AuthMenu({
   isAuthorized,
   href,

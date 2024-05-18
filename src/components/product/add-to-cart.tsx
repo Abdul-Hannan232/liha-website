@@ -3,24 +3,21 @@ import { useCart } from '@contexts/cart/cart.context';
 import { generateCartItem } from '@utils/generate-cart-item';
 import PlusIcon from '@components/icons/plus-icon';
 import useWindowSize from '@utils/use-window-size';
-import { useTranslation } from 'src/app/i18n/client';
 
 interface Props {
-  lang: string;
   data: any;
   variation?: any;
   disabled?: boolean;
   variant?: any;
 }
 const AddToCart = ({
-  lang,
   data,
   variation,
   disabled,
   variant = 'mercury',
 }: Props) => {
   const { width } = useWindowSize();
-  const { t } = useTranslation(lang, 'common');
+  // const { t } = useTranslation(lang, 'common');
   const {
     addItemToCart,
     removeItemFromCart,
@@ -51,7 +48,7 @@ const AddToCart = ({
         disabled={disabled || outOfStock}
       >
         <span className="sm:flex text-[15px] sm:items-center sm:justify-center">
-          {t('text-add-to-cart-btn')}
+        Add
         </span>
         <span className="w-10 h-10 bg-[#E5E8EC] rounded-tr-[4px] rounded-br-[4px] flex items-center justify-center ml-auto">
           <PlusIcon width={iconSize} height={iconSize} opacity="1" />
@@ -75,7 +72,6 @@ const AddToCart = ({
       disabled={outOfStock}
       className="w-full h-10"
       variant={variant}
-      lang={lang}
     />
   );
 };

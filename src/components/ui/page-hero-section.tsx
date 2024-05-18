@@ -4,12 +4,11 @@ import { Attachment } from '@framework/types';
 import useWindowSize from '@utils/use-window-size';
 import Breadcrumb from '@components/ui/breadcrumb';
 import cn from 'classnames';
-import { useTranslation } from 'src/app/i18n/client';
 
 interface HeaderProps {
-  lang: string;
+  
   backgroundThumbnail?: Attachment | string;
-  heroTitle?: string;
+  // heroTitle?: string;
   mobileBackgroundThumbnail?: Attachment | string;
   variant?: 'default' | 'white';
   className?: string;
@@ -17,13 +16,11 @@ interface HeaderProps {
 
 const PageHeroSection: React.FC<HeaderProps> = ({
   backgroundThumbnail = '/assets/images/page-hero-bg.png',
-  heroTitle = 'text-page-title',
   mobileBackgroundThumbnail = '/assets/images/page-hero-bg-mobile.png',
   variant = 'default',
   className = '',
-  lang,
+ 
 }) => {
-  const { t } = useTranslation(lang, 'common');
   const { width } = useWindowSize();
   return (
     <div
@@ -51,10 +48,10 @@ const PageHeroSection: React.FC<HeaderProps> = ({
           )}
         >
           <span className="block mb-3 font-bold font-manrope md:mb-4 lg:mb-5 2xl:mb-7 ">
-            {t(heroTitle)}
+          Page Section Title
           </span>
         </h2>
-        <Breadcrumb lang={lang} />
+        <Breadcrumb />
       </div>
     </div>
   );

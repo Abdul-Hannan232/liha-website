@@ -12,7 +12,7 @@ import { Drawer } from '@components/common/drawer/drawer';
 import { getDirection } from '@utils/get-direction';
 import { useModalAction } from '@components/common/modal/modal.context';
 import motionProps from '@components/common/drawer/motion';
-import { useTranslation } from 'src/app/i18n/client';
+
 const CartButton = dynamic(() => import('@components/cart/cart-button'), {
   ssr: false,
 });
@@ -21,8 +21,8 @@ const AuthMenu = dynamic(() => import('@layouts/header/auth-menu'), {
 });
 const MobileMenu = dynamic(() => import('@layouts/header/mobile-menu'));
 
-export default function BottomNavigation({ lang }: { lang: string }) {
-  const { t } = useTranslation(lang, 'common');
+export default function BottomNavigation() {
+
   const {
     openSidebar,
     closeSidebar,
@@ -31,7 +31,7 @@ export default function BottomNavigation({ lang }: { lang: string }) {
     isAuthorized,
   } = useUI();
   const { openModal } = useModalAction();
-  const dir = getDirection(lang);
+  const dir = 'ltr';
   const contentWrapperCSS = dir === 'ltr' ? { left: 0 } : { right: 0 };
   function handleLogin() {
     openModal('LOGIN_VIEW');
@@ -57,18 +57,19 @@ export default function BottomNavigation({ lang }: { lang: string }) {
         >
           <SearchIcon />
         </button>
-        <Link href={`/${lang}${ROUTES.HOME}`} className="shrink-0">
-          <span className="sr-only">{t('breadcrumb-home')}</span>
+        {/* <Link href={`/${lang}${ROUTES.HOME}`} className="shrink-0"> */}
+        <Link href={`${ROUTES.HOME}`} className="shrink-0">
+          <span className="sr-only">Home</span>
           <HomeIcon />
         </Link>
         <CartButton
           hideLabel={true}
           iconClassName="text-opacity-100"
-          lang={lang}
+          
         />
         <AuthMenu
           isAuthorized={isAuthorized}
-          href={`/${lang}${ROUTES.ACCOUNT}`}
+          href={`${ROUTES.ACCOUNT}`}
           btnProps={{
             className: 'shrink-0 focus:outline-none',
             children: <UserIcon />,
@@ -80,7 +81,8 @@ export default function BottomNavigation({ lang }: { lang: string }) {
       </div>
       <Drawer
         className="w-[375px]"
-        placement={dir === 'rtl' ? 'right' : 'left'}
+        // placement={dir === 'rtl' ? 'right' : 'left'}
+        placement= 'left'
         open={displaySidebar}
         onClose={closeSidebar}
         // @ts-ignore
@@ -88,7 +90,7 @@ export default function BottomNavigation({ lang }: { lang: string }) {
         contentWrapperStyle={contentWrapperCSS}
         {...motionProps}
       >
-        <MobileMenu lang={lang} />
+        <MobileMenu  />
       </Drawer>
     </>
   );

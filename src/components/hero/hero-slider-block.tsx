@@ -5,14 +5,12 @@ import Carousel from '@components/ui/carousel/carousel';
 import { SwiperSlide } from '@components/ui/carousel/slider';
 
 interface Props {
-  lang: string;
   heroBanner?: any;
   className?: string;
   contentClassName?: string;
 }
 
 const HeroSliderBlock: React.FC<Props> = ({
-  lang,
   heroBanner,
   className = 'mb-7',
   contentClassName = 'py-24',
@@ -25,7 +23,6 @@ const HeroSliderBlock: React.FC<Props> = ({
         }}
         navigation={false}
         autoplay={false}
-        lang={lang}
       >
         {heroBanner?.map((banner: any) => (
           <SwiperSlide key={`banner--key${banner.id}`}>
@@ -33,7 +30,6 @@ const HeroSliderBlock: React.FC<Props> = ({
               banner={banner}
               variant="slider"
               className={contentClassName}
-              lang={lang}
             />
           </SwiperSlide>
         ))}

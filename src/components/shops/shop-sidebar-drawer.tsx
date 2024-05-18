@@ -3,17 +3,14 @@ import { useUI } from '@contexts/ui.context';
 import { IoArrowBack, IoArrowForward } from 'react-icons/io5';
 import { getDirection } from '@utils/get-direction';
 import ShopSidebar from '@components/shops/shop-sidebar';
-import { useTranslation } from 'src/app/i18n/client';
 
 interface Props {
-  lang: string;
   data: any;
 }
 
-const ShopSidebarDrawer: React.FC<Props> = ({ data, lang }) => {
+const ShopSidebarDrawer: React.FC<Props> = ({ data }) => {
   const { closeShop } = useUI();
-  const { t } = useTranslation(lang, 'common');
-  const dir = getDirection(lang);
+  const dir = getDirection('ltr');
   return (
     <div className="flex flex-col justify-between w-full h-full">
       <div className="w-full border-b border-border-base flex justify-between items-center relative ltr:pr-5 rtl:pl-5 md:ltr:pr-7 md:rtl:pl-7 shrink-0 py-0.5">
@@ -34,7 +31,7 @@ const ShopSidebarDrawer: React.FC<Props> = ({ data, lang }) => {
       </div>
 
       <Scrollbar className="flex-grow mb-auto shop-sidebar-scrollbar">
-        <ShopSidebar data={data} lang={lang} />
+        <ShopSidebar data={data} />
       </Scrollbar>
     </div>
   );

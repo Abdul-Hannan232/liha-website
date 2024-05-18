@@ -5,24 +5,22 @@ import { useRelatedProductsQuery } from '@framework/product/get-related-product'
 import { LIMITS } from '@framework/utils/limits';
 
 interface RelatedProductsProps {
-  lang: string;
   carouselBreakpoint?: {} | any;
   className?: string;
   uniqueKey?: string;
 }
 
 const RelatedProductFeed: React.FC<RelatedProductsProps> = ({
-  lang,
   carouselBreakpoint,
   className,
   uniqueKey = 'related-product-popup',
 }) => {
   const { data, isLoading, error } = useRelatedProductsQuery({
     limit: LIMITS.RELATED_PRODUCTS_LIMITS,
-  });
+  }); 
   return (
     <ProductsCarousel
-      sectionHeading="text-related-products"
+      sectionHeading="Related Products"
       categorySlug="/search"
       className={className}
       products={data}
@@ -31,7 +29,6 @@ const RelatedProductFeed: React.FC<RelatedProductsProps> = ({
       limit={LIMITS.RELATED_PRODUCTS_LIMITS}
       uniqueKey={uniqueKey}
       carouselBreakpoint={carouselBreakpoint}
-      lang={lang}
     />
   );
 };

@@ -2,10 +2,8 @@ import React from 'react';
 import SearchIcon from '@components/icons/search-icon';
 import CloseIcon from '@components/icons/close-icon';
 import cn from 'classnames';
-import { useTranslation } from 'src/app/i18n/client';
 
 type SearchProps = {
-  lang: string;
   className?: string;
   searchId?: string;
   onSubmit: (e: React.SyntheticEvent) => void;
@@ -20,7 +18,6 @@ type SearchProps = {
 const SearchBox = React.forwardRef<HTMLInputElement, SearchProps>(
   (
     {
-      lang,
       className,
       searchId = 'search',
       variant = 'border',
@@ -32,7 +29,7 @@ const SearchBox = React.forwardRef<HTMLInputElement, SearchProps>(
     },
     ref,
   ) => {
-    const { t } = useTranslation(lang, 'forms');
+
     return (
       <form
         className="relative flex w-full rounded-md"
@@ -50,7 +47,7 @@ const SearchBox = React.forwardRef<HTMLInputElement, SearchProps>(
                 'bg-fill-one': variant === 'fill',
               },
             )}
-            placeholder={t('placeholder-search') as string}
+            placeholder='What are you looking...'
             aria-label={searchId}
             autoComplete="off"
             value={value}

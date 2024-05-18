@@ -7,7 +7,6 @@ import Alert from '@components/ui/alert';
 import cn from 'classnames';
 
 interface ProductsProps {
-  lang: string;
   sectionHeading: string;
   sectionSubHeading?: string;
   headingPosition?: 'left' | 'center';
@@ -31,7 +30,6 @@ const ProductsGridBlock: React.FC<ProductsProps> = ({
   limit,
   uniqueKey,
   variant = 'alpine',
-  lang,
 }) => {
   return (
     <div className={`${className}`}>
@@ -39,7 +37,6 @@ const ProductsGridBlock: React.FC<ProductsProps> = ({
         sectionHeading={sectionHeading}
         sectionSubHeading={sectionSubHeading}
         headingPosition={headingPosition}
-        lang={lang}
       />
       <div
         className={cn(
@@ -69,13 +66,11 @@ const ProductsGridBlock: React.FC<ProductsProps> = ({
               <ProductCardOak
                 key={`${uniqueKey}-${product.id}`}
                 product={product}
-                lang={lang}
               />
             ) : (
               <ProductCardAlpine
                 key={`${uniqueKey}-${product.id}`}
                 product={product}
-                lang={lang}
               />
             ),
           )

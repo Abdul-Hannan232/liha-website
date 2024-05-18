@@ -11,7 +11,6 @@ const Carousel = dynamic(() => import('@components/ui/carousel/carousel'), {
 });
 
 interface Props {
-  lang: string;
   className?: string;
   data: any;
 }
@@ -35,7 +34,6 @@ const breakpoints = {
 };
 
 const BundleGrid: React.FC<Props> = ({
-  lang,
   className = 'mb-12 pb-0.5',
   data,
 }) => {
@@ -47,14 +45,12 @@ const BundleGrid: React.FC<Props> = ({
           breakpoints={breakpoints}
           prevActivateId="bundle-carousel-button-prev"
           nextActivateId="bundle-carousel-button-next"
-          lang={lang}
         >
           {data?.map((item: any) => (
             <SwiperSlide key={`bundle-key-${item.id}`}>
               <BundleCardGrid
                 bundle={item}
                 href={`${ROUTES.BUNDLE}/${item.slug}`}
-                lang={lang}
               />
             </SwiperSlide>
           ))}
@@ -66,7 +62,6 @@ const BundleGrid: React.FC<Props> = ({
               key={`bundle-key-${item.id}`}
               bundle={item}
               href={`${ROUTES.BUNDLE}/${item.slug}`}
-              lang={lang}
             />
           ))}
         </div>

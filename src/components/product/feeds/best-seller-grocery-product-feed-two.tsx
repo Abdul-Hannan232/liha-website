@@ -9,11 +9,9 @@ import cn from 'classnames';
 import { useBestSellerGroceryProductsQuery } from '@framework/product/get-all-best-seller-grocery-products';
 import Link from '@components/ui/link';
 import { ROUTES } from '@utils/routes';
-import { useTranslation } from 'src/app/i18n/client';
 
 interface BestSellerProps {
   className?: string;
-  lang: string;
 }
 
 const options = {
@@ -73,9 +71,8 @@ const options = {
 
 const BestSellerGroceryProductFeedTwo: React.FC<BestSellerProps> = ({
   className,
-  lang,
 }) => {
-  const { t } = useTranslation(lang, 'common');
+  // const { t } = useTranslation(lang, 'common');
   const limit = LIMITS.POPULAR_PRODUCTS_TWO_LIMITS;
   const { data, isLoading, error } = useBestSellerGroceryProductsQuery({
     limit: limit,
@@ -87,7 +84,6 @@ const BestSellerGroceryProductFeedTwo: React.FC<BestSellerProps> = ({
         sectionHeading="text-best-grocery-near-you"
         headingPosition="center"
         className="pb-6 lg:mb-4 xl:mb-2.5"
-        lang={lang}
       />
       {error && <Alert message={error?.message} />}
 
@@ -105,16 +101,16 @@ const BestSellerGroceryProductFeedTwo: React.FC<BestSellerProps> = ({
                 <ProductCardMaple
                   product={product}
                   key={`popular-product-${product.id}`}
-                  lang={lang}
                 />
               ))}
       </div>
       <div className="flex justify-center mt-6 md:mt-8">
         <Link
-          href={`/${lang}${ROUTES?.SEARCH}`}
+          href={`${ROUTES?.SEARCH}`}
+          // href={`/${lang}${ROUTES?.SEARCH}`}
           className="text-sm leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-body font-semibold text-center justify-center rounded placeholder-white focus-visible:outline-none focus:outline-none h-12 bg-brand text-brand-light tracking-[0.2px] px-5 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-opacity-90"
         >
-          {t('text-view-all')}
+          View All
         </Link>
       </div>
     </div>

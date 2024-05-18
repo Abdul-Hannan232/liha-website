@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Input from '@components/ui/form/input';
-import { useTranslation } from 'src/app/i18n/client';
 import EmailIcon from '@components/icons/email-icon';
 import SendIcon from '@components/icons/send-icon';
 import Text from '@components/ui/text';
@@ -17,8 +16,8 @@ const defaultValues = {
   email: '',
 };
 
-function SubscriptionForm({ lang }: { lang: string }) {
-  const { t } = useTranslation(lang, 'forms');
+function SubscriptionForm() {
+
   const {
     register,
     handleSubmit,
@@ -52,26 +51,25 @@ function SubscriptionForm({ lang }: { lang: string }) {
         <EmailIcon className="w-4 2xl:w-[18px] h-4 2xl:h-[18px]" />
       </span>
       <Input
-        placeholder={t('placeholder-email-subscribe')}
+        placeholder= 'Write your email here'
         type="email"
         id="subscription-email"
         variant="solid"
         className="w-full"
         inputClassName="ltr:pl-10 rtl:pr-10 2xl:px-11 h-12 rounded-md"
         {...register('email', {
-          required: `${t('email-required')}`,
+          required: `You must need to provide your email address`,
           pattern: {
             value:
               /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-            message: `${t('email-error')}`,
+            message: `Please provide valid email address`,
           },
         })}
         error={errors.email?.message}
-        lang={lang}
       />
       {!errors.email && subscriptionSuccess && (
         <p className="my-2 text-13px text-brand">
-          {t('text-subscription-success-msg')}
+          Thank you for subscribing to our newsletter
         </p>
       )}
       <button
@@ -85,21 +83,20 @@ function SubscriptionForm({ lang }: { lang: string }) {
 }
 
 interface Props {
-  lang: string;
   className?: string;
 }
-
-const WidgetSubscription: React.FC<Props> = ({ lang, className }) => {
-  const { t } = useTranslation(lang, 'footer');
+ 
+const WidgetSubscription: React.FC<Props> = ({ className }) => {
+  // const { t } = useTranslation(lang, 'footer');
 
   return (
     <div className={cn('flex flex-col', className)}>
       <Heading variant="mediumHeading" className="mb-4 lg:mb-6 lg:pb-0.5">
-        {t('widget-title-subscribe')}
+      Subscribe Now
       </Heading>
 
-      <Text className="lg:-mt-1 max-w-[400px]">{t('text-subscribe')}</Text>
-      <SubscriptionForm lang={lang} />
+      <Text className="lg:-mt-1 max-w-[400px]">Subscribe your email for newsletter and featured news based on your interest</Text>
+      <SubscriptionForm />
     </div>
   );
 };

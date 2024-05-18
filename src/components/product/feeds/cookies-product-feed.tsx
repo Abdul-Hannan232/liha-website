@@ -5,7 +5,7 @@ import ProductsCarousel from '@components/product/products-carousel';
 import { ROUTES } from '@utils/routes';
 import { LIMITS } from '@framework/utils/limits';
 
-export default function CookiesProductFeed({ lang }: { lang: string }) {
+export default function CookiesProductFeed() {
   const { data, isLoading, error } = useCookiesProductsQuery({
     limit: LIMITS.COOKIES_PRODUCTS_LIMITS,
   });
@@ -18,7 +18,6 @@ export default function CookiesProductFeed({ lang }: { lang: string }) {
       error={error?.message}
       limit={LIMITS.COOKIES_PRODUCTS_LIMITS}
       uniqueKey="cookies-cakes"
-      lang={lang}
     />
   );
 }

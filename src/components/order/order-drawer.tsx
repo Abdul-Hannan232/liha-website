@@ -11,10 +11,9 @@ import {
 } from '@components/order/price';
 
 import { useUI } from '@contexts/ui.context';
-import { useTranslation } from 'src/app/i18n/client';
 
-const OrderDrawer: React.FC<{ lang: string }> = ({ lang }) => {
-  const { t } = useTranslation(lang, 'common');
+const OrderDrawer = () => {
+
   const { data, closeDrawer } = useUI();
   let { shipping_address } = data;
 
@@ -25,7 +24,7 @@ const OrderDrawer: React.FC<{ lang: string }> = ({ lang }) => {
           <div className="block">
             <div className="relative flex items-center justify-between w-full border-b ltr:pl-5 rtl:pr-5 md:ltr:pl-7 md:rtl:pr-7 border-border-base">
               <Heading variant="titleMedium">
-                {t('text-order-details')}:
+              Order details:
               </Heading>
               <button
                 className="flex items-center justify-center px-4 py-6 text-2xl transition-opacity md:px-6 lg:py-7 focus:outline-none text-brand-dark hover:opacity-60"
@@ -37,7 +36,7 @@ const OrderDrawer: React.FC<{ lang: string }> = ({ lang }) => {
             </div>
             <div className="p-5 md:p-8">
               <div className="text-[14px] opacity-70 mb-3 text-brand-dark">
-                {t('text-delivery-address')}
+              Delivery Address
               </div>
               <div className="rounded border border-solid min-h-[90px] bg-fill-base p-4 border-border-two text-[12px] md:text-[14px]">
                 <p className="text-brand-dark opacity-70">
@@ -107,6 +106,6 @@ const OrderDrawer: React.FC<{ lang: string }> = ({ lang }) => {
       )}
     </>
   );
-};
+}; 
 
 export default OrderDrawer;

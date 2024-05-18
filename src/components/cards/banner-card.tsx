@@ -6,7 +6,6 @@ import useWindowSize from '@utils/use-window-size';
 import cn from 'classnames';
 
 interface BannerProps {
-  lang: string;
   banner: any;
   variant?: 'rounded' | 'default';
   effectActive?: boolean;
@@ -19,7 +18,6 @@ function getImage(deviceWidth: number, imgObj: any) {
 }
 
 const BannerCard: React.FC<BannerProps> = ({
-  lang,
   banner,
   className,
   variant = 'default',
@@ -32,7 +30,7 @@ const BannerCard: React.FC<BannerProps> = ({
   return (
     <div className={cn('mx-auto', className)}>
       <Link
-        href={`/${lang}${slug}`}
+        href={`${slug}`}
         className={cn(
           'h-full group flex justify-center relative overflow-hidden',
           classNameInner,

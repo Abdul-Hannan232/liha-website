@@ -1,25 +1,26 @@
 import Link from '@components/ui/link';
 import Image from '@components/ui/image';
 import { LinkProps } from 'next/link';
-import { useTranslation } from 'src/app/i18n/client';
+// import { useTranslation } from 'src/app/i18n/client';
 import { getDirection } from '@utils/get-direction';
 import cn from 'classnames';
 import { categoryPlaceholder } from '@assets/placeholders';
 
 interface Props {
-  lang: string;
   item: any;
   href: LinkProps['href'];
   className?: string;
 }
 
-const CategoryCard: React.FC<Props> = ({ lang, item, href, className }) => {
-  const { t } = useTranslation(lang, 'common');
+const CategoryCard: React.FC<Props> = ({  item, href, className }) => {
+
   const { name, image } = item ?? {};
-  const dir = getDirection(lang);
+  const dir = getDirection('rtl');
+
   return (
     <Link
-      href={`/${lang}${href}`}
+      href={`${href}`}
+
       className={cn('group block w-full text-center', className)}
     >
       <div className="flex max-w-[178px] max-h-[178px] mb-3.5 xl:mb-4 mx-auto rounded-full overflow-hidden bg-fill-thumbnail">
@@ -32,7 +33,7 @@ const CategoryCard: React.FC<Props> = ({ lang, item, href, className }) => {
         >
           <Image
             src={image?.original ?? categoryPlaceholder}
-            alt={name || t('text-card-thumbnail')}
+            alt={name || 'Card Thumbnail'}
             width={178}
             height={178}
             quality={100}
@@ -49,7 +50,7 @@ const CategoryCard: React.FC<Props> = ({ lang, item, href, className }) => {
         >
           <Image
             src={image?.original ?? categoryPlaceholder}
-            alt={name || t('text-card-thumbnail')}
+            alt={name ||'Card Thumbnail'}
             width={178}
             height={178}
             quality={100}

@@ -11,13 +11,11 @@ import { Product } from '@framework/types';
 interface ProductFeedProps {
   element?: any;
   className?: string;
-  lang: string;
 }
 
 export default function ProductBundleGrid({
   element,
   className = '',
-  lang,
 }: ProductFeedProps) {
   const limit = 35;
   const { data, isLoading, error } = useProductsQuery({
@@ -53,7 +51,6 @@ export default function ProductBundleGrid({
                         <ProductCardAlpine
                           key={`product-card-key-${product.id}-${idx * 2.5}`}
                           product={product}
-                          lang={lang}
                         />
                       ))}
                     {element && <div className="col-span-full">{element}</div>}
@@ -63,7 +60,6 @@ export default function ProductBundleGrid({
                           <ProductCardAlpine
                             key={`product-key-alpine${product.id}-${idx}`}
                             product={product}
-                            lang={lang}
                           />
                         ),
                       )}

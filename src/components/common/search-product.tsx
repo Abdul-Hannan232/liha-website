@@ -4,14 +4,13 @@ import { ROUTES } from '@utils/routes';
 import { searchProductPlaceholder } from '@assets/placeholders';
 
 type SearchProductProps = {
-  lang: string;
   item: any;
 };
 
-const SearchProduct: React.FC<SearchProductProps> = ({ lang, item }) => {
+const SearchProduct: React.FC<SearchProductProps> = ({ item }) => {
   return (
     <Link
-      href={`/${lang}${ROUTES.PRODUCT}/${item?.slug}`}
+      href={`${ROUTES.PRODUCT}/${item?.slug}`}
       className="flex items-center justify-start w-full h-auto group"
     >
       <div className="relative flex w-12 h-12 overflow-hidden rounded-md cursor-pointer shrink-0 ltr:mr-4 rtl:ml-4">

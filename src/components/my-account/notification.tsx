@@ -10,11 +10,10 @@ import {
 import Switch from '@components/ui/switch';
 import Heading from '@components/ui/heading';
 import Text from '@components/ui/text';
-import { useTranslation } from 'src/app/i18n/client';
 
 const defaultValues = {};
-const AccountDetails: React.FC<{ lang: string }> = ({ lang }) => {
-  const { t } = useTranslation(lang, 'common');
+const AccountDetails: React.FC<{ lang: string }> = () => {
+
   const { mutate: updateUser, isPending } = useUpdateUserMutation();
   const {
     handleSubmit,
@@ -29,33 +28,29 @@ const AccountDetails: React.FC<{ lang: string }> = ({ lang }) => {
     <div className="flex flex-col w-full">
       <form onSubmit={handleSubmit(onSubmit)}>
         <Heading variant="titleLarge">
-          {t('text-account-details-personal')}
+        Personal Information
         </Heading>
         <NotificationItem
-          title="notification-one-title"
-          description="notification-one-description"
-          lang={lang}
+          title="Text messages"
+          description="Share your profile information to collect the product search result"
         />
         <NotificationItem
-          title="notification-two-title"
-          description="notification-two-description"
-          lang={lang}
+          title="Call before checkout"
+          description="To improve your ads search result we need to collect your cookies behavior"
         />
 
         <Heading variant="titleLarge" className="pt-6 xl:pt-12">
-          {t('text-account-details-account')}
+        Account Information
         </Heading>
 
         <div className="relative">
           <NotificationItem
-            title="notification-three-title"
-            description="notification-three-description"
-            lang={lang}
+            title="Latest update about product"
+            description="I am sure about taking the latest update of the product"
           />
           <NotificationItem
-            title="notification-four-title"
-            description="notification-four-description"
-            lang={lang}
+            title="Website Maintenance"
+            description="I am totally responsible for my Website Maintenance service"
           />
         </div>
         <div className="relative flex pt-3 ltr:ml-auto rtl:mr-auto sm:justify-end lg:pt-10">
@@ -66,7 +61,7 @@ const AccountDetails: React.FC<{ lang: string }> = ({ lang }) => {
             className="w-full h-12 mt-3 sm:w-auto"
             variant="formButton"
           >
-            {t('button-save-changes')}
+            Save Changes
           </Button>
         </div>
       </form>
@@ -79,20 +74,18 @@ export default AccountDetails;
 interface NotificationItemProps {
   title: string;
   description: string;
-  lang: string;
 }
 const NotificationItem: React.FC<NotificationItemProps> = ({
   title,
   description,
-  lang,
 }) => {
   const [checked, setChecked] = useState(true);
-  const { t } = useTranslation(lang, 'common');
+  // const { t } = useTranslation(lang, 'common');
   return (
     <div className="relative flex pt-6 lg:pt-10">
       <div className="ltr:pr-2.5 rtl:pl-2.5">
-        <Heading className="mb-1 font-medium">{t(title)}</Heading>
-        <Text variant="small">{t(description)}</Text>
+        <Heading className="mb-1 font-medium">{title}</Heading>
+        <Text variant="small">{description}</Text>
       </div>
       <div className="ltr:ml-auto rtl:mr-auto">
         <Switch checked={checked} onChange={setChecked} />

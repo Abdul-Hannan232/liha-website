@@ -28,28 +28,28 @@ const CategoryPopup = dynamic(
   () => import('@components/category/category-popup'),
 );
 
-export default function ManagedModal({ lang }: { lang: string }) {
+export default function ManagedModal() {
   const { isOpen, view } = useModalState();
   const { closeModal } = useModalAction();
 
   if (view === 'CATEGORY_VIEW') {
     return (
       <Modal open={isOpen} onClose={closeModal} variant="bottom">
-        {view === 'CATEGORY_VIEW' && <CategoryPopup lang={lang} />}
+        {view === 'CATEGORY_VIEW' && <CategoryPopup  />}
       </Modal>
     );
   }
 
   return (
     <Modal open={isOpen} onClose={closeModal}>
-      {view === 'LOGIN_VIEW' && <LoginForm lang={lang} />}
-      {view === 'SIGN_UP_VIEW' && <SignUpForm lang={lang} />}
-      {view === 'FORGET_PASSWORD' && <ForgetPasswordForm lang={lang} />}
-      {view === 'PRODUCT_VIEW' && <ProductPopup lang={lang} />}
-      {view === 'ADDRESS_VIEW_AND_EDIT' && <AddressPopup lang={lang} />}
-      {view === 'PAYMENT' && <PaymentPopup lang={lang} />}
-      {view === 'PHONE_NUMBER' && <PhoneNumberPopup lang={lang} />}
-      {view === 'DELIVERY_VIEW' && <DeliveryAddresses lang={lang} />}
+      {view === 'LOGIN_VIEW' && <LoginForm  />}
+      {view === 'SIGN_UP_VIEW' && <SignUpForm  />}
+      {view === 'FORGET_PASSWORD' && <ForgetPasswordForm  />}
+      {view === 'PRODUCT_VIEW' && <ProductPopup  />}
+      {view === 'ADDRESS_VIEW_AND_EDIT' && <AddressPopup  />}
+      {view === 'PAYMENT' && <PaymentPopup />}
+      {view === 'PHONE_NUMBER' && <PhoneNumberPopup  />}
+      {view === 'DELIVERY_VIEW' && <DeliveryAddresses  />}
     </Modal>
   );
 }

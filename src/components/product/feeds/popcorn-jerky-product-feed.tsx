@@ -5,7 +5,7 @@ import ProductsCarousel from '@components/product/products-carousel';
 import { ROUTES } from '@utils/routes';
 import { LIMITS } from '@framework/utils/limits';
 
-export default function PopcornJerkyProductFeed({ lang }: { lang: string }) {
+export default function PopcornJerkyProductFeed() {
   const { data, isLoading, error } = usePopcornJerkyProductsQuery({
     limit: LIMITS.POPCORN_JERKY_PRODUCTS_LIMITS,
   });
@@ -18,7 +18,6 @@ export default function PopcornJerkyProductFeed({ lang }: { lang: string }) {
       error={error?.message}
       limit={LIMITS.POPCORN_JERKY_PRODUCTS_LIMITS}
       uniqueKey="popcorn-jerky"
-      lang={lang}
     />
   );
 }

@@ -5,7 +5,6 @@ import Button from '@components/ui/button';
 import TextArea from '@components/ui/form/text-area';
 import { useForm } from 'react-hook-form';
 import { useIsMounted } from '@utils/use-is-mounted';
-import { useTranslation } from 'src/app/i18n/client';
 
 interface ContactFormValues {
   name: string;
@@ -14,7 +13,7 @@ interface ContactFormValues {
   message: string;
 }
 
-const ContactForm: React.FC<{ lang: string }> = ({ lang }) => {
+const ContactForm = () => {
   const {
     register,
     handleSubmit,
@@ -25,52 +24,47 @@ const ContactForm: React.FC<{ lang: string }> = ({ lang }) => {
     console.log(values, 'Contact');
   }
 
-  const { t } = useTranslation(lang);
   const mounted = useIsMounted();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5">
       <Input
         variant="solid"
-        label="forms:label-name-required"
-        placeholder="forms:placeholder-name"
-        {...register('name', { required: 'forms:name-required' })}
+        label="Full Name (required)"
+        placeholder="Enter Your Full Name"
+        {...register('name', { required: 'You must need to provide your full name' })}
         error={errors.name?.message}
-        lang={lang}
       />
       <Input
         type="email"
         variant="solid"
-        label="forms:label-email-required"
-        placeholder="forms:placeholder-email"
+        label="Email Address (required)"
+        placeholder="Enter Your Email"
         {...register('email', {
-          required: 'forms:email-required',
+          required: 'You must need to provide your email address',
           pattern: {
             value:
               /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-            message: 'forms:email-error',
+            message: 'Please provide valid email address',
           },
         })}
         error={errors.email?.message}
-        lang={lang}
       />
       <Input
         variant="solid"
         type="text"
-        label="forms:label-contact-phone"
-        placeholder="forms:placeholder-phone"
+        label="Phone (Optional)"
+        placeholder="Enter Your Phone"
         {...register('phone')}
-        lang={lang}
       />
       <TextArea
         variant="solid"
-        label="forms:label-message"
+        label="Message"
         {...register('message')}
-        placeholder="forms:placeholder-briefly-describe"
-        lang={lang}
+        placeholder="Briefly describe.."
       />
       <Button variant="formButton" className="w-full" type="submit">
-        {mounted && <>{t('common:button-send-message')}</>}
+        {mounted && <>Send Message</>}
       </Button>
     </form>
   );

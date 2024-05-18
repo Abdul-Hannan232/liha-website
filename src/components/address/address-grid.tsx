@@ -7,13 +7,10 @@ import { RadioGroup } from '@headlessui/react';
 import { useModalAction } from '@components/common/modal/modal.context';
 import { formatAddress } from '@utils/format-address';
 import Button from '@components/ui/button';
-import { useTranslation } from 'src/app/i18n/client';
 
-const AddressGrid: React.FC<{ address?: any; lang: string }> = ({
+const AddressGrid: React.FC<{ address?: any }> = ({
   address,
-  lang,
 }) => {
-  const { t } = useTranslation(lang, 'common');
   const { openModal } = useModalAction();
 
   function handlePopupView(item: any) {
@@ -30,7 +27,7 @@ const AddressGrid: React.FC<{ address?: any; lang: string }> = ({
         onChange={setSelected}
         className="space-y-4 md:grid md:grid-cols-2 md:gap-5 auto-rows-auto md:space-y-0"
       >
-        <RadioGroup.Label className="sr-only">{t('address')}</RadioGroup.Label>
+        <RadioGroup.Label className="sr-only">address</RadioGroup.Label>
         {address?.length > 0 ? (
           address?.map((item: any, index: any) => (
             <RadioGroup.Option
@@ -58,7 +55,7 @@ const AddressGrid: React.FC<{ address?: any; lang: string }> = ({
                   onClick={() => handlePopupView(item)}
                   className="flex items-center justify-center w-6 h-6 text-base rounded-full bg-brand text-brand-light text-opacity-80"
                 >
-                  <span className="sr-only">{t(item?.title)}</span>
+                  <span className="sr-only">{item?.title}</span>
                   <TiPencil />
                 </button>
               </div>
@@ -66,7 +63,7 @@ const AddressGrid: React.FC<{ address?: any; lang: string }> = ({
           ))
         ) : (
           <div className="border-2 border-border-base rounded font-semibold p-5 px-10 text-brand-danger flex justify-start items-center min-h-[112px] h-full">
-            {t('text-no-address-found')}
+            No address found
           </div>
         )}
         <button
@@ -74,12 +71,12 @@ const AddressGrid: React.FC<{ address?: any; lang: string }> = ({
           onClick={handlePopupView}
         >
           <AiOutlinePlus size={18} className="ltr:mr-2 rtl:ml-2" />
-          {t('text-add-address')}
+          Add Address
         </button>
       </RadioGroup>
 
       <div className="flex mt-5 sm:justify-end md:mt-10 lg:mt-20 save-change-button">
-        <Button className="w-full sm:w-auto">{t('button-save-changes')}</Button>
+        <Button className="w-full sm:w-auto">Save Changes</Button>
       </div>
     </div>
   );

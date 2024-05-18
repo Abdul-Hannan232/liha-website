@@ -2,16 +2,15 @@ import type { FC } from 'react';
 import Heading from '@components/ui/heading';
 import Text from '@components/ui/text';
 import StarIcon from '@components/icons/star-icon';
-import { useTranslation } from 'src/app/i18n/client';
+
 
 interface ReviewProps {
-  lang: string;
   item: any;
   className?: string;
 }
 
-const ReviewCard: FC<ReviewProps> = ({ lang, item, className = '' }) => {
-  const { t } = useTranslation(lang, 'common');
+const ReviewCard: FC<ReviewProps> = ({ item, className = '' }) => {
+
   return (
     <div
       className={`border-b border-border-base last:border-0 pb-6 mb-6 last:mb-0 ${className}`}
@@ -28,7 +27,7 @@ const ReviewCard: FC<ReviewProps> = ({ lang, item, className = '' }) => {
       <Heading className="mb-1.5">{item.title}</Heading>
       <Text className="xl:leading-[2em]">{item.description}</Text>
       <div className="pt-2 text-sm text-brand-dark text-opacity-80">
-        {t('text-by')}
+      By
         <span className="inline-block ltr:ml-[3px] rtl:mr-[3px] font-semibold">
           {item.author}
         </span>

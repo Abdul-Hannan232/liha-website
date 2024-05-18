@@ -10,7 +10,6 @@ import { useUI } from '@contexts/ui.context';
 import { Product } from '@framework/types';
 
 type Props = {
-  lang: string;
   className?: string;
   searchId?: string;
   variant?: 'border' | 'fill';
@@ -22,7 +21,6 @@ const Search = forwardRef<HTMLDivElement, Props>(
       className = 'md:w-[730px] 2xl:w-[800px]',
       searchId = 'search',
       variant = 'border',
-      lang,
     },
     ref,
   ) => {
@@ -88,7 +86,6 @@ const Search = forwardRef<HTMLDivElement, Props>(
               onClear={clear}
               onFocus={() => enableInputFocus()}
               variant={variant}
-              lang={lang}
             />
           </div>
           {/* End of searchbox */}
@@ -115,7 +112,7 @@ const Search = forwardRef<HTMLDivElement, Props>(
                           className="py-2.5 ltr:pl-5 rtl:pr-5 ltr:pr-10 rtl:pl-10 scroll-snap-align-start transition-colors duration-200 hover:bg-fill-base"
                           onClick={clear}
                         >
-                          <SearchProduct item={item} key={index} lang={lang} />
+                          <SearchProduct item={item} key={index}  />
                         </div>
                       ))}
                 </div>

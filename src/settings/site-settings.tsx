@@ -19,11 +19,11 @@ export const siteSettings = {
     // url: '',
     url: siteLogo,
     alt: 'Liha',
-    href: '/en',
+    href: '/',
     width: 128,
     height: 30,
   },
-  defaultLanguage: 'en',
+  defaultLanguage: '',
   currencyCode: 'USD',
   site_header: {
     menu: [
@@ -86,33 +86,33 @@ export const siteSettings = {
       },
       {
         id: 2,
-        path: '/search',
-        label: 'menu-categories',
+        path: '/pages/search',
+        label: 'Categories',
         subMenu: [
           {
             id: 1,
-            path: '/search',
-            label: 'menu-fresh-vegetables',
+            path: '/pages/search',
+            label: 'Fresh Vegetables',
           },
           {
             id: 2,
-            path: '/search',
-            label: 'menu-diet-nutrition',
+            path: '/pages/search',
+            label: 'Diet Nutrition',
           },
           {
             id: 3,
-            path: '/search',
-            label: 'menu-healthy-foods',
+            path: '/pages/search',
+            label: 'Healthy Foods',
           },
           {
             id: 4,
-            path: '/search',
-            label: 'menu-grocery-items',
+            path: '/pages/search',
+            label: 'Grocery Items',
           },
           {
             id: 5,
-            path: '/search',
-            label: 'menu-beaf-steak',
+            path: '/pages/search',
+            label: 'Beaf Steak',
           },
         ],
       },
@@ -145,8 +145,8 @@ export const siteSettings = {
       // },
       {
         id: 4,
-        path: '/search/',
-        label: 'menu-search',
+        path: '/pages/search',
+        label: 'Search',
       },
       // {
       //   id: 5,
@@ -163,11 +163,11 @@ export const siteSettings = {
       //       path: '/',
       //       label: 'menu-users',
       //       subMenu: [
-      //         {
-      //           id: 1,
-      //           path: '/my-account/account-settings',
-      //           label: 'menu-my-account',
-      //         },
+      {
+        id: 1,
+        path: '/pages/my-account/account-settings',
+        label: 'My Account',
+      },
       //         {
       //           id: 2,
       //           path: '/signin',
@@ -182,8 +182,8 @@ export const siteSettings = {
       //     },
       {
         id: 2,
-        path: '/faq',
-        label: 'menu-faq',
+        path: '/pages/faq',
+        label: 'Faq',
       },
       //     {
       //       id: 3,
@@ -222,22 +222,22 @@ export const siteSettings = {
     pagesMenu: [
       {
         id: 1,
-        path: '/search',
+        path: '/pages/search',
         label: 'menu-best-deals',
       },
       {
         id: 2,
-        path: '/about-us',
+        path: '/pages/about-us',
         label: 'menu-about-us',
       },
       {
         id: 3,
-        path: '/contact-us',
+        path: '/pages/contact-us',
         label: 'menu-contact-us',
       },
       {
         id: 4,
-        path: '/faq',
+        path: '/pages/faq',
         label: 'menu-faq',
       },
     ],

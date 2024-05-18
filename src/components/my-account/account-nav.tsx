@@ -2,7 +2,6 @@
 
 import { usePathname } from 'next/navigation';
 import { useLogoutMutation } from '@framework/auth/use-logout';
-import { useTranslation } from 'src/app/i18n/client';
 import LogoutIcon from '@components/icons/account-logout';
 import Link from '@components/ui/link';
 
@@ -14,13 +13,12 @@ type Option = {
 
 export default function AccountNav({
   options,
-  lang,
 }: {
   options: Option[];
-  lang: string;
 }) {
-  const { t } = useTranslation(lang, 'common');
-  const { mutate: logout } = useLogoutMutation(lang);
+
+  // const { mutate: logout } = useLogoutMutation(lang);
+  const { mutate: logout } = useLogoutMutation();
   const pathname = usePathname();
   const newPathname = pathname.split('/').slice(3, 4);
   const mainPath = `/${newPathname[0]}`;
@@ -33,7 +31,7 @@ export default function AccountNav({
         return (
           <Link
             key={item.slug}
-            href={`/${lang}${item.slug}`}
+            href={`${item.slug}`}
             className={`flex items-center cursor-pointer text-sm lg:text-15px text-brand-dark py-3.5 px-3.5 xl:px-4 2xl:px-5 mb-1 ${
               mainPath === menuPath ? 'bg-fill-base font-medium' : 'font-normal'
             }`}
@@ -41,7 +39,7 @@ export default function AccountNav({
             <span className="flex justify-center w-9 xl:w-10 shrink-0">
               {item.icon}
             </span>
-            <span className="ltr:pl-1 lg:rtl:pr-1.5">{t(item.name)}</span>
+            <span className="ltr:pl-1 lg:rtl:pr-1.5">{item.name}</span>
           </Link>
         );
       })}
@@ -52,7 +50,7 @@ export default function AccountNav({
         <span className="flex justify-center w-9 xl:w-10 shrink-0">
           <LogoutIcon className="w-5 md:w-[22px] h-5 md:h-[22px]" />
         </span>
-        <span className="ltr:pl-1 lg:rtl:pr-1.5">{t('text-logout')}</span>
+        <span className="ltr:pl-1 lg:rtl:pr-1.5">Logout</span>
       </button>
     </nav>
   );

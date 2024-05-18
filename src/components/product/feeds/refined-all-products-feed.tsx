@@ -7,20 +7,17 @@ import SectionHeader from '@components/common/section-header';
 import { useModalAction } from '@components/common/modal/modal.context';
 import Alert from '@components/ui/alert';
 import cn from 'classnames';
-import { useTranslation } from 'src/app/i18n/client';
 import { usePathname, useRouter } from 'next/navigation';
 import { LIMITS } from '@framework/utils/limits';
 import { Product } from '@framework/types';
 import useQueryParam from '@utils/use-query-params';
 interface ProductFeedProps {
-  lang: string;
   className?: string;
 }
 const RefinedAllProductFeed: FC<ProductFeedProps> = ({
-  lang,
   className = '',
 }) => {
-  const { t } = useTranslation(lang, 'common');
+
   const pathname = usePathname();
   const { getParams, query } = useQueryParam(pathname ?? '/');
   const newQuery: any = getParams(
@@ -52,14 +49,13 @@ const RefinedAllProductFeed: FC<ProductFeedProps> = ({
         <SectionHeader
           sectionHeading="All Products"
           className="mb-0"
-          lang={lang}
         />
         <div
           className="transition-all text-brand -mt-1.5 font-semibold text-sm md:text-15px hover:text-brand-dark"
           role="button"
           onClick={handleCategoryPopup}
         >
-          {t('text-categories')}
+          Categories
         </div>
       </div>
       {error ? (
@@ -86,7 +82,6 @@ const RefinedAllProductFeed: FC<ProductFeedProps> = ({
                         <ProductCardAlpine
                           key={`product--key${product.id}`}
                           product={product}
-                          lang={lang}
                         />
                       ))}
                   </Fragment>

@@ -8,7 +8,6 @@ import useWindowSize from '@utils/use-window-size';
 import { Eye } from '@components/icons/eye-icon';
 import { useCart } from '@contexts/cart/cart.context';
 // import { AddToCart } from '@components/product/add-to-cart';
-import { useTranslation } from 'src/app/i18n/client';
 import { productPlaceholder } from '@assets/placeholders';
 import dynamic from 'next/dynamic';
 const AddToCart = dynamic(() => import('@components/product/add-to-cart'), {
@@ -18,17 +17,14 @@ const AddToCart = dynamic(() => import('@components/product/add-to-cart'), {
 interface ProductProps {
   product: Product;
   className?: string;
-  lang: string;
 }
 function RenderPopupOrAddToCart({
   props,
-  lang,
 }: {
   props: Object;
-  lang: string;
 }) {
   let { data }: any = props;
-  const { t } = useTranslation(lang, 'common');
+
   const { id, quantity, product_type } = data ?? {};
   const { width } = useWindowSize();
   const { openModal } = useModalAction();
@@ -41,7 +37,7 @@ function RenderPopupOrAddToCart({
   if (Number(quantity) < 1 || outOfStock) {
     return (
       <span className="text-[11px] md:text-xs font-bold text-brand-light uppercase inline-block bg-brand-danger rounded-full px-2.5 pt-1 pb-[3px] mx-0.5 sm:mx-1">
-        {t('text-out-stock')}
+        Out Of Stock
       </span>
     );
   }
@@ -52,10 +48,10 @@ function RenderPopupOrAddToCart({
         aria-label="Count Button"
       >
         <span className="flex items-center justify-center lg:hidden">
-          {t('text-view')}
+        View
         </span>
         <span className="hidden lg:flex sm:items-center sm:justify-center">
-          {t('text-variable-product')}
+        View Products
         </span>
         <span className="w-10 h-10 bg-[#E5E8EC] rounded-tr-[4px] rounded-br-[4px] flex items-center justify-center ml-auto">
           <Eye width={iconSize} height={iconSize} opacity="1" />
@@ -63,16 +59,15 @@ function RenderPopupOrAddToCart({
       </button>
     );
   }
-  return <AddToCart data={data} variant="venus" lang={lang} />;
+  return <AddToCart data={data} variant="venus" />;
 }
 const ProductCardMaple: React.FC<ProductProps> = ({
-  lang,
   product,
   className,
 }) => {
   const { name, image, unit, product_type } = product ?? {};
   const { openModal } = useModalAction();
-  const { t } = useTranslation(lang, 'common');
+  // const { t } = useTranslation(lang, 'common');
   const { price, basePrice, discount } = usePrice({
     amount: product?.sale_price ? product?.sale_price : product?.price,
     baseAmount: product?.price,
@@ -125,7 +120,7 @@ const ProductCardMaple: React.FC<ProductProps> = ({
           {name}
         </h2>
         <div className="mt-auto text-13px sm:text-sm">{unit}</div>
-        <RenderPopupOrAddToCart props={{ data: product }} lang={lang} />
+        <RenderPopupOrAddToCart props={{ data: product }} />
       </div>
     </article>
   );

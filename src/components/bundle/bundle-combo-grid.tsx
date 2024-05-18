@@ -9,7 +9,6 @@ import useWindowSize from '@utils/use-window-size';
 import { ROUTES } from '@utils/routes';
 
 interface Props {
-  lang: string;
   className?: string;
   data: any;
 }
@@ -29,7 +28,6 @@ const breakpoints = {
 export default function BundleComboGrid({
   className = 'mb-12 md:mb-14 xl:mb-16 2xl:mb-20 3xl:pb-2',
   data,
-  lang,
 }: Props) {
   const { width } = useWindowSize();
   return (
@@ -39,7 +37,6 @@ export default function BundleComboGrid({
           sectionHeading="text-best-deal-with-money"
           sectionSubHeading="text-categories-grocery-items"
           headingPosition="center"
-          lang={lang}
         />
         {width! < 1280 ? (
           <Carousel
@@ -50,7 +47,6 @@ export default function BundleComboGrid({
             nextButtonClassName="ltr:-right-2 rtl:-left-2 lg:ltr:-right-2.5 lg:rtl:-left-2.5"
             prevActivateId="bundle-combo-carousel-button-prev"
             nextActivateId="bundle-combo-carousel-button-next"
-            lang={lang}
           >
             {data?.map((item: any) => (
               <SwiperSlide
@@ -64,7 +60,6 @@ export default function BundleComboGrid({
                   imgWidth={150}
                   bundle={item}
                   href={`${ROUTES.BUNDLE}/${item.slug}`}
-                  lang={lang}
                 />
               </SwiperSlide>
             ))}
@@ -80,7 +75,6 @@ export default function BundleComboGrid({
                 key={`card-bundle--key-${item.id}`}
                 bundle={item}
                 href={`${ROUTES.BUNDLE}/${item.slug}`}
-                lang={lang}
               />
             ))}
           </div>

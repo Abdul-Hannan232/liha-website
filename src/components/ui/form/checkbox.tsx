@@ -1,17 +1,14 @@
 import React from 'react';
-import { useTranslation } from 'src/app/i18n/client';
 
 interface CheckBoxProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  lang: string;
   label?: string | any;
 }
 export const CheckBox = React.forwardRef<HTMLInputElement, CheckBoxProps>(
-  ({ lang, label, ...rest }, ref) => {
-    const { t } = useTranslation(lang);
+  ({  label, ...rest }, ref) => {
     return (
       <label className="group flex items-center justify-between text-brand-dark text-sm md:text-15px cursor-pointer transition-all hover:text-opacity-80 border-b border-border-base py-3.5 last:border-b-0 last:pb-0 first:pt-0">
         <span className="ltr:mr-3.5 rtl:ml-3.5 -mt-0.5">
-          {label ? t(label) : label}
+          {label}
         </span>
         <input
           type="checkbox"

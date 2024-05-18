@@ -10,13 +10,11 @@ import { CheckoutItem } from '@components/checkout/checkout-card-item';
 import { CheckoutCardFooterItem } from './checkout-card-footer-item';
 import { useRouter } from 'next/navigation';
 import { ROUTES } from '@utils/routes';
-import { useTranslation } from 'src/app/i18n/client';
 import { useIsMounted } from '@utils/use-is-mounted';
 import { useEffect, useState } from 'react';
 import SearchResultLoader from '@components/ui/loaders/search-result-loader';
 
-const CheckoutCard: React.FC<{ lang: string }> = ({ lang }) => {
-  const { t } = useTranslation(lang, 'common');
+const CheckoutCard = () => {
   const router = useRouter();
   const [isLoading, setLoading] = useState(true);
 
@@ -29,22 +27,22 @@ const CheckoutCard: React.FC<{ lang: string }> = ({ lang }) => {
     currencyCode: 'USD',
   });
   function orderHeader() {
-    !isEmpty && router.push(`/${lang}${ROUTES.ORDER}`);
+    !isEmpty && router.push(`${ROUTES.ORDER}`);
   }
   const checkoutFooter = [
     {
       id: 1,
-      name: t('text-sub-total'),
+      name: 'Subtotal',
       price: subtotal,
     },
     {
       id: 2,
-      name: t('text-shipping'),
+      name:'Shipping',
       price: '$0',
     },
     {
       id: 3,
-      name: t('text-total'),
+      name: 'Total',
       price: subtotal,
     },
   ];
@@ -54,10 +52,10 @@ const CheckoutCard: React.FC<{ lang: string }> = ({ lang }) => {
       <div className="px-4 pt-4 border rounded-md border-border-base text-brand-light xl:py-6 xl:px-7">
         <div className="flex pb-2 text-sm font-semibold rounded-md text-heading">
           <span className="font-medium text-15px text-brand-dark">
-            {t('text-product')}
+          Product
           </span>
           <span className="font-medium ltr:ml-auto rtl:mr-auto shrink-0 text-15px text-brand-dark">
-            {t('text-sub-total')}
+          Subtotal
           </span>
         </div>
         {isLoading ? (
@@ -68,7 +66,7 @@ const CheckoutCard: React.FC<{ lang: string }> = ({ lang }) => {
           items.map((item) => <CheckoutItem item={item} key={item.id} />)
         ) : (
           <p className="py-4 text-brand-danger text-opacity-70">
-            {t('text-empty-cart')}
+            Your cart is empty.
           </p>
         )}
         {mounted &&
@@ -85,25 +83,25 @@ const CheckoutCard: React.FC<{ lang: string }> = ({ lang }) => {
           )}
           onClick={orderHeader}
         >
-          {t('button-order-now')}
+          Order Now
         </Button>
       </div>
       <Text className="mt-8">
-        {t('text-by-placing-your-order')}{' '}
-        <Link href={`/${lang}${ROUTES.TERMS}`} legacyBehavior>
+      By placing your order, you agree to be bound by the BoroBazar
+        <Link href={`${ROUTES.TERMS}`} legacyBehavior>
           <a className="font-medium underline text-brand">
-            {t('text-terms-of-service')}{' '}
+          Terms of Service
           </a>
         </Link>
-        {t('text-and')}{' '}
-        <Link href={`/${lang}${ROUTES.PRIVACY}`} legacyBehavior>
+        and
+        <Link href={`${ROUTES.PRIVACY}`} legacyBehavior>
           <a className="font-medium underline text-brand">
-            {t('text-privacy')}
+          Privacy
           </a>
         </Link>
-        . {t('text-credit-debit')}
+        . Your credit/debit card data will not saved.
       </Text>
-      <Text className="mt-4">{t('text-bag-fee')}</Text>
+      <Text className="mt-4">A bag fee may be added to your final total if required by law or the retailer. The fee will be visible on your receipt after delivery.</Text>
     </>
   );
 };

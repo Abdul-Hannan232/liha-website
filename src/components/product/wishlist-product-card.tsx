@@ -6,20 +6,17 @@ import Image from '@components/ui/image';
 import usePrice from '@framework/product/use-price';
 import { Product } from '@framework/types';
 import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io';
-import { useTranslation } from 'src/app/i18n/client';
 
 interface ProductProps {
   product: Product;
   className?: string;
-  lang: string;
 }
 
 const WishlistProductCard: FC<ProductProps> = ({
   product,
   className,
-  lang,
 }) => {
-  const { t } = useTranslation(lang, 'common');
+
   const { name, image, unit } = product ?? {};
   const placeholderImage = `/assets/placeholder/product.svg`;
   const [favorite, setFavorite] = useState<boolean>(false);
@@ -74,14 +71,14 @@ const WishlistProductCard: FC<ProductProps> = ({
             <IoIosHeartEmpty className="w-5 h-5 mt-0.5" />
 
             <span className=" ltr:ml-3 rtl:mr-3 text-brand-dark font-medium text-15px -mt-0.5 md:mt-0">
-              {t('text-favorite')}
+            Favorite
             </span>
           </>
         ) : (
           <>
             <IoIosHeart className="text-brand w-5 h-5 mt-0.5" />
             <span className="text-brand ltr:ml-3 rtl:mr-3 font-semibold text-15px -mt-0.5 md:mt-0">
-              {t('text-favorited')}
+            Favorited
             </span>
           </>
         )}

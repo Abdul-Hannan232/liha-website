@@ -8,9 +8,9 @@ import motionProps from '@components/common/drawer/motion';
 const Cart = dynamic(() => import('@components/cart/cart'));
 const OrderDetails = dynamic(() => import('@components/order/order-drawer'));
 
-export default function ManagedDrawer({ lang }: { lang: string }) {
+export default function ManagedDrawer() {
   const { displayDrawer, closeDrawer, drawerView } = useUI();
-  const dir = getDirection(lang);
+  const dir = getDirection('ltr');
   const contentWrapperCSS = dir === 'ltr' ? { right: 0 } : { left: 0 };
 
   return (
@@ -26,8 +26,8 @@ export default function ManagedDrawer({ lang }: { lang: string }) {
       contentWrapperStyle={contentWrapperCSS}
       {...motionProps}
     >
-      {drawerView === 'CART_SIDEBAR' && <Cart lang={lang} />}
-      {drawerView === 'ORDER_DETAILS' && <OrderDetails lang={lang} />}
+      {drawerView === 'CART_SIDEBAR' && <Cart />}
+      {drawerView === 'ORDER_DETAILS' && <OrderDetails  />}
     </Drawer>
   );
 }

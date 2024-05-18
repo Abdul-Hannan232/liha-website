@@ -3,7 +3,6 @@ import Link from '@components/ui/link';
 import cn from 'classnames';
 import { LinkProps } from 'next/link';
 import { IoCaretForward } from 'react-icons/io5';
-import { useTranslation } from 'src/app/i18n/client';
 
 interface ItemProps {
   icon: JSX.Element;
@@ -15,11 +14,9 @@ interface ItemProps {
 interface Props {
   className?: string;
   item: ItemProps;
-  lang: string;
 }
 
-const FeaturedCard: React.FC<Props> = ({ item, className, lang }) => {
-  const { t } = useTranslation(lang, 'common');
+const FeaturedCard: React.FC<Props> = ({ item, className}) => {
   const { icon, title, href, bgColor } = item;
   return (
     <Link href={href}>
@@ -32,10 +29,10 @@ const FeaturedCard: React.FC<Props> = ({ item, className, lang }) => {
         </div>
         <div className="ltr:pl-4 rtl:pr-4 md:ltr:pl-5 md:rtl:pr-5 lg:ltr:pl-4 lg:rtl:pr-4 3xl:ltr:pl-6 3xl:rtl:pr-6">
           <Heading variant="title" className="mb-2 md:mb-3 -mt-0.5">
-            {t(title)}
+            {title}
           </Heading>
           <div className="uppercase text-xs xl:text-13px font-manrope font-semibold tracking-[0.6px] flex items-center text-brand-dark text-opacity-60 transition duration-200 ease-in-out group-hover:text-opacity-100">
-            {t('text-learn-more')}
+          Learn More
             <IoCaretForward className="text-sm xl:text-base transition duration-200 ease-in-out ltr:ml-1 rtl:mr-1 lg:ltr:ml-1.5 lg:rtl:mr-1.5 opacity-60 ltr:group-hover:ml-1.5 rtl:group-hover:mr-1.5 lg:ltr:group-hover:ml-2 lg:rtl:group-hover:mr-2" />
           </div>
         </div>

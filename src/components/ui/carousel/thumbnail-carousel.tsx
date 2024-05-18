@@ -16,7 +16,7 @@ interface Props {
   gallery: any[];
   thumbnailClassName?: string;
   galleryClassName?: string;
-  lang: string;
+  // lang: string;
 }
 
 // product gallery breakpoints
@@ -35,12 +35,13 @@ const ThumbnailCarousel: React.FC<Props> = ({
   gallery,
   thumbnailClassName = 'xl:w-[480px] 2xl:w-[650px]',
   galleryClassName = 'xl:w-28 2xl:w-[130px]',
-  lang,
+  // lang,
 }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   const prevRef = useRef<HTMLDivElement>(null);
   const nextRef = useRef<HTMLDivElement>(null);
-  const dir = getDirection(lang);
+  // const dir = getDirection(lang);
+  const dir = getDirection('rtl');
 
   return (
     <div className="w-full xl:flex xl:flex-row-reverse">

@@ -1,10 +1,8 @@
 import Heading from '@components/ui/heading';
 import Link from '@components/ui/link';
-import { useTranslation } from 'src/app/i18n/client';
 
 interface Props {
   className?: string;
-  lang: string;
   data: {
     widgetTitle?: string;
     lists: {
@@ -16,13 +14,13 @@ interface Props {
   };
 }
 
-const WidgetLink: React.FC<Props> = ({ lang, className, data }) => {
+const WidgetLink: React.FC<Props> = ({ className, data }) => {
   const { widgetTitle, lists } = data;
-  const { t } = useTranslation(lang, 'footer');
+
   return (
     <div className={`${className}`}>
       <Heading variant="mediumHeading" className="mb-4 sm:mb-5 lg:mb-6 pb-0.5">
-        {t(`${widgetTitle}`)}
+        {`${widgetTitle}`}
       </Heading>
       <ul className="flex flex-col space-y-3 text-sm lg:text-15px">
         {lists.map((list) => (
@@ -37,10 +35,10 @@ const WidgetLink: React.FC<Props> = ({ lang, className, data }) => {
             )}
 
             <Link
-              href={`/${lang}${list.path ? list.path : ''}`}
+              href={`${list.path ? list.path : ''}`}
               className="transition-colors duration-200 hover:text-brand-dark"
             >
-              {t(`${list.title}`)}
+              {`${list.title}`}
             </Link>
           </li>
         ))}

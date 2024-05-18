@@ -5,17 +5,15 @@ import { footer } from '../data';
 import cn from 'classnames';
 
 interface WidgetsProps {
-  lang: string;
   variant?: 'default' | 'medium';
   widgets: {
-    id: number;
+    id: number; 
     widgetTitle: string;
     lists: any;
   }[];
 }
 
 const Widgets: React.FC<WidgetsProps> = ({
-  lang,
   widgets,
   variant = 'default',
 }) => {
@@ -31,14 +29,12 @@ const Widgets: React.FC<WidgetsProps> = ({
         <WidgetAbout
           social={social}
           className="mb-4 border-b col-span-full sm:col-span-1 md:col-span-3 sm:border-b-0 border-border-three sm:mb-0"
-          lang={lang}
         />
         {widgets?.map((widget) => (
           <WidgetLink
             key={`footer-widget--key${widget.id}`}
             data={widget}
             className="pb-3.5 sm:pb-0 col-span-1 md:col-span-2"
-            lang={lang}
           />
         ))}
         <WidgetSubscription
@@ -49,7 +45,6 @@ const Widgets: React.FC<WidgetsProps> = ({
                 variant === 'default',
             },
           )}
-          lang={lang}
         />
       </div>
     </div>

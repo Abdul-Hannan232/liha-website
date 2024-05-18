@@ -21,7 +21,6 @@ interface ProductsCarouselProps {
   limit?: number;
   uniqueKey?: string;
   carouselBreakpoint?: {} | any;
-  lang: string;
 }
 
 const breakpoints = {
@@ -61,10 +60,10 @@ const ProductsCarousel: React.FC<ProductsCarouselProps> = ({
   limit,
   uniqueKey,
   carouselBreakpoint,
-  lang,
 }) => {
   const { width } = useWindowSize();
-  const dir = getDirection(lang);
+  const dir = getDirection('ltr');
+  // const dir = getDirection(lang);
   const [sliderEnd, setSliderEnd] = useState(false);
 
   // console.log('sliderEnd', sliderEnd)
@@ -80,7 +79,6 @@ const ProductsCarousel: React.FC<ProductsCarouselProps> = ({
         <SectionHeader
           sectionHeading={sectionHeading}
           className="mb-0"
-          lang={lang}
         />
       </div>
       {error ? (
@@ -102,7 +100,6 @@ const ProductsCarousel: React.FC<ProductsCarouselProps> = ({
             className="-mx-1.5 md:-mx-2 xl:-mx-2.5 -mt-4"
             prevButtonClassName="ltr:-left-2 rtl:-right-2 md:ltr:-left-1 md:rtl:-right-1.5 lg:ltr:-left-2 rtl:-right-2 xl:ltr:-left-2.5 xl:rtl:-right-2.5 2xl:ltr:left-5 2xl:rtl:right-5 -top-12 3xl:top-auto 3xl:-translate-y-2"
             nextButtonClassName="xl:rtl:-translate-x-2.5 xl:lrt:translate-x-2.5 end-2 xl:end-40 -top-12 3xl:top-auto transform 2xl:translate-x-0 3xl:-translate-y-2 4xl:end-14"
-            lang={lang}
             onSlideChange={(swiper) =>
               swiper.isEnd ? setSliderEnd(true) : setSliderEnd(false)
             }
@@ -123,11 +120,11 @@ const ProductsCarousel: React.FC<ProductsCarouselProps> = ({
                     key={`${uniqueKey}-${idx}`}
                     className="px-1.5 md:px-2 xl:px-2.5 py-4"
                   >
-                    <ProductCardAlpine product={product} lang={lang} />
+                    <ProductCardAlpine product={product} />
                   </SwiperSlide>
                 ))}
                 <SwiperSlide className="p-2.5 flex items-center justify-center">
-                  <SeeAll href={categorySlug} lang={lang} />
+                  <SeeAll href={categorySlug} />
                 </SwiperSlide>
                 {width! > 1024 && width! < 1921 && <SwiperSlide />}
               </>

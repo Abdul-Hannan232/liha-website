@@ -1,14 +1,12 @@
 import usePrice from '@framework/product/use-price';
 import isEmpty from 'lodash/isEmpty';
-import { useTranslation } from 'src/app/i18n/client';
 
 export default function VariationPrice({
   selectedVariation,
   minPrice,
   maxPrice,
-  lang,
 }: any) {
-  const { t } = useTranslation(lang, 'common');
+
   const { price, basePrice, discount } = usePrice(
     selectedVariation && {
       amount: selectedVariation.sale_price
@@ -39,7 +37,7 @@ export default function VariationPrice({
             {basePrice}
           </del>
           <span className="inline-block rounded font-bold text-xs md:text-sm text-brand-tree bg-opacity-20 bg-brand-tree uppercase px-2 py-1 ltr:ml-2.5 rtl:mr-2.5">
-            {discount} {t('text-off')}
+            {discount} Off
           </span>
         </>
       )}

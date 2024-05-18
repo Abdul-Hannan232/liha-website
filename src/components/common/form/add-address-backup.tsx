@@ -14,7 +14,7 @@ interface ContactFormValues {
   default: boolean;
 }
 
-const AddAddressForm: React.FC<{ lang: string }> = ({ lang }) => {
+const AddAddressForm: React.FC<{ lang: string }> = () => {
   const { data } = useModalState();
   const {
     register,
@@ -48,7 +48,6 @@ const AddAddressForm: React.FC<{ lang: string }> = ({ lang }) => {
             label="Title"
             {...register('title', { required: 'Title Required' })}
             error={errors.title?.message}
-            lang={lang}
           />
         </div>
         <div className="grid grid-cols-1 mb-6 md:grid-cols-2 gap-7">
@@ -57,28 +56,24 @@ const AddAddressForm: React.FC<{ lang: string }> = ({ lang }) => {
             label="Country"
             {...register('country', { required: 'Country Required' })}
             error={errors.country?.message}
-            lang={lang}
           />
           <Input
             variant="solid"
             label="City"
             {...register('city', { required: 'City Required' })}
             error={errors.city?.message}
-            lang={lang}
           />
           <Input
             variant="solid"
             label="State"
             {...register('state', { required: 'State Required' })}
             error={errors.state?.message}
-            lang={lang}
           />
           <Input
             variant="solid"
             label="ZIP"
             {...register('zip', { required: 'ZIP Required' })}
             error={errors.zip?.message}
-            lang={lang}
           />
         </div>
         <div className="mb-6">
@@ -87,7 +82,6 @@ const AddAddressForm: React.FC<{ lang: string }> = ({ lang }) => {
             inputClassName="focus:border-2 focus:outline-none focus:border-brand"
             label="Street Address"
             {...register('street_address')}
-            lang={lang}
           />
         </div>
         <div className="mb-6">

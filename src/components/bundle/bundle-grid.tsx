@@ -11,7 +11,6 @@ const Carousel = dynamic(() => import('@components/ui/carousel/carousel'), {
 });
 
 interface Props {
-  lang: string;
   className?: string;
   data: any;
 }
@@ -37,19 +36,18 @@ const breakpoints = {
 const BundleGrid: React.FC<Props> = ({
   className = 'mb-12 pb-0.5',
   data,
-  lang,
 }) => {
   const { width } = useWindowSize();
   return (
     <div className={cn('heightFull', className)}>
       {width! < 1536 ? (
-        <Carousel breakpoints={breakpoints} lang={lang}>
+        <Carousel breakpoints={breakpoints} >
           {data?.map((item: any) => (
             <SwiperSlide key={`bundle-key-${item.id}`}>
               <BundleCard
                 bundle={item}
                 href={`${ROUTES.BUNDLE}/${item.slug}`}
-                lang={lang}
+               
               />
             </SwiperSlide>
           ))}
@@ -61,7 +59,6 @@ const BundleGrid: React.FC<Props> = ({
               key={`bundle-key-${item.id}`}
               bundle={item}
               href={`${ROUTES.BUNDLE}/${item.slug}`}
-              lang={lang}
             />
           ))}
         </div>

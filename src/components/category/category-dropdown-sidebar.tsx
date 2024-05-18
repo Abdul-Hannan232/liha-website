@@ -8,12 +8,10 @@ import { useCategoriesQuery } from '@framework/category/get-all-categories';
 import cn from 'classnames';
 
 interface CategorySidebarProps {
-  lang: string;
   className?: string;
 }
 
 export default function CategoryDropdownSidebar({
-  lang,
   className,
 }: CategorySidebarProps) {
   const {
@@ -44,7 +42,6 @@ export default function CategoryDropdownSidebar({
                 <SidebarMenu
                   className="list"
                   items={data?.categories?.data}
-                  lang={lang}
                 />
               )}
             </div>

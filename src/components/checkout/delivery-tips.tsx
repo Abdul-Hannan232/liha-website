@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { RadioGroup } from '@headlessui/react';
 import cn from 'classnames';
-import { useTranslation } from 'src/app/i18n/client';
 
 const deliveryTip = ['$5', '$10', '$15', '$20', '$25'];
 
-export default function DeliveryTips({ lang }: { lang: string }) {
-  const { t } = useTranslation(lang, 'common');
+export default function DeliveryTips() {
   const [deliveryTips, setDeliveryTips] = useState(deliveryTip[0]);
 
   return (
@@ -14,7 +12,7 @@ export default function DeliveryTips({ lang }: { lang: string }) {
       <div className="w-full mx-auto">
         <RadioGroup value={deliveryTips} onChange={setDeliveryTips}>
           <RadioGroup.Label className="sr-only">
-            {t('text-delivery-tip')}
+          Delivery Tip
           </RadioGroup.Label>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-6">
             {deliveryTip.map((tips) => (

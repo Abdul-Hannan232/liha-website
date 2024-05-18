@@ -7,7 +7,7 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function ProductDetailsTab({ lang }: { lang: string }) {
+export default function ProductDetailsTab() {
   let [tabHeading] = useState({
     Product_Details: '',
     Review_Rating: '',
@@ -129,7 +129,7 @@ export default function ProductDetailsTab({ lang }: { lang: string }) {
             </div>
           </Tab.Panel>
           <Tab.Panel>
-            <ProductReviewRating lang={lang} />
+            <ProductReviewRating  />
           </Tab.Panel>
         </Tab.Panels>
       </Tab.Group>

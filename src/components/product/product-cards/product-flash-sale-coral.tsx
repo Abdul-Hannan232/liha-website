@@ -6,10 +6,8 @@ import { useModalAction } from '@components/common/modal/modal.context';
 import Countdown, { zeroPad } from 'react-countdown';
 import { productPlaceholder } from '@assets/placeholders';
 import ProgressCard from '@components/ui/progress-card';
-import { useTranslation } from 'src/app/i18n/client';
 
 interface ProductProps {
-  lang: string;
   product: Product;
   className?: string;
   date?: string | number | Date | undefined;
@@ -42,14 +40,12 @@ const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
 };
 
 const ProductFlashSaleCoral: React.FC<ProductProps> = ({
-  lang,
   product,
   className,
   date,
 }) => {
   const { name, image, quantity, sold, product_type } = product ?? {};
   const { openModal } = useModalAction();
-  const { t } = useTranslation(lang, 'common');
   const { price, basePrice } = usePrice({
     amount: product?.sale_price ? product?.sale_price : product?.price,
     baseAmount: product?.price,
@@ -91,7 +87,7 @@ const ProductFlashSaleCoral: React.FC<ProductProps> = ({
           </div>
           <div className="w-full h-full absolute top-0 z-10 -mx-0.5 sm:-mx-1">
             <span className="text-[11px] md:text-xs font-bold text-brand-light uppercase inline-block bg-[#fd5473] rounded-full px-2.5 py-[5px] pb-1 mx-0.5 sm:mx-1">
-              {t('text-most-popular')}
+            Most Popular
             </span>
           </div>
         </div>
@@ -119,7 +115,6 @@ const ProductFlashSaleCoral: React.FC<ProductProps> = ({
         soldProduct={sold}
         totalProduct={quantity}
         className="pt-8 lg:pt-10"
-        lang={lang}
       />
     </article>
   );

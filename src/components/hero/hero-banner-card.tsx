@@ -3,11 +3,9 @@
 import cn from 'classnames';
 import Link from '@components/ui/link';
 import useWindowSize from '@utils/use-window-size';
-import { useTranslation } from 'src/app/i18n/client';
 import HeroSearchBox from '@components/hero/hero-banner-search';
 
 interface BannerProps {
-  lang: string;
   banner?: any;
   className?: string;
   variant?: 'default' | 'slider' | 'medium' | 'antique';
@@ -18,12 +16,10 @@ function getImage(deviceWidth: number, imgObj: any) {
 }
 
 export default function HeroBannerCard({
-  lang,
   banner,
   className = 'py-20 xy:pt-24',
   variant = 'default',
 }: BannerProps) {
-  const { t } = useTranslation(lang, 'common');
   const { width } = useWindowSize();
   const { title, description, image } = banner;
   const selectedImage = getImage(width!, image);
@@ -71,7 +67,7 @@ export default function HeroBannerCard({
                 variant === 'antique',
             })}
           >
-            {t(title)}
+            {title}
           </h2>
           <p
             className={cn(
@@ -85,14 +81,15 @@ export default function HeroBannerCard({
               },
             )}
           >
-            {t(description)}
+            {description}
           </p>
           {variant !== 'antique' && banner.btnText && (
             <Link
-              href={`/${lang}${banner.btnUrl}`}
+              // href={`/${lang}${banner.btnUrl}`}
+              href={`${banner.btnUrl}`}
               className="h-[45px] mt-7 md:mt-8 text-sm inline-flex items-center justify-center transition duration-300 rounded px-6 py-2 font-semibold bg-brand-light text-brand-dark hover:text-brand-light hover:bg-brand"
             >
-              {t(banner.btnText)}
+              {banner.btnText}
             </Link>
           )}
           {banner.searchBox && (
@@ -101,12 +98,11 @@ export default function HeroBannerCard({
                 <HeroSearchBox
                   style={variant}
                   button={{ text: banner.btnText }}
-                  lang={lang}
                 />
               </div>
               {banner?.formTips ? (
                 <p className="text-[#282F3B] font-medium text-base mt-6 opacity-70">
-                  {t(banner?.formTips)}
+                  {banner?.formTips}
                 </p>
               ) : (
                 ''

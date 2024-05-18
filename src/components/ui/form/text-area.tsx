@@ -1,6 +1,5 @@
 import React, { TextareaHTMLAttributes } from 'react';
 import cn from 'classnames';
-import { useTranslation } from 'src/app/i18n/client';
 
 export interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   className?: string;
@@ -12,7 +11,6 @@ export interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   error?: string;
   shadow?: boolean;
   variant?: 'normal' | 'solid' | 'outline';
-  lang: string;
 }
 
 const variantClasses = {
@@ -34,10 +32,9 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, Props>((props, ref) => {
     shadow = false,
     inputClassName,
     labelClassName,
-    lang,
     ...rest
   } = props;
-  const { t } = useTranslation(lang);
+
   return (
     <div className={className}>
       {label && (
@@ -47,7 +44,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, Props>((props, ref) => {
             labelClassName || 'text-brand-dark opacity-70'
           } font-normal text-13px lg:text-sm leading-none mb-3 cursor-pointer`}
         >
-          {t(label)}
+          {label}
         </label>
       )}
       <textarea
@@ -64,12 +61,12 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, Props>((props, ref) => {
         rows={4}
         ref={ref}
         // @ts-ignore
-        placeholder={t(placeholder)}
+        placeholder={placeholder}
         {...rest}
       />
       {error && (
         <p className="my-2 text-13px text-brand-danger text-opacity-70">
-          {t(error)}
+          {error}
         </p>
       )}
     </div>

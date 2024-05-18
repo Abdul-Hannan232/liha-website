@@ -14,20 +14,18 @@ import Switch from '@components/ui/switch';
 import CloseButton from '@components/ui/close-button';
 import cn from 'classnames';
 import { ROUTES } from '@utils/routes';
-import { useTranslation } from 'src/app/i18n/client';
+// import { useTranslation } from 'src/app/i18n/client';
 
 interface SignUpFormProps {
-  lang: string;
   isPopup?: boolean;
   className?: string;
 }
 
 export default function SignUpForm({
-  lang,
   isPopup = true,
   className,
 }: SignUpFormProps) {
-  const { t } = useTranslation(lang);
+  // const { t } = useTranslation(lang);
   const { mutate: signUp, isPending } = useSignUpMutation();
   const { closeModal, openModal } = useModalAction();
   const [remember, setRemember] = useState(false);
@@ -73,16 +71,16 @@ export default function SignUpForm({
               <Logo />
             </div>
             <h4 className="text-xl font-semibold text-brand-dark sm:text-2xl sm:pt-3 ">
-              {t('common:text-sign-up-for-free')}
+            SignUp for free!
             </h4>
             <div className="mt-3 mb-1 text-sm text-center sm:text-base text-body">
-              {t('common:text-already-registered')}
+            Already registered?
               <button
                 type="button"
                 className="text-sm font-semibold ltr:ml-1 rtl:mr-1 sm:text-base text-brand hover:no-underline focus:outline-none"
                 onClick={handleSignIn}
               >
-                {t('common:text-sign-in-now')}
+               Sign In Now
               </button>
             </div>
           </div>
@@ -93,37 +91,34 @@ export default function SignUpForm({
           >
             <div className="flex flex-col space-y-4">
               <Input
-                label={t('forms:label-name') as string}
+                label=''
                 type="text"
                 variant="solid"
                 {...register('name', {
                   required: 'forms:name-required',
                 })}
                 error={errors.name?.message}
-                lang={lang}
               />
               <Input
-                label={t('forms:label-email') as string}
+                label='Email Address'
                 type="email"
                 variant="solid"
                 {...register('email', {
-                  required: `${t('forms:email-required')}`,
+                  required: `Email Address (required)`,
                   pattern: {
                     value:
                       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                    message: t('forms:email-error'),
+                    message: 'Please provide valid email address',
                   },
                 })}
                 error={errors.email?.message}
-                lang={lang}
               />
               <PasswordInput
-                label={t('forms:label-password')}
+                label='Password'
                 error={errors.password?.message}
                 {...register('password', {
-                  required: `${t('forms:password-required')}`,
+                  required: `You must need to provide your password`,
                 })}
-                lang={lang}
               />
               <div className="flex items-center justify-center">
                 <div className="flex items-center shrink-0">
@@ -135,7 +130,7 @@ export default function SignUpForm({
                     onClick={() => setRemember(!remember)}
                     className="mt-1 text-sm cursor-pointer shrink-0 text-heading ltr:pl-2.5 rtl:pr-2.5"
                   >
-                    {t('forms:label-remember-me')}
+                    Remember me
                   </label>
                 </div>
                 <div
@@ -143,10 +138,10 @@ export default function SignUpForm({
                   onClick={closeModal}
                 >
                   <Link
-                    href={`/${lang}${ROUTES.PRIVACY}`}
+                    href={`${ROUTES.PRIVACY}`}
                     className="text-sm ltr:text-right rtl:text-left text-heading ltr:pl-3 lg:rtl:pr-3 hover:no-underline hover:text-brand-dark focus:outline-none focus:text-brand-dark"
                   >
-                    {t('common:text-privacy-and-policy')}
+                    Privacy and policy
                   </Link>
                 </div>
               </div>
@@ -158,7 +153,8 @@ export default function SignUpForm({
                   className="w-full mt-2 tracking-normal h-11 md:h-12 font-15px md:font-15px"
                   variant="formButton"
                 >
-                  {t('common:text-register')}
+                 Register
+
                 </Button>
               </div>
             </div>

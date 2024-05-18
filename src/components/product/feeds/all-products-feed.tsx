@@ -10,22 +10,19 @@ import { useModalAction } from '@components/common/modal/modal.context';
 import slice from 'lodash/slice';
 import Alert from '@components/ui/alert';
 import cn from 'classnames';
-import { useTranslation } from 'src/app/i18n/client';
 import { usePathname, useRouter } from 'next/navigation';
 import { LIMITS } from '@framework/utils/limits';
 import { Product } from '@framework/types';
 import useQueryParam from '@utils/use-query-params';
 interface ProductFeedProps {
-  lang: string;
   element?: any;
   className?: string;
 }
 const AllProductFeed: FC<ProductFeedProps> = ({
-  lang,
   element,
   className = '',
 }) => {
-  const { t } = useTranslation(lang, 'common');
+  // const { t } = useTranslation(lang, 'common');
   const pathname = usePathname();
   const { getParams, query } = useQueryParam(pathname ?? '/');
   const newQuery: any = getParams(
@@ -58,14 +55,13 @@ const AllProductFeed: FC<ProductFeedProps> = ({
         <SectionHeader
           sectionHeading="All Products"
           className="mb-0"
-          lang={lang}
         />
         <div
           className="lg:hidden transition-all text-brand -mt-1.5 font-semibold text-sm md:text-15px hover:text-brand-dark"
           role="button"
           onClick={handleCategoryPopup}
         >
-          {t('text-categories')}
+          Categories
         </div>
       </div>
       {error ? (
@@ -90,7 +86,6 @@ const AllProductFeed: FC<ProductFeedProps> = ({
                         <ProductCardAlpine
                           key={`product--key${product.id}`}
                           product={product}
-                          lang={lang}
                         />
                       ))}
                     {element && <div className="col-span-full">{element}</div>}
@@ -100,7 +95,6 @@ const AllProductFeed: FC<ProductFeedProps> = ({
                           <ProductCardAlpine
                             key={`product--key${product.id}`}
                             product={product}
-                            lang={lang}
                           />
                         ),
                       )}

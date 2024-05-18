@@ -5,10 +5,8 @@ import Logo from '@components/ui/logo';
 import Text from '@components/ui/text';
 import Image from '@components/ui/image';
 import { ROUTES } from '@utils/routes';
-import { useTranslation } from 'src/app/i18n/client';
 
 interface AboutProps {
-  lang: string;
   className?: string;
   social?: {
     id: string | number;
@@ -19,8 +17,7 @@ interface AboutProps {
     height: number;
   }[];
 }
-const WidgetAbout: React.FC<AboutProps> = ({ lang, social, className }) => {
-  const { t } = useTranslation(lang, 'footer');
+const WidgetAbout: React.FC<AboutProps> = ({  social, className }) => {
 
   return (
     <div className={`pb-10 sm:pb-0 ${className}`}>
@@ -29,7 +26,7 @@ const WidgetAbout: React.FC<AboutProps> = ({ lang, social, className }) => {
           href={ROUTES.HOME}
           className="mx-auto mb-3 lg:mb-5 sm:ltr:ml-0 sm:rtl:mr-0"
         />
-        <Text>{t('text-about-us')}</Text>
+        <Text>We offer high-quality foods and the best delivery service, and the food market you can blindly trust</Text>
       </div>
 
       {social && (

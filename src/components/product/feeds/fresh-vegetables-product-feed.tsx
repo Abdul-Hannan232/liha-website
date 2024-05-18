@@ -5,7 +5,7 @@ import ProductsCarousel from '@components/product/products-carousel';
 import { ROUTES } from '@utils/routes';
 import { LIMITS } from '@framework/utils/limits';
 
-export default function FreshVegetablesProductFeed({ lang }: { lang: string }) {
+export default function FreshVegetablesProductFeed() {
   const { data, isLoading, error } = useFreshVegetablesProductsQuery({
     limit: LIMITS.FRESH_VEGETABLES_PRODUCTS_LIMITS,
   });
@@ -18,7 +18,6 @@ export default function FreshVegetablesProductFeed({ lang }: { lang: string }) {
       error={error?.message}
       limit={LIMITS.FRESH_VEGETABLES_PRODUCTS_LIMITS}
       uniqueKey="fresh-vegetable"
-      lang={lang}
     />
   );
 }

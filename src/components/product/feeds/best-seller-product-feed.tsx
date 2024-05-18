@@ -5,7 +5,7 @@ import { useBestSellerProductsQuery } from '@framework/product/get-all-best-sell
 import { LIMITS } from '@framework/utils/limits';
 import { ROUTES } from '@utils/routes';
 
-export default function BestSellerProductFeed({ lang }: { lang: string }) {
+export default function BestSellerProductFeed() {
   const { data, isLoading, error } = useBestSellerProductsQuery({
     limit: LIMITS.BEST_SELLER_PRODUCTS_LIMITS,
   });
@@ -18,7 +18,6 @@ export default function BestSellerProductFeed({ lang }: { lang: string }) {
       error={error?.message}
       limit={LIMITS.BEST_SELLER_PRODUCTS_LIMITS}
       uniqueKey="best-sellers"
-      lang={lang}
     />
   );
 }

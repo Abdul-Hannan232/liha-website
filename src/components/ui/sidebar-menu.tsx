@@ -6,11 +6,10 @@ import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { useUI } from '@contexts/ui.context';
 import { useEffect, useState } from 'react';
 import Image from '@components/ui/image';
-import { useTranslation } from 'src/app/i18n/client';
 import useQueryParam from '@utils/use-query-params';
 
-function SidebarMenuItem({ className, item, depth = 0, lang }: any) {
-  const { t } = useTranslation(lang, 'common');
+function SidebarMenuItem({ className, item, depth = 0 }: any) {
+
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { updateQueryparams } = useQueryParam(pathname ?? '/');
@@ -80,7 +79,8 @@ function SidebarMenuItem({ className, item, depth = 0, lang }: any) {
             <div className="inline-flex shrink-0 2xl:w-12 2xl:h-12 3xl:w-auto 3xl:h-auto">
               <Image
                 src={icon ?? '/assets/placeholder/category-small.svg'}
-                alt={name || t('text-category-thumbnail')}
+                alt={name || 'Categories'}
+                // alt={name || t('text-category-thumbnail')}
                 width={40}
                 height={40}
                 style={{ width: 'auto', height: 'auto' }}
@@ -99,7 +99,7 @@ function SidebarMenuItem({ className, item, depth = 0, lang }: any) {
             key="content"
             className="py-3 text-xs border-t border-border-base"
           >
-            {items?.map((currentItem) => {
+            {items?.map((currentItem) => { 
               const childDepth = depth + 1;
               return (
                 <SidebarMenuItem
@@ -120,22 +120,17 @@ function SidebarMenuItem({ className, item, depth = 0, lang }: any) {
 }
 
 function SidebarMenu({
-  lang,
   items,
   className,
 }: {
-  lang: string;
+ 
   items: any;
   className?: string;
 }) {
   return (
     <ul className={cn(className)}>
       {items?.map((item: any) => (
-        <SidebarMenuItem
-          key={`${item.slug}-key-${item.id}`}
-          item={item}
-          lang={lang}
-        />
+        <SidebarMenuItem key={`${item.slug}-key-${item.id}`} item={item} />
       ))}
     </ul>
   );

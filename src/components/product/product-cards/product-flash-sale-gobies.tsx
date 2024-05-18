@@ -6,13 +6,11 @@ import { useModalAction } from '@components/common/modal/modal.context';
 import Countdown, { zeroPad } from 'react-countdown';
 import { productPlaceholder } from '@assets/placeholders';
 import ProgressCard from '@components/ui/progress-card';
-import { useTranslation } from 'src/app/i18n/client';
 
 interface ProductProps {
   product: Product;
   className?: string;
   date?: string | number | Date | undefined;
-  lang: string;
 }
 
 const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
@@ -65,11 +63,9 @@ const ProductFlashSaleGobies: React.FC<ProductProps> = ({
   product,
   className,
   date,
-  lang,
 }) => {
   const { name, image, quantity, sold, product_type } = product ?? {};
   const { openModal } = useModalAction();
-  const { t } = useTranslation(lang, 'common');
   const { price, basePrice } = usePrice({
     amount: product?.sale_price ? product?.sale_price : product?.price,
     baseAmount: product?.price,
@@ -98,7 +94,7 @@ const ProductFlashSaleGobies: React.FC<ProductProps> = ({
     >
       <div className="absolute z-10 top-6 left-6">
         <span className="text-[11px] md:text-xs font-bold text-brand-light uppercase inline-block bg-[#fd5473] rounded-full px-2.5 py-[5px] pb-1 mx-0.5 sm:mx-1">
-          {t('text-most-popular')}
+        Most Popular
         </span>
       </div>
       <figure className="relative flex items-center justify-center flex-grow w-full h-48 px-16 m-0 mx-auto lg:h-56 3xl:h-64">
@@ -131,7 +127,6 @@ const ProductFlashSaleGobies: React.FC<ProductProps> = ({
           soldProduct={sold}
           totalProduct={quantity}
           className="pt-7 lg:pt-10"
-          lang={lang}
         />
       </div>
     </article>

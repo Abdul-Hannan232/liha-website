@@ -8,16 +8,14 @@ import cn from 'classnames';
 import { useProductsQuery } from '@framework/product/get-all-products';
 import { LIMITS } from '@framework/utils/limits';
 import { Product } from '@framework/types';
-import { useTranslation } from 'src/app/i18n/client';
 import useQueryParam from '@utils/use-query-params';
 
 interface ProductGridProps {
-  lang: string;
   className?: string;
 }
 
-export const ProductGrid: FC<ProductGridProps> = ({ className = '', lang }) => {
-  const { t } = useTranslation(lang, 'common');
+export const ProductGrid: FC<ProductGridProps> = ({ className = '' }) => {
+
   const pathname = usePathname();
   const { getParams, query } = useQueryParam(pathname ?? '/');
   const newQuery: any = getParams(
@@ -63,7 +61,6 @@ export const ProductGrid: FC<ProductGridProps> = ({ className = '', lang }) => {
               <ProductCardAlpine
                 key={`product--key-${product.id}`}
                 product={product}
-                lang={lang}
               />
             ));
           })
@@ -77,7 +74,7 @@ export const ProductGrid: FC<ProductGridProps> = ({ className = '', lang }) => {
             disabled={loadingMore}
             onClick={() => fetchNextPage()}
           >
-            {t('button-load-more')}
+            Load More
           </Button>
         </div>
       )}

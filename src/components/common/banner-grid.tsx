@@ -9,7 +9,6 @@ interface BannerProps {
   data: any;
   grid?: number;
   className?: string;
-  lang: string;
 }
 
 const breakpoints = {
@@ -26,7 +25,6 @@ const BannerGrid: React.FC<BannerProps> = ({
   data,
   grid = 3,
   className = 'mb-3 xl:mb-6',
-  lang,
 }) => {
   const { width } = useWindowSize();
   return (
@@ -36,11 +34,10 @@ const BannerGrid: React.FC<BannerProps> = ({
           breakpoints={breakpoints}
           prevActivateId="bundle-carousel-button-prev"
           nextActivateId="bundle-carousel-button-next"
-          lang={lang}
         >
           {data?.map((banner: any) => (
             <SwiperSlide key={`bundle-key-${banner.id}`}>
-              <BannerCard banner={banner} effectActive={true} lang={lang} />
+              <BannerCard banner={banner} effectActive={true}  />
             </SwiperSlide>
           ))}
         </Carousel>
@@ -54,7 +51,6 @@ const BannerGrid: React.FC<BannerProps> = ({
               banner={banner}
               effectActive={true}
               className="w-full"
-              lang={lang}
             />
           ))}
         </div>

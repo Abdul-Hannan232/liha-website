@@ -9,20 +9,19 @@ import { useCart } from '@contexts/cart/cart.context';
 
 import { productPlaceholder } from '@assets/placeholders';
 import dynamic from 'next/dynamic';
-import { useTranslation } from 'src/app/i18n/client';
+
 const AddToCart = dynamic(() => import('@components/product/add-to-cart'), {
   ssr: false,
 });
 
 interface ProductProps {
-  lang: string;
   product: Product;
   className?: string;
 }
 function RenderPopupOrAddToCart({ props }: { props: Object }) {
-  let { data, lang }: any = props;
+  let { data }: any = props;
   // console.log(variant);
-  const { t } = useTranslation(lang, 'common');
+
   const { id, quantity, product_type } = data ?? {};
   const { width } = useWindowSize();
   const { openModal } = useModalAction();
@@ -35,7 +34,7 @@ function RenderPopupOrAddToCart({ props }: { props: Object }) {
   if (Number(quantity) < 1 || outOfStock) {
     return (
       <span className="text-[11px] md:text-xs font-bold text-brand-light uppercase inline-block bg-brand-danger rounded-full px-2.5 pt-1 pb-[3px] mx-0.5 sm:mx-1">
-        {t('text-out-stock')}
+        Out Of Stock
       </span>
     );
   }
@@ -50,16 +49,15 @@ function RenderPopupOrAddToCart({ props }: { props: Object }) {
       </button>
     );
   }
-  return <AddToCart data={data} variant="mercury" lang={lang} />;
+  return <AddToCart data={data} variant="mercury" />;
 }
 const ProductCardAlpine: React.FC<ProductProps> = ({
   product,
   className,
-  lang,
 }) => {
   const { name, image, unit, product_type } = product ?? {};
   const { openModal } = useModalAction();
-  const { t } = useTranslation(lang, 'common');
+  // const { t } = useTranslation(lang, 'common');
   const { price, basePrice, discount } = usePrice({
     amount: product?.sale_price ? product?.sale_price : product?.price,
     baseAmount: product?.price,
@@ -103,11 +101,11 @@ const ProductCardAlpine: React.FC<ProductProps> = ({
         <div className="w-full h-full absolute top-0 pt-2.5 md:pt-3.5 px-3 md:px-4 lg:px-[18px] z-10 -mx-0.5 sm:-mx-1">
           {discount && (
             <span className="text-[11px] md:text-xs font-bold text-brand-light uppercase inline-block bg-brand rounded-full px-2.5 pt-1 pb-[3px] mx-0.5 sm:mx-1">
-              {t('text-on-sale')}
+              on sale
             </span>
           )}
           <div className={`block product-count-button-position`}>
-            <RenderPopupOrAddToCart props={{ data: product, lang: lang }} />
+            <RenderPopupOrAddToCart props={{ data: product}} />
           </div>
         </div>
       </div>

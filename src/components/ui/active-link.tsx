@@ -3,7 +3,6 @@ import React, { Children } from 'react';
 
 const ActiveLink = ({
   children,
-  lang,
   activeClassName,
   href,
   ...props
@@ -12,7 +11,8 @@ const ActiveLink = ({
   const childClassName = child.props.className || '';
 
   const className =
-    lang === href
+    // lang === href
+    'en' === href
       ? `${childClassName} ${activeClassName}`.trim()
       : childClassName;
 

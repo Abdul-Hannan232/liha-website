@@ -3,17 +3,16 @@
 import Image from '@components/ui/image';
 import cn from 'classnames';
 import Link from '@components/ui/link';
-import { useTranslation } from 'src/app/i18n/client';
-
+ 
 const data = {
-  title: 'app-heading',
-  description: 'app-description',
+  title: 'Make your online shop easier with our mobile app',
+  description: 'Liha makes online grocery shopping fast and easy. Get groceries delivered and order the best of seasonal farm fresh food.',
   appImage: '/assets/images/app-thumbnail.png',
   appButtons: [
     {
       id: 1,
       slug: 'https://www.apple.com/app-store/',
-      altText: 'button-app-store',
+      altText: 'App Store',
       appButton: '/assets/images/app-store.png',
       buttonWidth: 170,
       buttonHeight: 56,
@@ -21,7 +20,7 @@ const data = {
     {
       id: 2,
       slug: 'https://play.google.com/store/games',
-      altText: 'button-play-store',
+      altText: 'Play Store',
       appButton: '/assets/images/play-store.png',
       buttonWidth: 170,
       buttonHeight: 56,
@@ -30,26 +29,23 @@ const data = {
 };
 
 interface Props {
-  lang: string;
   className?: string;
 }
 
 const DownloadApps: React.FC<Props> = ({
   className = 'pt-1.5 md:pt-0',
-  lang,
 }) => {
   const { appButtons, title, description, appImage } = data;
-  const { t } = useTranslation(lang);
   return (
     <div className={cn('bg-fill-two overflow-hidden', className)}>
       <div className="max-w-[1920px] mx-auto px-4 sm:px-5 md:px-6 lg:px-16 xl:px-28 2xl:px-32 3xl:px-40 md:flex justify-between items-center">
         <div className="shrink-0 mx-auto md:ltr:ml-0 md:rtl:mr-0 lg:flex lg:items-center pb-5 pt-1.5 md:pt-4 max-w-[350px] md:max-w-[340px] lg:max-w-[485px] xl:max-w-[540px] 2xl:max-w-[680px] 3xl:ltr:pl-10 3xl:rtl:pr-10">
           <div className="py-8 text-center xl:py-10 2xl:py-14 md:ltr:text-left md:rtl:text-right">
             <h2 className="text-[22px] md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-[42px] leading-9 lg:leading-[1.4em] xl:leading-[1.45em] text-brand-dark font-bold font-manrope -tracking-[0.2px] mb-3 lg:mb-4">
-              {t(title)}
+              {title}
             </h2>
             <p className="text-15px xl:text-base 2xl:text-[17px] leading-7 xl:leading-9 text-brand-dark text-opacity-70 pb-5 lg:pb-7 ltr:pr-0 rtl:pl-0 xl:ltr:pr-8 xl:rtl:pl-8 2xl:ltr:pr-20 2xl:rtl:pl-20">
-              {t(description)}
+              {description}
             </p>
             <div className="flex justify-center md:justify-start -mx-1 md:-mx-1.5 pt-0.5 px-7 sm:px-0">
               {appButtons?.map((item) => (
@@ -60,7 +56,7 @@ const DownloadApps: React.FC<Props> = ({
                 >
                   <Image
                     src={item.appButton}
-                    alt={t(item.altText)}
+                    alt={item.altText}
                     className="rounded-md w-36 lg:w-44"
                     width={item.buttonWidth}
                     height={item.buttonHeight}
@@ -75,7 +71,7 @@ const DownloadApps: React.FC<Props> = ({
         <div className="hidden md:flex items-end ltr:pl-4 rtl:pr-4 2xl:ltr:pl-0 2xl:rtl:pr-0 md:max-w-[480px] lg:max-w-[540px] xl:max-w-auto ltr:-mr-16 rtl:-ml-16 lg:ltr:-mr-8 lg:rtl:-ml-8 3xl:ltr:mr-24 3xl:rtl:ml-24">
           <Image
             src={appImage}
-            alt={t('text-app-thumbnail')}
+            alt='App Thumbnail'
             width={597}
             height={500}
             // style={{ width: 'auto' }}

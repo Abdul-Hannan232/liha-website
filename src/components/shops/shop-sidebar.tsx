@@ -18,19 +18,19 @@ import {
   IoCallOutline,
   IoGlobeOutline,
 } from 'react-icons/io5';
-import { useTranslation } from 'src/app/i18n/client';
+// import { useTranslation } from 'src/app/i18n/client';
 
 interface ShopSidebarProps {
   data: any;
-  lang: string;
+  // lang: string;
 }
 
-const ShopSidebar: React.FC<ShopSidebarProps> = ({ data, lang }) => {
+const ShopSidebar: React.FC<ShopSidebarProps> = ({ data}) => {
   const pathname = useParams();
   const { slug } = pathname;
   const [descriptionState, setDescriptionState] = useState(Boolean(false));
   const shareUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}${ROUTES.SHOPS}/${slug}`;
-  const { t } = useTranslation(lang, 'common');
+  // const { t } = useTranslation(lang, 'common');
   const descriptionHandel = () => {
     return setDescriptionState(true);
   };
@@ -60,7 +60,7 @@ const ShopSidebar: React.FC<ShopSidebarProps> = ({ data, lang }) => {
                 className="text-brand ltr:ml-0.5 rtl:mr-0.5 font-semibold block hover:text-brand-muted"
                 onClick={descriptionHandel}
               >
-                {t('text-read-more')}
+               Read More
               </span>
             </>
           ) : (
@@ -98,7 +98,7 @@ const ShopSidebar: React.FC<ShopSidebarProps> = ({ data, lang }) => {
           </div>
           <div className="-mt-1">
             <h4 className="mb-1 font-medium text-brand-dark text-15px">
-              {t('text-address')}:
+            Address:
             </h4>
             <Text>{data?.address}</Text>
           </div>
@@ -109,7 +109,7 @@ const ShopSidebar: React.FC<ShopSidebarProps> = ({ data, lang }) => {
           </div>
           <div className="-mt-1">
             <h4 className="mb-1 font-medium text-brand-dark text-15px">
-              {t('text-phone-number')}:
+            Phone:
             </h4>
             <Text>{data?.phone}</Text>
           </div>
@@ -120,7 +120,7 @@ const ShopSidebar: React.FC<ShopSidebarProps> = ({ data, lang }) => {
           </div>
           <div className="-mt-1">
             <h4 className="mb-1 font-medium text-brand-dark text-15px">
-              {t('text-website')}:
+            Website:
             </h4>
             <Text>
               <a

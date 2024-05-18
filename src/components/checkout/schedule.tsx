@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { RadioGroup } from '@headlessui/react';
 import cn from 'classnames';
-import { useTranslation } from 'src/app/i18n/client';
 
 const deliveryDateSchedule = [
   'Sat, Jul 03, 2021',
@@ -12,8 +11,7 @@ const deliveryDateSchedule = [
 ];
 const deliveryTimeSchedule = ['9am to 10am', '3pm to 5pm', '6pm to 8pm'];
 
-export default function Schedule({ lang }: { lang: string }) {
-  const { t } = useTranslation(lang, 'common');
+export default function Schedule() {
   const [dateSchedule, setDateSchedule] = useState(deliveryDateSchedule[0]);
   const [timeSchedule, setTimeSchedule] = useState(deliveryTimeSchedule[0]);
   function getDay(date: string) {
@@ -30,7 +28,7 @@ export default function Schedule({ lang }: { lang: string }) {
       <div className="w-full mx-auto">
         <RadioGroup value={dateSchedule} onChange={setDateSchedule}>
           <RadioGroup.Label className="sr-only">
-            {t('text-delivery-schedule')}
+          Delivery Schedule
           </RadioGroup.Label>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-6">
             {deliveryDateSchedule.map((date) => (
@@ -76,7 +74,7 @@ export default function Schedule({ lang }: { lang: string }) {
           onChange={setTimeSchedule}
         >
           <RadioGroup.Label className="sr-only">
-            {t('text-delivery-schedule')}
+          Delivery Schedule
           </RadioGroup.Label>
           <div className="flex flex-wrap justify-between grid-cols-2 gap-4 lg:grid sm:grid-cols-3 lg:grid-cols-5">
             {deliveryTimeSchedule.map((time) => (

@@ -15,7 +15,6 @@ const Carousel = dynamic(() => import('@components/ui/carousel/carousel'), {
 });
 
 interface CategoriesProps {
-  lang: string;
   className?: string;
 }
 const breakpoints = {
@@ -46,7 +45,6 @@ const breakpoints = {
 };
 
 const CategoryGridBlock: React.FC<CategoriesProps> = ({
-  lang,
   className = 'mb-12 md:pt-3 lg:pt-0 3xl:pb-2 sm:mb-14 md:mb-16 xl:mb-24 2xl:mb-16',
 }) => {
   const { width } = useWindowSize();
@@ -55,13 +53,12 @@ const CategoryGridBlock: React.FC<CategoriesProps> = ({
     limit: LIMITS.CATEGORIES_LIMITS,
   });
 
-  return (
+  return ( 
     <div className={className}>
       <SectionHeader
-        sectionHeading="text-what-food-you-love"
-        sectionSubHeading="text-favorite-different-categories"
+        sectionHeading="What food you love to order"
+        sectionSubHeading="Here order your favorite foods from different categories"
         headingPosition="center"
-        lang={lang}
       />
       <div className="block 2xl:flex justify-center flex-wrap 3xl:-mx-3.5">
         {error ? (
@@ -71,7 +68,6 @@ const CategoryGridBlock: React.FC<CategoriesProps> = ({
             autoplay={false}
             breakpoints={breakpoints}
             buttonGroupClassName="-mt-5 md:-mt-4 lg:-mt-5"
-            lang={lang}
           >
             {isLoading && !data
               ? Array.from({ length: 16 }).map((_, idx) => {
@@ -84,7 +80,6 @@ const CategoryGridBlock: React.FC<CategoriesProps> = ({
               : data?.categories?.data?.slice(0, 16)?.map((category) => (
                   <SwiperSlide key={`category--key-${category.id}`}>
                     <CategoryCard
-                      lang={lang}
                       item={category}
                       href={`${ROUTES.SEARCH}?category=${category.slug}`}
                     />
@@ -108,7 +103,6 @@ const CategoryGridBlock: React.FC<CategoriesProps> = ({
             .map((category) => (
               <CategoryCard
                 key={`category--key-${category.id}`}
-                lang={lang}
                 item={category}
                 href={`${ROUTES.SEARCH}?category=${category.slug}`}
                 className="shrink-0 2xl:px-3.5 2xl:w-[12.5%] 3xl:w-1/9 mb-12"

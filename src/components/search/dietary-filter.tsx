@@ -5,11 +5,10 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 import { Disclosure } from '@headlessui/react';
 import Heading from '@components/ui/heading';
-import { useTranslation } from 'src/app/i18n/client';
 import useQueryParam from '@utils/use-query-params';
 
-export const DietaryFilter = ({ lang }: { lang: string }) => {
-  const { t } = useTranslation(lang, 'common');
+export const DietaryFilter = () => {
+
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { updateQueryparams } = useQueryParam(pathname ?? '/');
@@ -46,7 +45,7 @@ export const DietaryFilter = ({ lang }: { lang: string }) => {
 
   return (
     <div className="block">
-      <Heading className="mb-5 -mt-1">{t('text-dietary-needs')}</Heading>
+      <Heading className="mb-5 -mt-1">Dietary Needs</Heading>
       <div className="flex flex-col p-5 border rounded-md border-border-base">
         {items
           ?.slice(0, 3)
@@ -58,7 +57,7 @@ export const DietaryFilter = ({ lang }: { lang: string }) => {
               checked={formState.includes(item.slug)}
               value={item.slug}
               onChange={handleItemClick}
-              lang={lang}
+              // lang={lang}
             />
           ))}
         {items!.length > 3 && (
@@ -77,7 +76,7 @@ export const DietaryFilter = ({ lang }: { lang: string }) => {
                           checked={formState.includes(item.slug)}
                           value={item.slug}
                           onChange={handleItemClick}
-                          lang={lang}
+                          // lang={lang}
                         />
                       ))}
                   </Disclosure.Panel>
@@ -85,14 +84,14 @@ export const DietaryFilter = ({ lang }: { lang: string }) => {
                     {open ? (
                       <>
                         <span className="inline-block ltr:pr-1 rtl:pl-1">
-                          {t('text-see-less')}
+                        See less
                         </span>
                         <IoIosArrowUp className="text-brand-dark text-opacity-60 text-15px" />
                       </>
                     ) : (
                       <>
                         <span className="inline-block ltr:pr-1 rtl:pl-1">
-                          {t('text-see-more')}
+                        See more
                         </span>
                         <IoIosArrowDown className="text-brand-dark text-opacity-60 text-15px" />
                       </>

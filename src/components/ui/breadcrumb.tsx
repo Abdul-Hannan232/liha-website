@@ -6,7 +6,6 @@ import useBreadcrumb, { convertBreadcrumbTitle } from '@utils/use-breadcrumb';
 import { IoChevronForward } from 'react-icons/io5';
 import { IoHomeOutline } from 'react-icons/io5';
 import { ROUTES } from '@utils/routes';
-import { useTranslation } from 'src/app/i18n/client';
 
 interface Props {
   children: any;
@@ -62,25 +61,25 @@ export const BreadcrumbItems = (props: any) => {
   );
 };
 
-const Breadcrumb: React.FC<{ separator?: string; lang: string }> = ({
+const Breadcrumb: React.FC<{ separator?: string;}> = ({
   separator = (
     <IoChevronForward className="text-brand-dark text-opacity-40 text-15px" />
   ),
-  lang,
+ 
 }) => {
   const breadcrumbs = useBreadcrumb();
-  const { t } = useTranslation(lang, 'common');
+  // const { t } = useTranslation(lang, 'common');
   return (
     <BreadcrumbItems separator={separator}>
       <ActiveLink
         legacyBehavior
-        href={`${ROUTES.HOME}${lang}`}
+        // href={`${ROUTES.HOME}${lang}`}
+        href={`${ROUTES.HOME}`}
         activeClassName="font-semibold text-heading"
-        lang={lang}
       >
         <a className="inline-flex items-center">
           <IoHomeOutline className="ltr:mr-1.5 rtl:ml-1.5 text-brand-dark text-15px" />
-          {t('breadcrumb-home')}
+          Home
         </a>
       </ActiveLink>
 
@@ -90,7 +89,6 @@ const Breadcrumb: React.FC<{ separator?: string; lang: string }> = ({
           activeClassName="font-semibold text-heading"
           key={breadcrumb.href}
           legacyBehavior
-          lang={lang}
         >
           <a className="capitalize">
             {convertBreadcrumbTitle(breadcrumb.breadcrumb)}

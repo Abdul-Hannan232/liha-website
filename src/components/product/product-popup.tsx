@@ -9,7 +9,6 @@ import ProductAttributes from '@components/product/product-attributes';
 import { generateCartItem } from '@utils/generate-cart-item';
 import usePrice from '@framework/product/use-price';
 import { getVariations } from '@framework/utils/get-variations';
-import { useTranslation } from 'src/app/i18n/client';
 import ThumbnailCarousel from '@components/ui/carousel/thumbnail-carousel';
 import Image from '@components/ui/image';
 import CartIcon from '@components/icons/cart-icon';
@@ -53,8 +52,8 @@ const breakpoints = {
   },
 };
 
-export default function ProductPopup({ lang }: { lang: string }) {
-  const { t } = useTranslation(lang, 'common');
+export default function ProductPopup() {
+
   const { data } = useModalState();
   const { width } = useWindowSize();
   const { closeModal } = useModalAction();
@@ -74,7 +73,8 @@ export default function ProductPopup({ lang }: { lang: string }) {
   });
   const variations = getVariations(data.variations);
   const { slug, image, name, unit, description, gallery, tag, quantity } = data;
-  const productUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/${lang}${ROUTES.PRODUCT}/${slug}`;
+  const productUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}${ROUTES.PRODUCT}/${slug}`;
+  // const productUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/${lang}${ROUTES.PRODUCT}/${slug}`;
   const handleChange = () => {
     setShareButtonStatus(!shareButtonStatus);
   };
@@ -104,7 +104,7 @@ export default function ProductPopup({ lang }: { lang: string }) {
     }, 1500);
     addItemToCart(item, selectedQuantity);
     // @ts-ignore
-    toast(t('text-added-bag'), {
+    toast('Added to the cart', {
       progressClassName: 'fancy-progress-bar',
       position: width! > 768 ? 'bottom-right' : 'top-right',
       autoClose: 1500,
@@ -118,7 +118,9 @@ export default function ProductPopup({ lang }: { lang: string }) {
     setAddToWishlistLoader(true);
     setFavorite(!favorite);
     const toastStatus: string =
-      favorite === true ? t('text-remove-favorite') : t('text-added-favorite');
+      favorite === true
+        ? 'Remove from favorite list'
+        : 'Added to favorite list';
     setTimeout(() => {
       setAddToWishlistLoader(false);
     }, 1500);
@@ -135,7 +137,8 @@ export default function ProductPopup({ lang }: { lang: string }) {
 
   function navigateToProductPage() {
     closeModal();
-    router.push(`/${lang}/${ROUTES.PRODUCT}/${slug}`);
+    // router.push(`/${lang}/${ROUTES.PRODUCT}/${slug}`);
+    router.push(`${ROUTES.PRODUCT}/${slug}`);
   }
 
   useEffect(() => setSelectedQuantity(1), [data.id]);
@@ -148,7 +151,7 @@ export default function ProductPopup({ lang }: { lang: string }) {
           <div className="items-start justify-between lg:flex">
             <div className="items-center justify-center mb-6 overflow-hidden xl:flex md:mb-8 lg:mb-0">
               {!!gallery?.length ? (
-                <ThumbnailCarousel gallery={gallery} lang={lang} />
+                <ThumbnailCarousel gallery={gallery} />
               ) : (
                 <div className="flex items-center justify-center w-auto">
                   <Image
@@ -180,7 +183,6 @@ export default function ProductPopup({ lang }: { lang: string }) {
                     selectedVariation={selectedVariation}
                     minPrice={data.min_price}
                     maxPrice={data.max_price}
-                    lang={lang}
                   />
                 )}
 
@@ -195,7 +197,7 @@ export default function ProductPopup({ lang }: { lang: string }) {
                           {basePrice}
                         </del>
                         <span className="inline-block rounded font-bold text-xs md:text-sm bg-brand-tree bg-opacity-20 text-brand-tree uppercase px-2 py-1 ltr:ml-2.5 rtl:mr-2.5">
-                          {discount} {t('text-off')}
+                          {discount} Off
                         </span>
                       </>
                     )}
@@ -220,15 +222,11 @@ export default function ProductPopup({ lang }: { lang: string }) {
                   <>
                     {Number(quantity) > 0 || !outOfStock ? (
                       <span className="text-sm font-medium text-yellow">
-                        {t('text-only') +
-                          ' ' +
-                          quantity +
-                          ' ' +
-                          t('text-left-item')}
+                        Only + ' ' + quantity + ' ' + item left!
                       </span>
                     ) : (
                       <div className="text-base text-brand-danger whitespace-nowrap">
-                        {t('text-out-stock')}
+                        Out Of Stock
                       </div>
                     )}
                   </>
@@ -238,13 +236,13 @@ export default function ProductPopup({ lang }: { lang: string }) {
                   <span className="text-sm font-medium text-yellow">
                     {selectedVariation?.is_disable ||
                     selectedVariation.quantity === 0
-                      ? t('text-out-stock')
+                      ? 'Out Of Stock'
                       : `${
-                          t('text-only') +
+                          'Only' +
                           ' ' +
                           selectedVariation.quantity +
                           ' ' +
-                          t('text-left-item')
+                          'item left!'
                         }`}
                   </span>
                 )}
@@ -264,7 +262,6 @@ export default function ProductPopup({ lang }: { lang: string }) {
                         Number(item.stock)
                       : selectedQuantity >= Number(item.stock)
                   }
-                  lang={lang}
                 />
                 <Button
                   onClick={addToCart}
@@ -273,7 +270,7 @@ export default function ProductPopup({ lang }: { lang: string }) {
                   loading={addToCartLoader}
                 >
                   <CartIcon color="#ffffff" className="ltr:mr-3 rtl:ml-3" />
-                  {t('text-add-to-cart')}
+                  Add to Cart
                 </Button>
                 <div className="grid grid-cols-2 gap-2.5">
                   <Button
@@ -289,8 +286,7 @@ export default function ProductPopup({ lang }: { lang: string }) {
                     ) : (
                       <IoIosHeartEmpty className="text-2xl md:text-[26px] ltr:mr-2 rtl:ml-2 transition-all group-hover:text-brand" />
                     )}
-
-                    {t('text-wishlist')}
+                    Wishlist
                   </Button>
                   <div className="relative group">
                     <Button
@@ -301,7 +297,7 @@ export default function ProductPopup({ lang }: { lang: string }) {
                       onClick={handleChange}
                     >
                       <IoArrowRedoOutline className="text-2xl md:text-[26px] ltr:mr-2 rtl:ml-2 transition-all group-hover:text-brand" />
-                      {t('text-share')}
+                      Share
                     </Button>
                     <SocialShareBox
                       className={`absolute z-10 ltr:right-0 rtl:left-0 w-[300px] md:min-w-[400px] transition-all duration-300 ${
@@ -310,7 +306,6 @@ export default function ProductPopup({ lang }: { lang: string }) {
                           : 'opacity-0 invisible top-[130%]'
                       }`}
                       shareUrl={productUrl}
-                      lang={lang}
                     />
                   </div>
                 </div>
@@ -318,8 +313,7 @@ export default function ProductPopup({ lang }: { lang: string }) {
               {tag && (
                 <ul className="pt-5 xl:pt-6">
                   <li className="relative inline-flex items-center justify-center text-sm md:text-15px text-brand-dark text-opacity-80 ltr:mr-2 rtl:ml-2 top-1">
-                    <LabelIcon className="ltr:mr-2 rtl:ml-2" /> {t('text-tags')}
-                    :
+                    <LabelIcon className="ltr:mr-2 rtl:ml-2" /> Tags :
                   </li>
                   {tag?.map((item: any) => (
                     <li className="inline-block p-[3px]" key={`tag-${item.id}`}>
@@ -330,9 +324,7 @@ export default function ProductPopup({ lang }: { lang: string }) {
               )}
 
               <div className="pt-6 xl:pt-8">
-                <Heading className="mb-3 lg:mb-3.5">
-                  {t('text-product-details')}:
-                </Heading>
+                <Heading className="mb-3 lg:mb-3.5">Product Details:</Heading>
                 <Text variant="small">
                   {description.split(' ').slice(0, 40).join(' ')}
                   {'...'}
@@ -341,7 +333,7 @@ export default function ProductPopup({ lang }: { lang: string }) {
                     role="button"
                     className="text-brand ltr:ml-0.5 rtl:mr-0.5"
                   >
-                    {t('text-read-more')}
+                    Read More
                   </span>
                 </Text>
               </div>
@@ -351,7 +343,6 @@ export default function ProductPopup({ lang }: { lang: string }) {
         <RelatedProductFeed
           carouselBreakpoint={breakpoints}
           className="mb-0.5 md:mb-2 lg:mb-3.5 xl:mb-4 2xl:mb-6"
-          lang={lang}
         />
       </div>
     </div>

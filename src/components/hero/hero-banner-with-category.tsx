@@ -10,12 +10,10 @@ import { ROUTES } from '@utils/routes';
 import { LIMITS } from '@framework/utils/limits';
 
 interface Props {
-  lang: string;
   className?: string;
 }
 
 const HeroBannerWithCategory: React.FC<Props> = ({
-  lang,
   className = 'mb-12 lg:mb-14 xl:mb-16 2xl:mb-20',
 }) => {
   const { data } = useCategoriesQuery({
@@ -34,18 +32,16 @@ const HeroBannerWithCategory: React.FC<Props> = ({
                 href={`${ROUTES.SEARCH}?category=${category.slug}`}
                 className="transition border-b border-border-base last:border-b-0"
                 variant="small"
-                lang={lang}
               />
             ))}
         </div>
       </div>
       <div className="w-full trendy-main-content">
-        <BannerGridTwo data={bannersMedium} lang={lang} />
+        <BannerGridTwo data={bannersMedium}  />
         <BannerAllCarousel
           data={bannerDiscount}
           buttonSize="small"
           className="mb-0"
-          lang={lang}
         />
       </div>
     </div>

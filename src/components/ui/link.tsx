@@ -4,7 +4,7 @@ const Link: React.FC<
   NextLinkProps & {
     className?: string;
     children?: React.ReactNode;
-    title?: string;
+    title?: string; 
   }
 > = ({ children, className, title, ...props }) => {
   return (

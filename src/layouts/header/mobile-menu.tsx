@@ -14,7 +14,6 @@ import {
   IoLogoYoutube,
   IoClose,
 } from 'react-icons/io5';
-import { useTranslation } from 'src/app/i18n/client';
 
 const social = [
   {
@@ -47,11 +46,11 @@ const social = [
   },
 ];
 
-export default function MobileMenu({ lang }: { lang: string }) {
+export default function MobileMenu() {
   const [activeMenus, setActiveMenus] = useState<any>([]);
   const { site_header } = siteSettings;
   const { closeSidebar } = useUI();
-  const { t } = useTranslation(lang, 'menu');
+
   const handleArrowClick = (menuName: string) => {
     let newActiveMenus = [...activeMenus];
     if (newActiveMenus.includes(menuName)) {
@@ -77,11 +76,11 @@ export default function MobileMenu({ lang }: { lang: string }) {
       <li className={`transition-colors duration-200 ${className}`}>
         <div className="relative flex items-center justify-between">
           <Link
-            href={`/${lang}${data.path}`}
+            href={`${data.path}`}
             className="relative w-full py-4 transition duration-300 ease-in-out menu-item ltr:pl-5 rtl:pr-5 md:ltr:pl-7 md:rtl:pr-7 ltr:pr-4 rtl:pl-4 text-brand-dark"
           >
             <span className="block w-full" onClick={closeSidebar}>
-              {t(`${data.label}`)}
+              {data.label}
             </span>
           </Link>
           {hasSubMenu && (
@@ -185,7 +184,7 @@ export default function MobileMenu({ lang }: { lang: string }) {
               className={`text-heading mx-3 transition duration-300 ease-in text-brand-dark text-opacity-60 hover:text-brand ${item.className}`}
               key={index}
             >
-              <span className="sr-only">{t(`${item.title}`)}</span>
+              <span className="sr-only">{item.title}</span>
               {item.icon}
             </Link>
           ))}

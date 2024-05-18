@@ -1,13 +1,11 @@
 import React from 'react';
-import { useTranslation } from 'src/app/i18n/client';
 
 interface RadioBoxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string | React.ReactElement;
-  lang: string;
 }
 export const RadioBox = React.forwardRef<HTMLInputElement, RadioBoxProps>(
-  ({ lang, label, ...rest }, ref) => {
-    const { t } = useTranslation(lang, 'forms');
+  ({ label, ...rest }, ref) => {
+
     return (
       <label className="flex items-center text-sm cursor-pointer group text-heading">
         <input
@@ -17,7 +15,7 @@ export const RadioBox = React.forwardRef<HTMLInputElement, RadioBoxProps>(
           {...rest}
         />
         <span className="relative text-sm ltr:ml-2 rtl:mr-2 text-heading">
-          {t(`${label}`)}
+          {label}
         </span>
       </label>
     );
