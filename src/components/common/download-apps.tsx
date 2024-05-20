@@ -3,10 +3,11 @@
 import Image from '@components/ui/image';
 import cn from 'classnames';
 import Link from '@components/ui/link';
- 
+
 const data = {
   title: 'Make your online shop easier with our mobile app',
-  description: 'Liha makes online grocery shopping fast and easy. Get groceries delivered and order the best of seasonal farm fresh food.',
+  description:
+    'Liha makes online grocery shopping fast and easy. Get groceries delivered and order the best of seasonal farm fresh food.',
   appImage: '/assets/images/app-thumbnail.png',
   appButtons: [
     {
@@ -32,9 +33,7 @@ interface Props {
   className?: string;
 }
 
-const DownloadApps: React.FC<Props> = ({
-  className = 'pt-1.5 md:pt-0',
-}) => {
+const DownloadApps: React.FC<Props> = ({ className = 'pt-1.5 md:pt-0' }) => {
   const { appButtons, title, description, appImage } = data;
   return (
     <div className={cn('bg-fill-two overflow-hidden', className)}>
@@ -71,7 +70,7 @@ const DownloadApps: React.FC<Props> = ({
         <div className="hidden md:flex items-end ltr:pl-4 rtl:pr-4 2xl:ltr:pl-0 2xl:rtl:pr-0 md:max-w-[480px] lg:max-w-[540px] xl:max-w-auto ltr:-mr-16 rtl:-ml-16 lg:ltr:-mr-8 lg:rtl:-ml-8 3xl:ltr:mr-24 3xl:rtl:ml-24">
           <Image
             src={appImage}
-            alt='App Thumbnail'
+            alt="App Thumbnail"
             width={597}
             height={500}
             // style={{ width: 'auto' }}

@@ -43,7 +43,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ className = '' }) => {
         <div className="flex flex-col space-y-5 md:space-y-6 lg:space-y-7">
           <div className="pb-1.5 flex items-center">
             <label className="block text-sm leading-none cursor-pointer shrink-0 text-brand-dark md:text-15px ltr:pr-3 rtl:pl-3">
-            Your Rating *
+              Your Rating *
             </label>
             <Rate
               size="lg"
@@ -54,7 +54,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ className = '' }) => {
             />
           </div>
           <Input
-            label='Name *'
+            label="Name *"
             {...register('name', { required: 'Name is required' })}
             error={errors.name?.message}
             variant="solid"
@@ -67,14 +67,14 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ className = '' }) => {
           />
           <div className="flex flex-col space-y-5 md:flex-row md:space-y-0">
             <Input
-              label='Name *'
+              label="Name *"
               {...register('name', { required: 'Name is required' })}
               className="w-full md:w-1/2 "
               error={errors.name?.message}
               variant="solid"
             />
             <Input
-              label='Email *'
+              label="Email *"
               type="email"
               {...register('email', {
                 required: 'You must need to provide your email address',

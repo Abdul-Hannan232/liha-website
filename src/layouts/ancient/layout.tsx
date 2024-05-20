@@ -5,13 +5,12 @@ import Header from '@layouts/ancient/header';
 
 export default function AncientLayout({
   children,
-
 }: {
   children: React.ReactNode;
 }) {
   return (
     <div className="flex flex-col min-h-screen">
-      <Header  />
+      <Header />
       <main
         className="relative flex-grow pt-16 lg:pt-20"
         style={{
@@ -20,7 +19,7 @@ export default function AncientLayout({
       >
         {children}
       </main>
-      <MobileNavigation  />
+      <MobileNavigation />
     </div>
   );
 }

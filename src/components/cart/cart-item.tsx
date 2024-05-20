@@ -10,7 +10,7 @@ type CartItemProps = {
   item: any;
 };
 
-const CartItem: React.FC<CartItemProps> = ({item}) => {
+const CartItem: React.FC<CartItemProps> = ({ item }) => {
   const { isInStock, addItemToCart, removeItemFromCart, clearItemFromCart } =
     useCart();
   const { price: totalPrice } = usePrice({

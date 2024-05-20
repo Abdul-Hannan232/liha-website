@@ -12,11 +12,7 @@ interface ProductProps {
   className?: string;
 }
 
-const WishlistProductCard: FC<ProductProps> = ({
-  product,
-  className,
-}) => {
-
+const WishlistProductCard: FC<ProductProps> = ({ product, className }) => {
   const { name, image, unit } = product ?? {};
   const placeholderImage = `/assets/placeholder/product.svg`;
   const [favorite, setFavorite] = useState<boolean>(false);
@@ -71,14 +67,14 @@ const WishlistProductCard: FC<ProductProps> = ({
             <IoIosHeartEmpty className="w-5 h-5 mt-0.5" />
 
             <span className=" ltr:ml-3 rtl:mr-3 text-brand-dark font-medium text-15px -mt-0.5 md:mt-0">
-            Favorite
+              Favorite
             </span>
           </>
         ) : (
           <>
             <IoIosHeart className="text-brand w-5 h-5 mt-0.5" />
             <span className="text-brand ltr:ml-3 rtl:mr-3 font-semibold text-15px -mt-0.5 md:mt-0">
-            Favorited
+              Favorited
             </span>
           </>
         )}

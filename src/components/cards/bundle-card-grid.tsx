@@ -31,7 +31,6 @@ const BundleCardGrid: React.FC<Props> = ({
 
   return (
     <Link href={`${href}`} className={cn('group flex', className)}>
-
       <div className="relative flex items-center w-full overflow-hidden">
         <div className="relative flex max-w-full shrink-0">
           <Image

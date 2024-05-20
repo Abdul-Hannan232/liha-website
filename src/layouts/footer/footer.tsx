@@ -7,7 +7,6 @@ const { widgets, payment } = footer;
 
 interface FooterProps {
   variant?: 'default' | 'medium';
- 
 }
 
 const Footer: React.FC<FooterProps> = ({ variant = 'default' }) => {

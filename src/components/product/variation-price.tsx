@@ -6,7 +6,6 @@ export default function VariationPrice({
   minPrice,
   maxPrice,
 }: any) {
-
   const { price, basePrice, discount } = usePrice(
     selectedVariation && {
       amount: selectedVariation.sale_price

@@ -39,10 +39,7 @@ export default function CategoryDropdownSidebar({
                   />
                 ))
               ) : (
-                <SidebarMenu
-                  className="list"
-                  items={data?.categories?.data}
-                />
+                <SidebarMenu className="list" items={data?.categories?.data} />
               )}
             </div>
           </Scrollbar>

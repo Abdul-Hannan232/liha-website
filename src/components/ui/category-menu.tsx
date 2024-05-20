@@ -5,7 +5,6 @@ import Image from '@components/ui/image';
 import { ROUTES } from '@utils/routes';
 
 function SidebarMenuItem({ className, item, depth = 0, lang }: any) {
-
   const { name, children: items, icon } = item;
   return (
     <>
@@ -18,7 +17,6 @@ function SidebarMenuItem({ className, item, depth = 0, lang }: any) {
       >
         <Link
           href={`${ROUTES.SEARCH}`}
-
           className={cn(
             'flex items-center w-full ltr:text-left rtl:text-right outline-none focus:outline-none focus:ring-0 focus:text-brand-dark',
           )}

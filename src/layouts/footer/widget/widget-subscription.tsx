@@ -17,7 +17,6 @@ const defaultValues = {
 };
 
 function SubscriptionForm() {
-
   const {
     register,
     handleSubmit,
@@ -51,7 +50,7 @@ function SubscriptionForm() {
         <EmailIcon className="w-4 2xl:w-[18px] h-4 2xl:h-[18px]" />
       </span>
       <Input
-        placeholder= 'Write your email here'
+        placeholder="Write your email here"
         type="email"
         id="subscription-email"
         variant="solid"
@@ -85,17 +84,20 @@ function SubscriptionForm() {
 interface Props {
   className?: string;
 }
- 
+
 const WidgetSubscription: React.FC<Props> = ({ className }) => {
   // const { t } = useTranslation(lang, 'footer');
 
   return (
     <div className={cn('flex flex-col', className)}>
       <Heading variant="mediumHeading" className="mb-4 lg:mb-6 lg:pb-0.5">
-      Subscribe Now
+        Subscribe Now
       </Heading>
 
-      <Text className="lg:-mt-1 max-w-[400px]">Subscribe your email for newsletter and featured news based on your interest</Text>
+      <Text className="lg:-mt-1 max-w-[400px]">
+        Subscribe your email for newsletter and featured news based on your
+        interest
+      </Text>
       <SubscriptionForm />
     </div>
   );

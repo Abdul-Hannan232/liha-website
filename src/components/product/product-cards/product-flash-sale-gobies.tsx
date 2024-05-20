@@ -94,7 +94,7 @@ const ProductFlashSaleGobies: React.FC<ProductProps> = ({
     >
       <div className="absolute z-10 top-6 left-6">
         <span className="text-[11px] md:text-xs font-bold text-brand-light uppercase inline-block bg-[#fd5473] rounded-full px-2.5 py-[5px] pb-1 mx-0.5 sm:mx-1">
-        Most Popular
+          Most Popular
         </span>
       </div>
       <figure className="relative flex items-center justify-center flex-grow w-full h-48 px-16 m-0 mx-auto lg:h-56 3xl:h-64">

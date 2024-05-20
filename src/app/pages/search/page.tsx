@@ -17,9 +17,9 @@ export default async function Page() {
     <>
       <Divider />
       <Suspense fallback={<SearchBarFallback />}>
-        <SearchPageContent  />
+        <SearchPageContent />
       </Suspense>
-      <DownloadApps  />
+      <DownloadApps />
     </>
   );
 }

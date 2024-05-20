@@ -46,7 +46,7 @@ const CheckoutForm = () => {
         <div className="flex flex-col space-y-4 lg:space-y-5">
           <div className="flex flex-col space-y-4 lg:flex-row lg:space-y-0">
             <Input
-              label='First Name *'
+              label="First Name *"
               {...register('firstName', {
                 required: 'forms:first-name-required',
               })}
@@ -55,7 +55,7 @@ const CheckoutForm = () => {
               className="w-full lg:w-1/2 "
             />
             <Input
-              label='Last Name *'
+              label="Last Name *"
               {...register('lastName', {
                 required: 'forms:last-name-required',
               })}
@@ -65,7 +65,7 @@ const CheckoutForm = () => {
             />
           </div>
           <Input
-            label='Address *'
+            label="Address *"
             {...register('address', {
               required: 'forms:address-required',
             })}
@@ -75,7 +75,7 @@ const CheckoutForm = () => {
           <div className="flex flex-col space-y-4 lg:flex-row lg:space-y-0">
             <Input
               type="tel"
-              label='Phone/Mobile *'
+              label="Phone/Mobile *"
               {...register('phone', {
                 required: 'forms:phone-required',
               })}
@@ -86,7 +86,7 @@ const CheckoutForm = () => {
 
             <Input
               type="email"
-              label='Email *'
+              label="Email *"
               {...register('email', {
                 required: 'forms:email-required',
                 pattern: {
@@ -102,14 +102,14 @@ const CheckoutForm = () => {
           </div>
           <div className="flex flex-col space-y-4 lg:flex-row lg:space-y-0">
             <Input
-              label='City/Town'
+              label="City/Town"
               {...register('city')}
               variant="solid"
               className="w-full lg:w-1/2 "
             />
 
             <Input
-              label='Postcode'
+              label="Postcode"
               {...register('zipCode')}
               variant="solid"
               className="w-full mt-2 lg:w-1/2 lg:ltr:ml-3 lg:rtl:mr-3 md:mt-0"

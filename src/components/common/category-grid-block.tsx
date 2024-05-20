@@ -53,7 +53,7 @@ const CategoryGridBlock: React.FC<CategoriesProps> = ({
     limit: LIMITS.CATEGORIES_LIMITS,
   });
 
-  return ( 
+  return (
     <div className={className}>
       <SectionHeader
         sectionHeading="What food you love to order"

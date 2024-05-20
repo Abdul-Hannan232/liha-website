@@ -35,41 +35,41 @@ export default function OrderInformation() {
       <ul className="flex flex-col border rounded-md border-border-base bg-fill-secondary md:flex-row mb-7 lg:mb-8 xl:mb-10">
         <li className="px-4 py-4 text-base font-semibold border-b border-dashed text-brand-dark lg:text-lg md:border-b-0 md:border-r border-border-two lg:px-6 xl:px-8 md:py-5 lg:py-6 last:border-0">
           <span className="block text-xs font-normal leading-5 uppercase text-brand-muted">
-          Thank you. Your order has been received.:
+            Thank you. Your order has been received.:
           </span>
           {data?.tracking_number}
         </li>
         <li className="px-4 py-4 text-base font-semibold border-b border-gray-300 border-dashed text-brand-dark lg:text-lg md:border-b-0 md:border-r lg:px-6 xl:px-8 md:py-5 lg:py-6 last:border-0">
           <span className="uppercase text-[11px] block text-brand-muted font-normal leading-5">
-          Date:
+            Date:
           </span>
           April 22, 2021
         </li>
         <li className="px-4 py-4 text-base font-semibold border-b border-gray-300 border-dashed text-brand-dark lg:text-lg md:border-b-0 md:border-r lg:px-6 xl:px-8 md:py-5 lg:py-6 last:border-0">
           <span className="uppercase text-[11px] block text-brand-muted font-normal leading-5">
-          Send Mail:
+            Send Mail:
           </span>
           {data?.customer.email}
         </li>
         <li className="px-4 py-4 text-base font-semibold border-b border-gray-300 border-dashed text-brand-dark lg:text-lg md:border-b-0 md:border-r lg:px-6 xl:px-8 md:py-5 lg:py-6 last:border-0">
           <span className="uppercase text-[11px] block text-brand-muted font-normal leading-5">
-          Total:
+            Total:
           </span>
           {total}
         </li>
         <li className="px-4 py-4 text-base font-semibold border-b border-gray-300 border-dashed text-brand-dark lg:text-lg md:border-b-0 md:border-r lg:px-6 xl:px-8 md:py-5 lg:py-6 last:border-0">
           <span className="uppercase text-[11px] block text-brand-muted font-normal leading-5">
-          Payment method:
+            Payment method:
           </span>
           {data?.payment_gateway}
         </li>
       </ul>
 
       <p className="mb-8 text-sm text-brand-dark md:text-base">
-      Pay with cash upon delivery.
+        Pay with cash upon delivery.
       </p>
 
-      <OrderDetails  />
+      <OrderDetails />
     </div>
   );
 }

@@ -8,14 +8,14 @@ function EmptyCart() {
       <div className="flex mx-auto w-[220px] md:w-auto">
         <Image
           src="/assets/images/empty-cart.png"
-          alt='Your cart is empty.'
+          alt="Your cart is empty."
           width={190}
           height={190}
           className="aspect-square"
         />
       </div>
       <Heading variant="titleMedium" className="mb-1.5 pt-8">
-      Your cart is empty.
+        Your cart is empty.
       </Heading>
       <Text>Please add product to your cart list</Text>
     </div>

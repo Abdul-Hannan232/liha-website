@@ -48,7 +48,7 @@ const AddToCart = ({
         disabled={disabled || outOfStock}
       >
         <span className="sm:flex text-[15px] sm:items-center sm:justify-center">
-        Add
+          Add
         </span>
         <span className="w-10 h-10 bg-[#E5E8EC] rounded-tr-[4px] rounded-br-[4px] flex items-center justify-center ml-auto">
           <PlusIcon width={iconSize} height={iconSize} opacity="1" />

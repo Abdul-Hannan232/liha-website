@@ -10,7 +10,6 @@ export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   shadow?: boolean;
   error: string | undefined;
-  
 }
 const classes = {
   root: 'py-2 px-4 md:px-5 w-full appearance-none transition duration-150 ease-in-out border text-input text-13px lg:text-sm font-body rounded-md placeholder-[#B3B3B3] transition duration-200 ease-in-out text-brand-dark border-border-two focus:border-2 focus:outline-none focus:ring-0 focus:border-brand h-11 md:h-12',

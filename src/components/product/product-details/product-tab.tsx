@@ -129,7 +129,7 @@ export default function ProductDetailsTab() {
             </div>
           </Tab.Panel>
           <Tab.Panel>
-            <ProductReviewRating  />
+            <ProductReviewRating />
           </Tab.Panel>
         </Tab.Panels>
       </Tab.Group>

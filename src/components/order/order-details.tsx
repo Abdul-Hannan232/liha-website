@@ -25,7 +25,6 @@ const OrderItemCard = ({ product }: { product: OrderItem }) => {
 const OrderDetails: React.FC<{ className?: string }> = ({
   className = 'pt-10 lg:pt-12',
 }) => {
-
   // const {
   //   query: { id },
   // } = useRouter();
@@ -56,16 +55,16 @@ const OrderDetails: React.FC<{ className?: string }> = ({
   return (
     <div className={className}>
       <Heading variant="heading" className="mb-6 xl:mb-7">
-      Order details:
+        Order details:
       </Heading>
       <table className="w-full text-sm font-semibold text-brand-dark lg:text-base">
         <thead>
           <tr>
             <th className="w-1/2 p-4 bg-fill-secondary ltr:text-left rtl:text-right ltr:first:rounded-tl-md rtl:first:rounded-tr-md">
-            Product
+              Product
             </th>
             <th className="w-1/2 p-4 bg-fill-secondary ltr:text-left rtl:text-right ltr:last:rounded-tr-md rtl:last:rounded-tl-md">
-            Total
+              Total
             </th>
           </tr>
         </thead>

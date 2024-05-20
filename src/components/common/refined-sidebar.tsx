@@ -9,7 +9,7 @@ interface Props {
   className?: string;
 }
 
-const RefinedSidebar: React.FC<Props> = ({  className }) => {
+const RefinedSidebar: React.FC<Props> = ({ className }) => {
   const limit = LIMITS.POPULAR_PRODUCTS_TWO_LIMITS;
   const { data, isLoading, error } = useFlashSellProductsQuery({
     limit: limit,
@@ -23,7 +23,7 @@ const RefinedSidebar: React.FC<Props> = ({  className }) => {
     >
       <div className="h-auto overflow-hidden border-2 border-yellow-200 rounded-md 3xl:h-full shadow-card">
         <h2 className="bg-yellow-200 text-center font-bold text-brand-dark font-manrope p-2.5 text-15px lg:text-base">
-        Deals of the week
+          Deals of the week
         </h2>
         <ProductFlashSaleCoral
           product={data?.[0]!}

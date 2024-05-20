@@ -10,9 +10,10 @@ export const metadata: Metadata = {
 export default async function Page() {
   return (
     <>
-      <PageHeroSection heroTitle="text-page-terms-condition"  />
-      <TermsPageContent  />
-      <DownloadApps  />
+      <PageHeroSection />
+      {/* <PageHeroSection heroTitle="text-page-terms-condition" /> */}
+      <TermsPageContent />
+      <DownloadApps />
     </>
   );
 }

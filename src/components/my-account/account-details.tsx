@@ -30,7 +30,7 @@ const AccountDetails = () => {
   return (
     <div className="flex flex-col w-full">
       <Heading variant="titleLarge" className="mb-5 md:mb-6 lg:mb-7 lg:-mt-1">
-      Personal Information
+        Personal Information
       </Heading>
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -41,7 +41,7 @@ const AccountDetails = () => {
           <div className="flex flex-col space-y-4 sm:space-y-5">
             <div className="flex flex-col sm:flex-row -mx-1.5 md:-mx-2.5 space-y-4 sm:space-y-0">
               <Input
-                label='First Name *'
+                label="First Name *"
                 {...register('firstName', {
                   required: 'forms:first-name-required',
                 })}
@@ -50,7 +50,7 @@ const AccountDetails = () => {
                 error={errors.firstName?.message}
               />
               <Input
-                label='Last Name *'
+                label="Last Name *"
                 {...register('lastName', {
                   required: 'forms:last-name-required',
                 })}
@@ -62,7 +62,7 @@ const AccountDetails = () => {
             <div className="flex flex-col sm:flex-row -mx-1.5 md:-mx-2.5 space-y-4 sm:space-y-0">
               <Input
                 type="tel"
-                label='Phone/Mobile *'
+                label="Phone/Mobile *"
                 {...register('phoneNumber', {
                   required: 'forms:phone-required',
                 })}
@@ -84,7 +84,7 @@ const AccountDetails = () => {
             <div className="flex flex-col sm:flex-row -mx-1.5 md:-mx-2.5 space-y-4 sm:space-y-0">
               <Input
                 type="email"
-                label='Email'
+                label="Email"
                 {...register('email', {
                   required: 'forms:email-required',
                   pattern: {
@@ -100,7 +100,7 @@ const AccountDetails = () => {
             </div>
             <div className="flex flex-col sm:flex-row -mx-1.5 md:-mx-2.5 space-y-4 sm:space-y-0">
               <PasswordInput
-                label='Password'
+                label="Password"
                 {...register('password', {
                   required: 'forms:password-required',
                 })}
@@ -108,7 +108,7 @@ const AccountDetails = () => {
                 error={errors.password?.message}
               />
               <PasswordInput
-                label='Confirm Password'
+                label="Confirm Password"
                 {...register('confirmPassword', {
                   required: 'forms:password-required',
                 })}
@@ -120,11 +120,10 @@ const AccountDetails = () => {
         </div>
         <div className="relative flex pt-6 md:pt-8 lg:pt-10">
           <div className="ltr:pr-2.5 rtl:pl-2.5">
-            <Heading className="mb-1 font-medium">
-            Share Profile Data
-            </Heading>
+            <Heading className="mb-1 font-medium">Share Profile Data</Heading>
             <Text variant="small">
-            Share your profile information to collect the product search result
+              Share your profile information to collect the product search
+              result
             </Text>
           </div>
           <div className="ltr:ml-auto rtl:mr-auto">
@@ -140,11 +139,10 @@ const AccountDetails = () => {
         </div>
         <div className="relative flex mt-5 mb-1 md:mt-6 lg:mt-7 sm:mb-4 lg:mb-6">
           <div className="ltr:pr-2.5 rtl:pl-2.5">
-            <Heading className="mb-1 font-medium">
-            Ads Performance
-            </Heading>
+            <Heading className="mb-1 font-medium">Ads Performance</Heading>
             <Text variant="small">
-            To improve your ads search result we need to collect your cookies behavior
+              To improve your ads search result we need to collect your cookies
+              behavior
             </Text>
           </div>
           <div className="ltr:ml-auto rtl:mr-auto">

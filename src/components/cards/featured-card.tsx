@@ -16,7 +16,7 @@ interface Props {
   item: ItemProps;
 }
 
-const FeaturedCard: React.FC<Props> = ({ item, className}) => {
+const FeaturedCard: React.FC<Props> = ({ item, className }) => {
   const { icon, title, href, bgColor } = item;
   return (
     <Link href={href}>
@@ -32,7 +32,7 @@ const FeaturedCard: React.FC<Props> = ({ item, className}) => {
             {title}
           </Heading>
           <div className="uppercase text-xs xl:text-13px font-manrope font-semibold tracking-[0.6px] flex items-center text-brand-dark text-opacity-60 transition duration-200 ease-in-out group-hover:text-opacity-100">
-          Learn More
+            Learn More
             <IoCaretForward className="text-sm xl:text-base transition duration-200 ease-in-out ltr:ml-1 rtl:mr-1 lg:ltr:ml-1.5 lg:rtl:mr-1.5 opacity-60 ltr:group-hover:ml-1.5 rtl:group-hover:mr-1.5 lg:ltr:group-hover:ml-2 lg:rtl:group-hover:mr-2" />
           </div>
         </div>

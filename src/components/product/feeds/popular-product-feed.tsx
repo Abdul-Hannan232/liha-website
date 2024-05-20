@@ -10,10 +10,7 @@ interface ProductFeedProps {
   variant?: string;
 }
 
-const PopularProductFeed: FC<ProductFeedProps> = ({
-  className,
-  variant,
-}) => {
+const PopularProductFeed: FC<ProductFeedProps> = ({ className, variant }) => {
   const limit = LIMITS.POPULAR_PRODUCTS_LIMITS;
   const { data, isLoading, error } = usePopularProductsQuery({
     limit: limit,

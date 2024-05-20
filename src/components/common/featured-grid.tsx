@@ -105,10 +105,7 @@ const FeatureGrid: React.FC<Props> = ({
       ) : (
         <div className="grid-cols-1 gap-5 2xl:grid sm:grid-cols-2 lg:grid-cols-4">
           {data?.map((item) => (
-            <FeaturedCard
-              item={item}
-              key={`featured-key-${item.id}`}
-            />
+            <FeaturedCard item={item} key={`featured-key-${item.id}`} />
           ))}
         </div>
       )}

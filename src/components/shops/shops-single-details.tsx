@@ -15,7 +15,6 @@ import useWindowSize from '@utils/use-window-size';
 import motionProps from '@components/common/drawer/motion';
 
 export default function ShopsSingleDetails() {
-
   const pathname = useParams();
   const { slug } = pathname;
   const { data, isLoading } = useShopQuery(slug as string);

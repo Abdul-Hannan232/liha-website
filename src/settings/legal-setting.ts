@@ -27,16 +27,19 @@ export const legalSetting = [
   {
     id: '6',
     title: 'Ownership and Liability',
-    description: '<p>You can not claim intellectual or exclusive ownership to any of our products, modified or unmodified. All products are the property of REDQ. Our products are provided as is without warranty of any kind, either expressed or implied. In no event shall our juridical person be liable for any damages including, but not limited to, direct, indirect, special, incidental or consequential damages or other losses arising out of the use of or inability to use our products.</p>',
+    description:
+      '<p>You can not claim intellectual or exclusive ownership to any of our products, modified or unmodified. All products are the property of REDQ. Our products are provided as is without warranty of any kind, either expressed or implied. In no event shall our juridical person be liable for any damages including, but not limited to, direct, indirect, special, incidental or consequential damages or other losses arising out of the use of or inability to use our products.</p>',
   },
   {
     id: '7',
     title: 'Licensing',
-    description: '<p>Licenses are valid for one year from the date of purchase. A valid and active license key is required in order to get updates and support for the purchased template. After one year you will have to purchase a new license or you will not get any update or support.</p>',
+    description:
+      '<p>Licenses are valid for one year from the date of purchase. A valid and active license key is required in order to get updates and support for the purchased template. After one year you will have to purchase a new license or you will not get any update or support.</p>',
   },
   {
     id: '8',
     title: 'Unauthorized/Illegal Uses',
-    description: '<p>We REDQ reserve the right to block your user account immediately at any given time with or without any prior notice if we believe that you are trying to abuse the license term or our business in any way. If you create an account with us, you are responsible for maintaining the security of your account, and you are fully responsible for all activities that occur under the account and any other actions taken in connection with the account. You must immediately notify REDQ of any unauthorized uses of your account or any other breaches of security. REDQ will not be liable for the breaches of security or of any unauthorized uses to your account.</p>',
+    description:
+      '<p>We REDQ reserve the right to block your user account immediately at any given time with or without any prior notice if we believe that you are trying to abuse the license term or our business in any way. If you create an account with us, you are responsible for maintaining the security of your account, and you are fully responsible for all activities that occur under the account and any other actions taken in connection with the account. You must immediately notify REDQ of any unauthorized uses of your account or any other breaches of security. REDQ will not be liable for the breaches of security or of any unauthorized uses to your account.</p>',
   },
 ];

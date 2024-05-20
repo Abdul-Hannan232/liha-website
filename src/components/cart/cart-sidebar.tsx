@@ -30,7 +30,7 @@ export default function CartSidebar() {
           {!isEmpty && (
             <button
               className="flex items-center flex-shrink transition duration-150 ease-in opacity-50 text-15px focus:outline-none text-brand-dark hover:opacity-100 "
-              aria-label='Clear All'
+              aria-label="Clear All"
               onClick={resetCart}
             >
               <DeleteIcon />
@@ -43,9 +43,7 @@ export default function CartSidebar() {
       {!isEmpty ? (
         <Scrollbar className="flex-grow w-full cart-scrollbar ">
           <div className="w-full px-5 md:px-7  h-[calc(100vh_-_420px)]">
-            {items?.map((item) => (
-              <CartItem item={item} key={item.id} />
-            ))}
+            {items?.map((item) => <CartItem item={item} key={item.id} />)}
           </div>
         </Scrollbar>
       ) : (
@@ -57,7 +55,8 @@ export default function CartSidebar() {
           <div className="ltr:pr-3 rtl:pl-3">
             <Heading className="mb-2.5">Subtotal:</Heading>
             <Text className="leading-6">
-            Final price and discounts will be determined at the time of payment processing.
+              Final price and discounts will be determined at the time of
+              payment processing.
             </Text>
           </div>
           <div className="shrink-0 font-semibold text-base md:text-lg text-brand-dark -mt-0.5 min-w-[80px] ltr:text-right rtl:text-left">

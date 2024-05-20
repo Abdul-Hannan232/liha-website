@@ -15,7 +15,7 @@ const DeliveryAddresses = () => {
       <CloseButton onClick={closeModal} />
       <div className="w-full">
         <Heading variant="title" className="mb-5 md:mb-8 md:-mt-1.5">
-        Delivery Address
+          Delivery Address
         </Heading>
         <AddressGrid address={data?.data} />
       </div>

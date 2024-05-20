@@ -37,7 +37,7 @@ const HeroSearchBox: FC<HeroSearchBoxProps> = ({ style, button }) => {
               ? 'ltr:pl-5 rtl:pr-5 md:ltr:pl-6 md:rtl:pr-6 ltr:pr-14 rtl:pl-14 md:ltr:pr-16 md:rtl:pl-16 md:h-16 shadow-heroSearch placeholder:text-brand-dark/50 rounded-md'
               : 'ltr:pl-16 rtl:pr-16 h-[70px] shadow-searchBox placeholder:text-brand-dark/30 rounded-lg'
           } lg:text-base focus:ring-2 focus:ring-brand`}
-          placeholder='What are you looking...'
+          placeholder="What are you looking..."
           aria-label="Search"
           autoComplete="off"
           value={searchTerm}

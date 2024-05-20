@@ -8,7 +8,6 @@ import Heading from '@components/ui/heading';
 import useQueryParam from '@utils/use-query-params';
 
 export const DietaryFilter = () => {
-
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { updateQueryparams } = useQueryParam(pathname ?? '/');
@@ -47,51 +46,47 @@ export const DietaryFilter = () => {
     <div className="block">
       <Heading className="mb-5 -mt-1">Dietary Needs</Heading>
       <div className="flex flex-col p-5 border rounded-md border-border-base">
-        {items
-          ?.slice(0, 3)
-          ?.map((item: any) => (
-            <CheckBox
-              key={`${item.name}-key-${item.id}`}
-              label={item.name}
-              name={item.name.toLowerCase()}
-              checked={formState.includes(item.slug)}
-              value={item.slug}
-              onChange={handleItemClick}
-              // lang={lang}
-            />
-          ))}
+        {items?.slice(0, 3)?.map((item: any) => (
+          <CheckBox
+            key={`${item.name}-key-${item.id}`}
+            label={item.name}
+            name={item.name.toLowerCase()}
+            checked={formState.includes(item.slug)}
+            value={item.slug}
+            onChange={handleItemClick}
+            // lang={lang}
+          />
+        ))}
         {items!.length > 3 && (
           <div className="w-full">
             <Disclosure>
               {({ open }) => (
                 <>
                   <Disclosure.Panel className="pt-4 pb-2">
-                    {items
-                      ?.slice(3, items.length)
-                      .map((item: any) => (
-                        <CheckBox
-                          key={`${item.name}-key-${item.id}`}
-                          label={item.name}
-                          name={item.name.toLowerCase()}
-                          checked={formState.includes(item.slug)}
-                          value={item.slug}
-                          onChange={handleItemClick}
-                          // lang={lang}
-                        />
-                      ))}
+                    {items?.slice(3, items.length).map((item: any) => (
+                      <CheckBox
+                        key={`${item.name}-key-${item.id}`}
+                        label={item.name}
+                        name={item.name.toLowerCase()}
+                        checked={formState.includes(item.slug)}
+                        value={item.slug}
+                        onChange={handleItemClick}
+                        // lang={lang}
+                      />
+                    ))}
                   </Disclosure.Panel>
                   <Disclosure.Button className="flex justify-center items-center w-full px-4 pt-3.5 pb-1 text-sm font-medium text-center text-brand focus:outline-none">
                     {open ? (
                       <>
                         <span className="inline-block ltr:pr-1 rtl:pl-1">
-                        See less
+                          See less
                         </span>
                         <IoIosArrowUp className="text-brand-dark text-opacity-60 text-15px" />
                       </>
                     ) : (
                       <>
                         <span className="inline-block ltr:pr-1 rtl:pl-1">
-                        See more
+                          See more
                         </span>
                         <IoIosArrowDown className="text-brand-dark text-opacity-60 text-15px" />
                       </>

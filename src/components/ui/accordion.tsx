@@ -11,12 +11,10 @@ type CollapseProps = {
 };
 
 export const Accordion: React.FC<CollapseProps> = ({
-  lang,
   item,
   translatorNS,
   variant = 'gray',
 }) => {
-
   const { id, title, content } = item;
   return (
     <div className="w-full">

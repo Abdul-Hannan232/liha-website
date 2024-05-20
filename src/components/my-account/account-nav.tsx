@@ -11,12 +11,7 @@ type Option = {
   icon?: JSX.Element;
 };
 
-export default function AccountNav({
-  options,
-}: {
-  options: Option[];
-}) {
-
+export default function AccountNav({ options }: { options: Option[] }) {
   // const { mutate: logout } = useLogoutMutation(lang);
   const { mutate: logout } = useLogoutMutation();
   const pathname = usePathname();

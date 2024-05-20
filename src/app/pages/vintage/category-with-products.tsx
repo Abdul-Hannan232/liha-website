@@ -6,20 +6,14 @@ import AllProductFeed from '@components/product/feeds/all-products-feed';
 import React from 'react';
 import { Element } from 'react-scroll';
 
-export default function CategoryWithProduct({
-  banner,
-}: {
-  banner: any;
-}) {
+export default function CategoryWithProduct({ banner }: { banner: any }) {
   return (
     //@ts-ignore
     <Element name="grid" className="flex mb-16 pb-2.5">
-      <CategoryDropdownSidebar
-        className="ltr:pr-8 rtl:pl-8 hidden lg:block w-80 xl:w-[370px] lg:sticky lg:top-20 shrink-0"
-      />
+      <CategoryDropdownSidebar className="ltr:pr-8 rtl:pl-8 hidden lg:block w-80 xl:w-[370px] lg:sticky lg:top-20 shrink-0" />
       <AllProductFeed
         className="w-full"
-        element={<BannerCard banner={banner} className="py-5"  />}
+        element={<BannerCard banner={banner} className="py-5" />}
       />
     </Element>
   );

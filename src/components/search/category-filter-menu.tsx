@@ -18,7 +18,6 @@ function CategoryFilterMenuItem({
   item,
   depth = 0,
 }: any) {
-
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { updateQueryparams } = useQueryParam(pathname ?? '/');
@@ -133,7 +132,6 @@ function CategoryFilterMenuItem({
                   item={currentItem}
                   depth={childDepth}
                   className="px-0 border-t border-border-base first:border-t-0 mx-[3px] bg-transparent"
-                 
                 />
               );
             })}
@@ -144,14 +142,13 @@ function CategoryFilterMenuItem({
   );
 }
 
-function CategoryFilterMenu({ items, className}: any) {
+function CategoryFilterMenu({ items, className }: any) {
   return (
     <ul className={cn(className)}>
       {items?.map((item: any) => (
         <CategoryFilterMenuItem
           key={`${item.slug}-key-${item.id}`}
           item={item}
-         
         />
       ))}
     </ul>

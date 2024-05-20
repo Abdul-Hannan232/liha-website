@@ -51,10 +51,7 @@ function RenderPopupOrAddToCart({ props }: { props: Object }) {
   }
   return <AddToCart data={data} variant="mercury" />;
 }
-const ProductCardAlpine: React.FC<ProductProps> = ({
-  product,
-  className,
-}) => {
+const ProductCardAlpine: React.FC<ProductProps> = ({ product, className }) => {
   const { name, image, unit, product_type } = product ?? {};
   const { openModal } = useModalAction();
   // const { t } = useTranslation(lang, 'common');
@@ -105,7 +102,7 @@ const ProductCardAlpine: React.FC<ProductProps> = ({
             </span>
           )}
           <div className={`block product-count-button-position`}>
-            <RenderPopupOrAddToCart props={{ data: product}} />
+            <RenderPopupOrAddToCart props={{ data: product }} />
           </div>
         </div>
       </div>

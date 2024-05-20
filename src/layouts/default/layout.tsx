@@ -44,7 +44,7 @@ function ClientRenderedHighLightedBar() {
       )}
     </>
   );
-} 
+}
 
 export default function DefaultLayout({
   children,

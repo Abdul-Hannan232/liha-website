@@ -26,7 +26,7 @@ export default function useBreadcrumb() {
           breadcrumb: path,
           href: '/' + linkPath.slice(0, i + 1).join('/'),
         };
-      }); 
+      });
 
       setBreadcrumbs(pathArray);
     }

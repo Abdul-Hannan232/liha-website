@@ -1,6 +1,6 @@
 export const footer = {
   widgets: [
-    { 
+    {
       id: 1,
       widgetTitle: 'About Us',
       lists: [
@@ -26,7 +26,7 @@ export const footer = {
         },
       ],
     },
-    { 
+    {
       id: 2,
       widgetTitle: 'Our Information',
       lists: [

@@ -11,13 +11,13 @@ export default async function Page() {
   return (
     <>
       <PageHeroSection
-        heroTitle="text-shop-page"
+        // heroTitle="text-shop-page"
         backgroundThumbnail="/assets/images/shop-page-hero-bg.jpg"
         mobileBackgroundThumbnail="/assets/images/shop-page-hero-mobile-bg.png"
         variant="white"
       />
-      <ShopsPageContent  />
-      <DownloadApps  />
+      <ShopsPageContent />
+      <DownloadApps />
     </>
   );
 }

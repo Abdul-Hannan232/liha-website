@@ -18,7 +18,7 @@ interface ContactFormValues {
   formatted_address?: string;
 }
 
-const AddAddressForm: React.FC<{ lang: string }> = () => {
+const AddAddressForm = () => {
   // const { t } = useTranslation(lang);
   const { data } = useModalState();
 
@@ -48,7 +48,7 @@ const AddAddressForm: React.FC<{ lang: string }> = () => {
     <div className="w-full md:w-[600px] lg:w-[900px] xl:w-[1000px] mx-auto p-5 sm:p-8 bg-brand-light rounded-md">
       <CloseButton onClick={closeModal} />
       <Heading variant="title" className="mb-8 -mt-1.5">
-      Add Delivery Address
+        Add Delivery Address
       </Heading>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className="mb-6">
@@ -82,7 +82,7 @@ const AddAddressForm: React.FC<{ lang: string }> = () => {
         </div>
         <div className="flex justify-end w-full">
           <Button className="h-11 md:h-12 mt-1.5" type="submit">
-          Save Address
+            Save Address
           </Button>
         </div>
       </form>

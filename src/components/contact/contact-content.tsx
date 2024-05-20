@@ -4,10 +4,7 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { RadioGroup } from '@headlessui/react';
 import { useModalAction } from '@components/common/modal/modal.context';
 
-const ContactBox: React.FC<{ items?: any }> = ({
-  items: { data },
-}) => {
-
+const ContactBox: React.FC<{ items?: any }> = ({ items: { data } }) => {
   let [contactData, setContactData] = useState(data);
   const { openModal } = useModalAction();
 
@@ -32,9 +29,7 @@ const ContactBox: React.FC<{ items?: any }> = ({
           onChange={setSelected}
           className="grid grid-cols-1 gap-5 md:grid-cols-2 auto-rows-auto"
         >
-          <RadioGroup.Label className="sr-only">
-          Default
-          </RadioGroup.Label>
+          <RadioGroup.Label className="sr-only">Default</RadioGroup.Label>
           {contactData?.map((item: any, index: any) => (
             <RadioGroup.Option
               key={index}

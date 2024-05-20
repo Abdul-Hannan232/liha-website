@@ -64,7 +64,6 @@ function ProductWeek() {
                   <ProductCardAlpine
                     key={`product--key${product.id}`}
                     product={product}
-                 
                   />
                 ))}
             </>
@@ -79,9 +78,7 @@ interface Props {
   className?: string;
 }
 
-export default function CategoryWithProducts({
-  className = 'mb-12',
-}: Props) {
+export default function CategoryWithProducts({ className = 'mb-12' }: Props) {
   const { data } = useCategoriesQuery({
     limit: LIMITS.CATEGORIES_LIMITS,
   });
@@ -90,7 +87,7 @@ export default function CategoryWithProducts({
       <div className="hidden xl:block shrink-0 ltr:pr-7 rtl:pl-7 2xl:ltr:pr-8 2xl:rtl:pl-8 xl:w-[320px] 2xl:w-[356px] pt-px">
         <div className="flex flex-col overflow-hidden border rounded-md border-border-base">
           <h2 className="tracking-wide px-5 py-4 text-[#312C01] bg-yellow-50 font-bold text-sm ">
-          All Categories
+            All Categories
           </h2>
           <div className="flex flex-col justify-between">
             {data?.categories?.data
@@ -110,7 +107,7 @@ export default function CategoryWithProducts({
       <div className="w-full">
         <div className="flex items-center flex-wrap justify-between -mx-2 -mt-2 py-2 mb-1.5">
           <h2 className="m-2 text-lg font-semibold text-black">
-          Products of the week
+            Products of the week
           </h2>
           <div className="m-2">
             <Countdown

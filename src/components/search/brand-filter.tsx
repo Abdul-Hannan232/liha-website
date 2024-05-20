@@ -8,7 +8,6 @@ import Heading from '@components/ui/heading';
 import useQueryParam from '@utils/use-query-params';
 
 export const BrandFilter = () => {
-
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { updateQueryparams } = useQueryParam(pathname ?? '/');
@@ -57,7 +56,6 @@ export const BrandFilter = () => {
               checked={formState.includes(item.slug)}
               value={item.slug}
               onChange={handleItemClick}
-             
             />
           ))}
         {items!.length > 3 && (
@@ -76,7 +74,6 @@ export const BrandFilter = () => {
                           checked={formState.includes(item.slug)}
                           value={item.slug}
                           onChange={handleItemClick}
-                         
                         />
                       ))}
                   </Disclosure.Panel>
@@ -84,14 +81,14 @@ export const BrandFilter = () => {
                     {open ? (
                       <>
                         <span className="inline-block ltr:pr-1 rtl:pl-1">
-                        See less
+                          See less
                         </span>
                         <IoIosArrowUp className="text-brand-dark text-opacity-60 text-15px" />
                       </>
                     ) : (
                       <>
                         <span className="inline-block ltr:pr-1 rtl:pl-1">
-                        See more
+                          See more
                         </span>
                         <IoIosArrowDown className="text-brand-dark text-opacity-60 text-15px" />
                       </>

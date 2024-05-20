@@ -3,13 +3,13 @@ import { BrandFilter } from './brand-filter';
 import SelectedFilters from './selected-filters';
 import { DietaryFilter } from './dietary-filter';
 
-export const ShopFilters: React.FC<{ lang: string }> = () => {
+export const ShopFilters = () => {
   return (
     <div className="space-y-10">
-      <SelectedFilters  />
-      <CategoryFilter  />
-      <DietaryFilter  />
-      <BrandFilter  />
+      <SelectedFilters />
+      <CategoryFilter />
+      <DietaryFilter />
+      <BrandFilter />
     </div>
   );
 };

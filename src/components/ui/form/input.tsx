@@ -61,7 +61,7 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
               labelClassName || 'text-brand-dark text-opacity-70'
             }`}
           >
-           {label}
+            {label}
           </label>
         )}
         <input

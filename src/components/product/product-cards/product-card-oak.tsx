@@ -20,11 +20,7 @@ interface ProductProps {
   product: Product;
   className?: string;
 }
-function RenderPopupOrAddToCart({
-  props,
-}: {
-  props: Object;
-}) {
+function RenderPopupOrAddToCart({ props }: { props: Object }) {
   let { data }: any = props;
 
   const { id, quantity, product_type } = data ?? {};
@@ -50,11 +46,9 @@ function RenderPopupOrAddToCart({
         aria-label="Count Button"
         onClick={handlePopupView}
       >
-        <span className="flex items-center justify-center sm:hidden">
-        View
-        </span>
+        <span className="flex items-center justify-center sm:hidden">View</span>
         <span className="hidden sm:flex sm:items-center sm:justify-center">
-        View Products
+          View Products
         </span>
         <span className="w-10 h-10 bg-[#E5E8EC] rounded-tr-[4px] rounded-br-[4px] flex items-center justify-center ml-auto">
           <Eye width={iconSize} height={iconSize} opacity="1" />
@@ -62,12 +56,9 @@ function RenderPopupOrAddToCart({
       </button>
     );
   }
-  return <AddToCart data={data} variant="venus"  />;
+  return <AddToCart data={data} variant="venus" />;
 }
-const ProductCardOak: React.FC<ProductProps> = ({
-  product,
-  className,
-}) => {
+const ProductCardOak: React.FC<ProductProps> = ({ product, className }) => {
   const { name, image, unit, product_type } = product ?? {};
   const { openModal } = useModalAction();
   // const { t } = useTranslation(lang, 'common');
@@ -134,7 +125,7 @@ const ProductCardOak: React.FC<ProductProps> = ({
           {name}
         </h2>
         <div className="mt-auto text-13px sm:text-sm">{unit}</div>
-        <RenderPopupOrAddToCart props={{ data: product }}  />
+        <RenderPopupOrAddToCart props={{ data: product }} />
       </div>
     </article>
   );

@@ -25,7 +25,7 @@ interface ShopSidebarProps {
   // lang: string;
 }
 
-const ShopSidebar: React.FC<ShopSidebarProps> = ({ data}) => {
+const ShopSidebar: React.FC<ShopSidebarProps> = ({ data }) => {
   const pathname = useParams();
   const { slug } = pathname;
   const [descriptionState, setDescriptionState] = useState(Boolean(false));
@@ -60,7 +60,7 @@ const ShopSidebar: React.FC<ShopSidebarProps> = ({ data}) => {
                 className="text-brand ltr:ml-0.5 rtl:mr-0.5 font-semibold block hover:text-brand-muted"
                 onClick={descriptionHandel}
               >
-               Read More
+                Read More
               </span>
             </>
           ) : (
@@ -98,7 +98,7 @@ const ShopSidebar: React.FC<ShopSidebarProps> = ({ data}) => {
           </div>
           <div className="-mt-1">
             <h4 className="mb-1 font-medium text-brand-dark text-15px">
-            Address:
+              Address:
             </h4>
             <Text>{data?.address}</Text>
           </div>
@@ -109,7 +109,7 @@ const ShopSidebar: React.FC<ShopSidebarProps> = ({ data}) => {
           </div>
           <div className="-mt-1">
             <h4 className="mb-1 font-medium text-brand-dark text-15px">
-            Phone:
+              Phone:
             </h4>
             <Text>{data?.phone}</Text>
           </div>
@@ -120,7 +120,7 @@ const ShopSidebar: React.FC<ShopSidebarProps> = ({ data}) => {
           </div>
           <div className="-mt-1">
             <h4 className="mb-1 font-medium text-brand-dark text-15px">
-            Website:
+              Website:
             </h4>
             <Text>
               <a

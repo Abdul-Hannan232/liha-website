@@ -6,7 +6,6 @@ import Breadcrumb from '@components/ui/breadcrumb';
 import cn from 'classnames';
 
 interface HeaderProps {
-  
   backgroundThumbnail?: Attachment | string;
   // heroTitle?: string;
   mobileBackgroundThumbnail?: Attachment | string;
@@ -19,7 +18,6 @@ const PageHeroSection: React.FC<HeaderProps> = ({
   mobileBackgroundThumbnail = '/assets/images/page-hero-bg-mobile.png',
   variant = 'default',
   className = '',
- 
 }) => {
   const { width } = useWindowSize();
   return (
@@ -48,7 +46,7 @@ const PageHeroSection: React.FC<HeaderProps> = ({
           )}
         >
           <span className="block mb-3 font-bold font-manrope md:mb-4 lg:mb-5 2xl:mb-7 ">
-          Page Section Title
+            Page Section Title
           </span>
         </h2>
         <Breadcrumb />

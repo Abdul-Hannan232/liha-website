@@ -8,8 +8,7 @@ interface MenuProps {
   className?: string;
 }
 
-const HeaderMenu: React.FC<MenuProps> = ({  data, className }) => {
-
+const HeaderMenu: React.FC<MenuProps> = ({ data, className }) => {
   return (
     <nav
       className={cn(

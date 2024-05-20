@@ -87,7 +87,7 @@ const ProductFlashSaleCoral: React.FC<ProductProps> = ({
           </div>
           <div className="w-full h-full absolute top-0 z-10 -mx-0.5 sm:-mx-1">
             <span className="text-[11px] md:text-xs font-bold text-brand-light uppercase inline-block bg-[#fd5473] rounded-full px-2.5 py-[5px] pb-1 mx-0.5 sm:mx-1">
-            Most Popular
+              Most Popular
             </span>
           </div>
         </div>

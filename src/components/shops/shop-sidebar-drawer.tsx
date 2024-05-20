@@ -26,7 +26,7 @@ const ShopSidebarDrawer: React.FC<Props> = ({ data }) => {
           )}
         </button>
         <h2 className="w-full m-0 text-xl font-bold text-center md:text-2xl text-brand-dark ltr:pr-6 rtl:pl-6">
-          {t('text-details')}
+          Details
         </h2>
       </div>
 

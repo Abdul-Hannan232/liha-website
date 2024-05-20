@@ -6,5 +6,5 @@ export const metadata: Metadata = {
 };
 
 export default async function ChangePasswordPage() {
-  return <ChangePassword  />;
+  return <ChangePassword />;
 }

@@ -13,7 +13,7 @@ interface ContactFormValues {
   default: boolean;
 }
 
-const AddPaymentForm: React.FC<{ lang: string }> = () => {
+const AddPaymentForm = () => {
   const { data } = useModalState();
   const {
     register,

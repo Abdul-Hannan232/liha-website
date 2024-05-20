@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 export default async function Page() {
   return (
     <>
-      <AboutPageContent  />
-      <DownloadApps  />
+      <AboutPageContent />
+      <DownloadApps />
     </>
   );
 }

@@ -11,7 +11,7 @@ import DeliveryTips from './delivery-tips';
 import StripeCheckoutInlineForm from './stripe-checkout-inline-form';
 import { useIsMounted } from '@utils/use-is-mounted';
 
-const CheckoutDetails= () => {
+const CheckoutDetails = () => {
   const [bindIndex, setBindIndex] = useState(0);
   const data = [
     {
@@ -22,17 +22,17 @@ const CheckoutDetails= () => {
     {
       id: 2,
       title: 'text-delivery-schedule',
-      component: <DeliverySchedule  />,
+      component: <DeliverySchedule />,
     },
     {
       id: 3,
       title: 'text-contact-number',
-      component: <Contact/>,
+      component: <Contact />,
     },
     {
       id: 4,
       title: 'text-payment-option',
-      component: <StripeCheckoutInlineForm  />,
+      component: <StripeCheckoutInlineForm />,
     },
     {
       id: 5,
@@ -42,7 +42,7 @@ const CheckoutDetails= () => {
     {
       id: 6,
       title: 'text-delivery-tip',
-      component: <DeliveryTips  />,
+      component: <DeliveryTips />,
     },
   ];
   const changeItem = (itemIndex: any) => {
@@ -88,7 +88,7 @@ const CheckoutDetails= () => {
                       variant="formButton"
                       className="px-4 py-3 text-sm font-semibold rounded bg-brand text-brand-light"
                     >
-                     Next Steps
+                      Next Steps
                     </Button>
                   </div>
                 ) : (

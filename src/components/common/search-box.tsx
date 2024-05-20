@@ -29,7 +29,6 @@ const SearchBox = React.forwardRef<HTMLInputElement, SearchProps>(
     },
     ref,
   ) => {
-
     return (
       <form
         className="relative flex w-full rounded-md"
@@ -47,7 +46,7 @@ const SearchBox = React.forwardRef<HTMLInputElement, SearchProps>(
                 'bg-fill-one': variant === 'fill',
               },
             )}
-            placeholder='What are you looking...'
+            placeholder="What are you looking..."
             aria-label={searchId}
             autoComplete="off"
             value={value}

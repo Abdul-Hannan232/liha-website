@@ -7,11 +7,7 @@ export default function OrdersPageContent() {
   const { data, isLoading } = useOrdersQuery({});
   return (
     <>
-      {!isLoading ? (
-        <OrderTable orders={data?.data}  />
-      ) : (
-        <div>Loading...</div>
-      )}
+      {!isLoading ? <OrderTable orders={data?.data} /> : <div>Loading...</div>}
     </>
   );
 }

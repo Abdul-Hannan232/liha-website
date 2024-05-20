@@ -12,14 +12,14 @@ export default async function Page() {
       <Divider />
       <div className="pt-6 lg:pt-7">
         <Container>
-          <Breadcrumb  />
-          <ProductSingleDetails  />
+          <Breadcrumb />
+          <ProductSingleDetails />
         </Container>
       </div>
 
-      <RelatedProductFeed uniqueKey="related-products"  />
-      <PopcornJerkyProductFeed  />
-      <DownloadApps  />
+      <RelatedProductFeed uniqueKey="related-products" />
+      <PopcornJerkyProductFeed />
+      <DownloadApps />
     </>
   );
 }

@@ -84,9 +84,7 @@ const columns = [
   },
 ];
 
-const OrderTable: React.FC<{ orders?: any;}> = ({
-  orders,
-}) => {
+const OrderTable: React.FC<{ orders?: any }> = ({ orders }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [value, setValue] = useState('');
   const countPerPage = 5;

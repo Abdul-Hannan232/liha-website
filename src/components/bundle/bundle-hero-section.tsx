@@ -13,7 +13,6 @@ const BundleHeroSection: React.FC<HeroSectionProps> = ({
   heroTitle = 'text-fruits-juice-item',
   heroDescription = 'text-fruits-juice-description',
 }) => {
-
   return (
     <div
       className="flex justify-center xl:min-h-[350px] py-16 md:py-20 w-full bg-cover bg-no-repeat bg-center"

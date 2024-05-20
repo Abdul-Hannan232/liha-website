@@ -21,7 +21,6 @@ const CategoryListCard: React.FC<Props> = ({
   const { name, icon } = category;
 
   return (
-
     <Link href={`${href}`} legacyBehavior>
       <a
         className={cn(

@@ -17,7 +17,6 @@ const SectionHeader: React.FC<Props> = ({
   className = 'pb-0.5 mb-5 xl:mb-6',
   headingPosition = 'left',
 }) => {
-
   return (
     <div
       className={cn(`-mt-1.5 ${className}`, {

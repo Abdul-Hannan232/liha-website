@@ -92,7 +92,7 @@ export default function BestSellerWithFlashSale({
           {error ? (
             <Alert message={error?.message} className="col-span-full" />
           ) : width! < 1780 ? (
-            <Carousel {...options} >
+            <Carousel {...options}>
               {isLoading
                 ? Array.from({ length: limit! }).map((_, idx) => (
                     <SwiperSlide key={`popular-product-${idx}`}>

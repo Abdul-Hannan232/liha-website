@@ -12,15 +12,13 @@ interface Props {
   className?: string;
 }
 
-const CategoryCard: React.FC<Props> = ({  item, href, className }) => {
-
+const CategoryCard: React.FC<Props> = ({ item, href, className }) => {
   const { name, image } = item ?? {};
   const dir = getDirection('rtl');
 
   return (
     <Link
       href={`${href}`}
-
       className={cn('group block w-full text-center', className)}
     >
       <div className="flex max-w-[178px] max-h-[178px] mb-3.5 xl:mb-4 mx-auto rounded-full overflow-hidden bg-fill-thumbnail">
@@ -50,7 +48,7 @@ const CategoryCard: React.FC<Props> = ({  item, href, className }) => {
         >
           <Image
             src={image?.original ?? categoryPlaceholder}
-            alt={name ||'Card Thumbnail'}
+            alt={name || 'Card Thumbnail'}
             width={178}
             height={178}
             quality={100}

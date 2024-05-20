@@ -8,12 +8,7 @@ type Option = {
   value: string;
 };
 
-export default function ListBox({
-  options,
-}: {
-  options: Option[];
-}) {
-
+export default function ListBox({ options }: { options: Option[] }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();

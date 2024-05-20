@@ -9,13 +9,10 @@ function makeTitleToDOMId(title: string) {
 }
 
 export default function LegalPage() {
-
   return (
     <>
       <div className="lg:max-h-[575px] lg:overflow-scroll scrollbar">
-        <Heading variant="titleLarge">
-          Legal Notice
-        </Heading>
+        <Heading variant="titleLarge">Legal Notice</Heading>
         <div className="pt-6">
           <div className="w-full">
             {legalSetting?.map((item) => (

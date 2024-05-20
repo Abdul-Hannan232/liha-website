@@ -1,8 +1,7 @@
 import { IoIosArrowForward } from 'react-icons/io';
 import Link from '@components/ui/link';
 
-const ListMenu = ({  dept, data, hasSubMenu, menuIndex }: any) => {
-
+const ListMenu = ({ dept, data, hasSubMenu, menuIndex }: any) => {
   return (
     <li className="relative">
       <Link
@@ -23,7 +22,7 @@ const ListMenu = ({  dept, data, hasSubMenu, menuIndex }: any) => {
   );
 };
 
-const SubMenu: React.FC<any> = ({  dept, data, menuIndex }) => {
+const SubMenu: React.FC<any> = ({ dept, data, menuIndex }) => {
   dept = dept + 1;
   return (
     <ul className="absolute z-0 invisible w-56 py-3 transition-all duration-300 opacity-0 subMenuChild shadow-subMenu bg-brand-light ltr:right-full rtl:left-full 2xl:ltr:right-auto 2xl:rtl:left-auto 2xl:ltr:left-full 2xl:rtl:right-full top-4">

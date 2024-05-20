@@ -11,9 +11,7 @@ export default function DeliveryTips() {
     <div className="w-full">
       <div className="w-full mx-auto">
         <RadioGroup value={deliveryTips} onChange={setDeliveryTips}>
-          <RadioGroup.Label className="sr-only">
-          Delivery Tip
-          </RadioGroup.Label>
+          <RadioGroup.Label className="sr-only">Delivery Tip</RadioGroup.Label>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-6">
             {deliveryTip.map((tips) => (
               <RadioGroup.Option

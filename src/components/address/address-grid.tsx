@@ -8,9 +8,7 @@ import { useModalAction } from '@components/common/modal/modal.context';
 import { formatAddress } from '@utils/format-address';
 import Button from '@components/ui/button';
 
-const AddressGrid: React.FC<{ address?: any }> = ({
-  address,
-}) => {
+const AddressGrid: React.FC<{ address?: any }> = ({ address }) => {
   const { openModal } = useModalAction();
 
   function handlePopupView(item: any) {

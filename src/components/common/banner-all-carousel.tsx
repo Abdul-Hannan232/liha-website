@@ -44,7 +44,7 @@ const BannerAllCarousel: React.FC<BannerProps> = ({
   return (
     <div className={className}>
       <Carousel
-        autoplay={false} 
+        autoplay={false}
         breakpoints={breakpoints}
         buttonSize={buttonSize}
         prevActivateId="all-banner-carousel-button-prev"
@@ -52,7 +52,7 @@ const BannerAllCarousel: React.FC<BannerProps> = ({
       >
         {data?.map((banner: any) => (
           <SwiperSlide key={`all-banner--key${banner.id}`}>
-            <BannerCard banner={banner} effectActive={true}  />
+            <BannerCard banner={banner} effectActive={true} />
           </SwiperSlide>
         ))}
       </Carousel>

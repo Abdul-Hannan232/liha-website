@@ -30,13 +30,11 @@ export default function Cart() {
             // @ts-ignore
             <button
               className="flex flex-shrink items-center text-15px transition duration-150 ease-in focus:outline-none text-brand-dark opacity-50 hover:opacity-100 ltr:-mr-1.5 rtl:-ml-1.5"
-              aria-label='Clear All'
+              aria-label="Clear All"
               onClick={resetCart}
             >
               <DeleteIcon />
-              <span className="ltr:pl-1 lg:rtl:pr-1">
-              Clear All
-              </span>
+              <span className="ltr:pl-1 lg:rtl:pr-1">Clear All</span>
             </button>
           )}
 
@@ -52,20 +50,19 @@ export default function Cart() {
       {!isEmpty ? (
         <Scrollbar className="flex-grow w-full cart-scrollbar ">
           <div className="w-full px-5 md:px-7 h-[calc(100vh_-_300px)]">
-            {items?.map((item) => (
-              <CartItem item={item} key={item.id}  />
-            ))}
+            {items?.map((item) => <CartItem item={item} key={item.id} />)}
           </div>
         </Scrollbar>
       ) : (
-        <EmptyCart  />
+        <EmptyCart />
       )}
       <div className="px-5 pt-5 pb-5 border-t border-border-base md:px-7 md:pt-6 md:pb-6">
         <div className="flex pb-5 md:pb-7">
           <div className="ltr:pr-3 rtl:pl-3">
             <Heading className="mb-2.5">Subtotal:</Heading>
             <Text className="leading-6">
-            Final price and discounts will be determined at the time of payment processing.
+              Final price and discounts will be determined at the time of
+              payment processing.
             </Text>
           </div>
           <div className="shrink-0 font-semibold text-base md:text-lg text-brand-dark -mt-0.5 min-w-[80px] ltr:text-right rtl:text-left">

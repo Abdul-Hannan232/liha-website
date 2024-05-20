@@ -18,10 +18,7 @@ interface ProductFeedProps {
   element?: any;
   className?: string;
 }
-const AllProductFeed: FC<ProductFeedProps> = ({
-  element,
-  className = '',
-}) => {
+const AllProductFeed: FC<ProductFeedProps> = ({ element, className = '' }) => {
   // const { t } = useTranslation(lang, 'common');
   const pathname = usePathname();
   const { getParams, query } = useQueryParam(pathname ?? '/');
@@ -52,10 +49,7 @@ const AllProductFeed: FC<ProductFeedProps> = ({
   return (
     <div className={cn(className)}>
       <div className="flex items-center justify-between pb-0.5 mb-4 lg:mb-5 xl:mb-6">
-        <SectionHeader
-          sectionHeading="All Products"
-          className="mb-0"
-        />
+        <SectionHeader sectionHeading="All Products" className="mb-0" />
         <div
           className="lg:hidden transition-all text-brand -mt-1.5 font-semibold text-sm md:text-15px hover:text-brand-dark"
           role="button"

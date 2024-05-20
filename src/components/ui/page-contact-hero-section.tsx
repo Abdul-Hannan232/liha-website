@@ -14,7 +14,6 @@ const PageContactHeroSection: React.FC<HeaderProps> = ({
   // heroDescription = 'text-contact-page-explore',
   backgroundThumbnail = '/assets/images/contact-page-banner.png',
 }) => {
-
   const mounted = useIsMounted();
   return (
     <div
@@ -29,7 +28,12 @@ const PageContactHeroSection: React.FC<HeaderProps> = ({
             {mounted && <>Do you need support? Our team is ready to help</>}
           </h2>
           <p className="text-15px lg:text-base xl:text-[17px] leading-7 lg:leading-8 xl:leading-9 text-brand-dark text-opacity-60 lg:ltr:pr-28 lg:rtl:pl-28">
-            {mounted && <>We are passionate about building carefully thought out  products that will improve your design workflow.</>}
+            {mounted && (
+              <>
+                We are passionate about building carefully thought out products
+                that will improve your design workflow.
+              </>
+            )}
           </p>
         </div>
       </div>

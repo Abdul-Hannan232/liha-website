@@ -27,7 +27,6 @@ import VariationPrice from './variation-price';
 import isEqual from 'lodash/isEqual';
 
 const ProductSingleDetails = () => {
-
   const pathname = useParams();
   const { slug } = pathname;
   const { width } = useWindowSize();
@@ -98,7 +97,9 @@ const ProductSingleDetails = () => {
     setAddToWishlistLoader(true);
     setFavorite(!favorite);
     const toastStatus: string =
-      favorite === true ? 'Remove from favorite list' : 'Added to favorite list';
+      favorite === true
+        ? 'Remove from favorite list'
+        : 'Added to favorite list';
     setTimeout(() => {
       setAddToWishlistLoader(false);
     }, 1500);
@@ -191,11 +192,7 @@ const ProductSingleDetails = () => {
               <>
                 {Number(quantity) > 0 || !outOfStock ? (
                   <span className="text-sm font-medium text-yellow">
-                   Only +
-                      ' ' +
-                      quantity +
-                      ' ' +
-                      item left!
+                    {` Only  ${quantity} item left!`}
                   </span>
                 ) : (
                   <div className="text-base text-red-500 whitespace-nowrap">
@@ -211,7 +208,7 @@ const ProductSingleDetails = () => {
                 selectedVariation.quantity === 0
                   ? 'Out Of Stock'
                   : `${
-                    'Only' +
+                      'Only' +
                       ' ' +
                       selectedVariation.quantity +
                       ' ' +
@@ -259,8 +256,7 @@ const ProductSingleDetails = () => {
                 ) : (
                   <IoIosHeartEmpty className="text-2xl md:text-[26px] ltr:mr-2 rtl:ml-2 transition-all group-hover:text-brand" />
                 )}
-
-Wishlist
+                Wishlist
               </Button>
               <div className="relative group">
                 <Button
@@ -298,7 +294,7 @@ Wishlist
           )}
         </div>
       </div>
-      <ProductDetailsTab  />
+      <ProductDetailsTab />
     </div>
   );
 };

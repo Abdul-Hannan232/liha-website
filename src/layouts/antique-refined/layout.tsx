@@ -2,7 +2,7 @@
 
 import MobileNavigation from '@layouts/mobile-navigation/mobile-navigation';
 import Header from '@layouts/ancient/header';
-import Footer from '@layouts/footer/footer'; 
+import Footer from '@layouts/footer/footer';
 import HighlightedBar from '@components/common/highlighted-bar';
 import Link from '@components/ui/link';
 import { IoChevronForwardCircleOutline } from 'react-icons/io5';
@@ -10,7 +10,6 @@ import { useSessionStorage } from 'react-use';
 import { useIsMounted } from '@utils/use-is-mounted';
 
 function ClientRenderedHightLightedBar() {
-
   const [highlightedBar, setHighlightedBar] = useSessionStorage(
     'liha-highlightedBar',
     'false',

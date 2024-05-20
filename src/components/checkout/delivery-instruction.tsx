@@ -7,10 +7,7 @@ interface ContactFormValues {
   default: boolean;
 }
 
-const DeliveryInstructions: React.FC<{ data?: any}> = ({
-  data,
-
-}) => {
+const DeliveryInstructions: React.FC<{ data?: any }> = ({ data }) => {
   const {
     register,
     handleSubmit,
@@ -52,7 +49,9 @@ const DeliveryInstructions: React.FC<{ data?: any}> = ({
               Leave at my door if I am not around
             </label>
             <Text className="ltr:ml-8 rtl:mr-8 pt-2.5" variant="small">
-            By selecting this option you accept full responsibility for your order after it has been delivered unattended, including any loss due to theft or damage due to temperature sensitivity.
+              By selecting this option you accept full responsibility for your
+              order after it has been delivered unattended, including any loss
+              due to theft or damage due to temperature sensitivity.
             </Text>
           </div>
         </form>

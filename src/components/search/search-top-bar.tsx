@@ -6,7 +6,7 @@ import ListBox from '@components/ui/filter-list-box';
 import { getDirection } from '@utils/get-direction';
 import motionProps from '@components/common/drawer/motion';
 
-export default function SearchTopBar({ lang }: { lang: string }) {
+export default function SearchTopBar() {
   const { openFilter, displayFilter, closeFilter } = useUI();
 
   const dir = getDirection('ltr');

@@ -3,12 +3,11 @@ import { FaChevronDown } from 'react-icons/fa';
 import LocationIcon from '@components/icons/location-icon';
 import { useModalAction } from '@components/common/modal/modal.context';
 import { useUI } from '@contexts/ui.context';
- 
+
 interface DeliveryProps {
   className?: string;
 }
-const Delivery: React.FC<DeliveryProps> = ({  className }) => {
-
+const Delivery: React.FC<DeliveryProps> = ({ className }) => {
   const { isAuthorized } = useUI();
   const { openModal } = useModalAction();
   function handleDeliveryView() {

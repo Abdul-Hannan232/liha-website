@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import useQueryParam from '@utils/use-query-params';
 
 export default function SelectedFilters() {
-
   const { push } = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -44,12 +43,12 @@ export default function SelectedFilters() {
             {/* @ts-ignore */}
             <button
               className="flex-shrink transition duration-150 ease-in text-13px focus:outline-none hover:text-brand-dark"
-              aria-label='Clear All'
+              aria-label="Clear All"
               onClick={() => {
                 push(pathname);
               }}
             >
-             Clear All
+              Clear All
             </button>
           </div>
           <div className="flex flex-wrap -m-1">

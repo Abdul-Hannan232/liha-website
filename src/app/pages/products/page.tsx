@@ -15,11 +15,12 @@ export default async function Page() {
 
   return (
     <>
-      <PageHeroSection heroTitle="text-all-grocery-items"  />
+      <PageHeroSection />
+      {/* <PageHeroSection heroTitle="text-all-grocery-items" /> */}
       <Suspense fallback={<SearchBarFallback />}>
-        <ProductsPageContent  />
+        <ProductsPageContent />
       </Suspense>
-      <DownloadApps  />
+      <DownloadApps />
     </>
   );
 }

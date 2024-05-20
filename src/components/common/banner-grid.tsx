@@ -37,7 +37,7 @@ const BannerGrid: React.FC<BannerProps> = ({
         >
           {data?.map((banner: any) => (
             <SwiperSlide key={`bundle-key-${banner.id}`}>
-              <BannerCard banner={banner} effectActive={true}  />
+              <BannerCard banner={banner} effectActive={true} />
             </SwiperSlide>
           ))}
         </Carousel>

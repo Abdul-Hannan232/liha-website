@@ -22,7 +22,6 @@ const AuthMenu = dynamic(() => import('@layouts/header/auth-menu'), {
 const MobileMenu = dynamic(() => import('@layouts/header/mobile-menu'));
 
 export default function BottomNavigation() {
-
   const {
     openSidebar,
     closeSidebar,
@@ -62,11 +61,7 @@ export default function BottomNavigation() {
           <span className="sr-only">Home</span>
           <HomeIcon />
         </Link>
-        <CartButton
-          hideLabel={true}
-          iconClassName="text-opacity-100"
-          
-        />
+        <CartButton hideLabel={true} iconClassName="text-opacity-100" />
         <AuthMenu
           isAuthorized={isAuthorized}
           href={`${ROUTES.ACCOUNT}`}
@@ -82,7 +77,7 @@ export default function BottomNavigation() {
       <Drawer
         className="w-[375px]"
         // placement={dir === 'rtl' ? 'right' : 'left'}
-        placement= 'left'
+        placement="left"
         open={displaySidebar}
         onClose={closeSidebar}
         // @ts-ignore
@@ -90,7 +85,7 @@ export default function BottomNavigation() {
         contentWrapperStyle={contentWrapperCSS}
         {...motionProps}
       >
-        <MobileMenu  />
+        <MobileMenu />
       </Drawer>
     </>
   );

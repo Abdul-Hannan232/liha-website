@@ -7,7 +7,6 @@ import { usePathname } from 'next/navigation';
 import Heading from '@components/ui/heading';
 
 const FilterSidebar = () => {
-
   const { closeFilter } = useUI();
   const pathname = usePathname();
   const dir = getDirection(pathname);

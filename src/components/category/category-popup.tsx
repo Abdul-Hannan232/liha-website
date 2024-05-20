@@ -5,7 +5,7 @@ const CategoryPopup = () => {
   const { closeModal } = useModalAction();
   return (
     <div className="relative flex flex-col w-full mx-auto overflow-hidden rounded-t bg-brand-light h-inherit">
-      <CategoryDropdownSidebar className="w-full"  />
+      <CategoryDropdownSidebar className="w-full" />
       <div className="absolute bottom-0 w-full p-4 text-brand-light shadow-card shrink-0 bg-brand-light">
         <button
           onClick={closeModal}

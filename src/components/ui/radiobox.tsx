@@ -5,7 +5,6 @@ interface RadioBoxProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 export const RadioBox = React.forwardRef<HTMLInputElement, RadioBoxProps>(
   ({ label, ...rest }, ref) => {
-
     return (
       <label className="flex items-center text-sm cursor-pointer group text-heading">
         <input

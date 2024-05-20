@@ -46,7 +46,14 @@ const ContactSupport: FC<Props> = () => {
         {mounted && <>Support is our main priority</>}
       </Heading>
       <Text className="xl:leading-8">
-        {mounted && <>We created reusable react components, and modern mono repo architecture, so you can build multiple apps with common components. You can use these landing for your react app. It’s super easy to deploy, we have provided complete firebase integration it.</>}
+        {mounted && (
+          <>
+            We created reusable react components, and modern mono repo
+            architecture, so you can build multiple apps with common components.
+            You can use these landing for your react app. It’s super easy to
+            deploy, we have provided complete firebase integration it.
+          </>
+        )}
       </Text>
       <div className="flex mt-5 -mx-1">
         {supportData.map((item, idx) => (

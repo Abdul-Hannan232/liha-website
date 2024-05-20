@@ -35,21 +35,21 @@ export default function ManagedModal() {
   if (view === 'CATEGORY_VIEW') {
     return (
       <Modal open={isOpen} onClose={closeModal} variant="bottom">
-        {view === 'CATEGORY_VIEW' && <CategoryPopup  />}
+        {view === 'CATEGORY_VIEW' && <CategoryPopup />}
       </Modal>
     );
   }
 
   return (
     <Modal open={isOpen} onClose={closeModal}>
-      {view === 'LOGIN_VIEW' && <LoginForm  />}
-      {view === 'SIGN_UP_VIEW' && <SignUpForm  />}
-      {view === 'FORGET_PASSWORD' && <ForgetPasswordForm  />}
-      {view === 'PRODUCT_VIEW' && <ProductPopup  />}
-      {view === 'ADDRESS_VIEW_AND_EDIT' && <AddressPopup  />}
+      {view === 'LOGIN_VIEW' && <LoginForm />}
+      {view === 'SIGN_UP_VIEW' && <SignUpForm />}
+      {view === 'FORGET_PASSWORD' && <ForgetPasswordForm />}
+      {view === 'PRODUCT_VIEW' && <ProductPopup />}
+      {view === 'ADDRESS_VIEW_AND_EDIT' && <AddressPopup />}
       {view === 'PAYMENT' && <PaymentPopup />}
-      {view === 'PHONE_NUMBER' && <PhoneNumberPopup  />}
-      {view === 'DELIVERY_VIEW' && <DeliveryAddresses  />}
+      {view === 'PHONE_NUMBER' && <PhoneNumberPopup />}
+      {view === 'DELIVERY_VIEW' && <DeliveryAddresses />}
     </Modal>
   );
 }

@@ -12,10 +12,8 @@ export const metadata: Metadata = {
 export default async function Page() {
   return (
     <>
-      <PageHeroSection
-        heroTitle="text-page-faq"
-        className="faq-banner-area"
-      />
+      <PageHeroSection className="faq-banner-area" />
+      {/* <PageHeroSection heroTitle="text-page-faq" className="faq-banner-area" /> */}
       <Container>
         <div className="flex flex-col max-w-2xl py-12 mx-auto 2xl:max-w-4xl md:py-20">
           {faq?.map((item, index) => (
@@ -27,7 +25,7 @@ export default async function Page() {
           ))}
         </div>
       </Container>
-      <DownloadApps  />
+      <DownloadApps />
     </>
   );
 }

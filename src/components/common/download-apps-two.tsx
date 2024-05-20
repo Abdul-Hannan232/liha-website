@@ -6,7 +6,8 @@ import Link from '@components/ui/link';
 
 const data = {
   title: 'Make your online shop easier with our mobile app',
-  description: 'Liha makes online grocery shopping fast and easy. Get groceries delivered and order the best of seasonal farm fresh food.',
+  description:
+    'Liha makes online grocery shopping fast and easy. Get groceries delivered and order the best of seasonal farm fresh food.',
   appBG: '/assets/images/app-bg.png',
   appImage: '/assets/images/app-thumbnail-2.png',
   appButtons: [
@@ -85,7 +86,7 @@ const DownloadAppsTwo: React.FC<Props> = ({
         <div className="hidden md:flex items-end ltr:pl-4 rtl:pr-4 2xl:ltr:pl-0 2xl:rtl:pr-0 md:max-w-[450px] lg:max-w-[660px] xl:max-w-auto ltr:-mr-10 rtl:-ml-10 lg:ltr:-mr-16 lg:rtl:-ml-16 xl:ltr:-mr-10 xl:rtl:-ml-10 3xl:ltr:mr-7 3xl:rtl:ml-7">
           <Image
             src={appImage}
-            alt='App Thumbnail'
+            alt="App Thumbnail"
             width={660}
             height={465}
             quality={100}

@@ -23,10 +23,10 @@ export default async function Page() {
         contentClassName="pb-24 xl:pb-32 pt-16 xl:pt-24"
       />
       <Container>
-        <BundleGrid data={bundle}  />
-        <CategoryWithProduct banner={banner}  />
+        <BundleGrid data={bundle} />
+        <CategoryWithProduct banner={banner} />
       </Container>
-      <DownloadApps  />
+      <DownloadApps />
     </>
   );
 }

@@ -1,4 +1,3 @@
-
 interface Props {
   soldProduct?: number;
   totalProduct?: number;
@@ -9,7 +8,6 @@ const ProgressCard: React.FC<Props> = ({
   soldProduct = 0,
   totalProduct = 0,
   className = '',
-
 }) => {
   const progressBar = (100 / totalProduct) * soldProduct;
 
@@ -23,13 +21,13 @@ const ProgressCard: React.FC<Props> = ({
       </div>
       <div className="flex justify-between items-center mt-2.5 md:mt-3 xl:mt-2.5 2xl:mt-3.5">
         <div className="leading-6 text-brand-dark text-opacity-60 text-13px sm:text-sm lg:text-15px md:leading-7">
-        Sold :&nbsp;
+          Sold :&nbsp;
           <span className="font-medium text-brand-dark">
             {soldProduct} items
           </span>
         </div>
         <div className="leading-6 text-brand-dark text-opacity-60 text-13px sm:text-sm lg:text-15px md:leading-7">
-        Available  :&nbsp;
+          Available :&nbsp;
           <span className="font-medium text-brand-dark">
             {totalProduct - soldProduct} items
           </span>

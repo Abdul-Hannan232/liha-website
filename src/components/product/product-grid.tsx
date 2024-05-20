@@ -15,7 +15,6 @@ interface ProductGridProps {
 }
 
 export const ProductGrid: FC<ProductGridProps> = ({ className = '' }) => {
-
   const pathname = usePathname();
   const { getParams, query } = useQueryParam(pathname ?? '/');
   const newQuery: any = getParams(

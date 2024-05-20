@@ -46,10 +46,7 @@ function Header() {
       )}
     >
       <div className="z-20 w-full h-16 transition duration-200 ease-in-out shadow-header innerSticky body-font bg-brand-light lg:h-20">
-        <Search
-          className="top-bar-search lg:max-w-[600px] absolute z-30 px-4 md:px-6 top-1"
-          
-        />
+        <Search className="top-bar-search lg:max-w-[600px] absolute z-30 px-4 md:px-6 top-1" />
         {/* End of Mobile search */}
         <Container className="flex items-center justify-between w-full h-full">
           <div className="flex shrink-0">
@@ -67,29 +64,24 @@ function Header() {
           <HeaderMenu
             data={site_header.pagesMenu}
             className="hidden w-auto ltr:pl-10 rtl:pr-10 2xl:flex"
-            
           />
           <Search
             searchId="top-bar-search"
             className="hidden lg:flex lg:max-w-[580px] 3xl:max-w-[700px] lg:ltr:ml-7 lg:rtl:mr-7 lg:ltr:mr-5 lg:rtl:ml-5 2xl:ltr:ml-16 2xl:rtl:mr-16 3xl:ltr:ml-28 3xl:rtl:mr-28 2xl:ltr:mr-auto 2xl:rtl:ml-auto"
-            
           />
           {/* End of search */}
           <div className="flex shrink-0 -mx-2.5 xl:-mx-3.5">
             <div className="xl:mx-3.5 mx-2.5">
               {/* <LanguageSwitcher  /> */}
             </div>
-            <CartButton
-              className="hidden lg:flex 2xl:hidden xl:mx-3.5 mx-2.5"
-              
-            />
+            <CartButton className="hidden lg:flex 2xl:hidden xl:mx-3.5 mx-2.5" />
             <div className="items-center hidden lg:flex shrink-0 xl:mx-3.5 mx-2.5">
               <UserIcon className="text-brand-dark text-opacity-40" />
               <AuthMenu
                 isAuthorized={isAuthorized}
                 href={`${ROUTES.ACCOUNT}`}
                 btnProps={{
-                  children:'Sign In',
+                  children: 'Sign In',
                   onClick: handleLogin,
                 }}
               >

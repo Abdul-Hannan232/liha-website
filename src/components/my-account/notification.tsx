@@ -12,8 +12,7 @@ import Heading from '@components/ui/heading';
 import Text from '@components/ui/text';
 
 const defaultValues = {};
-const AccountDetails: React.FC<{ lang: string }> = () => {
-
+const AccountDetails = () => {
   const { mutate: updateUser, isPending } = useUpdateUserMutation();
   const {
     handleSubmit,
@@ -27,9 +26,7 @@ const AccountDetails: React.FC<{ lang: string }> = () => {
   return (
     <div className="flex flex-col w-full">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Heading variant="titleLarge">
-        Personal Information
-        </Heading>
+        <Heading variant="titleLarge">Personal Information</Heading>
         <NotificationItem
           title="Text messages"
           description="Share your profile information to collect the product search result"
@@ -40,7 +37,7 @@ const AccountDetails: React.FC<{ lang: string }> = () => {
         />
 
         <Heading variant="titleLarge" className="pt-6 xl:pt-12">
-        Account Information
+          Account Information
         </Heading>
 
         <div className="relative">
@@ -80,7 +77,7 @@ const NotificationItem: React.FC<NotificationItemProps> = ({
   description,
 }) => {
   const [checked, setChecked] = useState(true);
-  // const { t } = useTranslation(lang, 'common');
+
   return (
     <div className="relative flex pt-6 lg:pt-10">
       <div className="ltr:pr-2.5 rtl:pl-2.5">

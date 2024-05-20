@@ -39,7 +39,7 @@ const ForgetPasswordForm = () => {
           <Logo />
         </div>
         <p className="mt-3 mb-8 text-sm md:text-base text-body sm:mt-4 sm:mb-10">
-        We'll send you a link to reset your password
+          We&apos;ll send you a link to reset your password
         </p>
       </div>
       <form
@@ -48,7 +48,7 @@ const ForgetPasswordForm = () => {
         noValidate
       >
         <Input
-          label='Email'
+          label="Email"
           type="email"
           variant="solid"
           className="mb-4"
@@ -74,11 +74,11 @@ const ForgetPasswordForm = () => {
       <div className="relative flex flex-col items-center justify-center mt-8 mb-6 text-sm text-heading sm:mt-10 sm:mb-7">
         <hr className="w-full border-gray-300" />
         <span className="absolute -top-2.5 px-2 bg-brand-light">
-        or continue with
+          or continue with
         </span>
       </div>
       <div className="text-sm text-center sm:text-15px text-brand-muted">
-      Back to
+        Back to
         <button
           type="button"
           className="font-medium underline text-brand-dark hover:no-underline focus:outline-none"

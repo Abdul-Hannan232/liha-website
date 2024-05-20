@@ -1,7 +1,7 @@
 import { useContactQuery } from '@framework/contact/contact';
 import ContactBox from '@components/contact/contact-content';
 
-const ContactPage= () => {
+const ContactPage = () => {
   let { data, isLoading } = useContactQuery();
   return !isLoading ? (
     <div className="w-full max-w-[1300px] mx-auto">

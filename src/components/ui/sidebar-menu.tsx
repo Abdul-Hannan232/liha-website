@@ -9,7 +9,6 @@ import Image from '@components/ui/image';
 import useQueryParam from '@utils/use-query-params';
 
 function SidebarMenuItem({ className, item, depth = 0 }: any) {
-
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { updateQueryparams } = useQueryParam(pathname ?? '/');
@@ -99,7 +98,7 @@ function SidebarMenuItem({ className, item, depth = 0 }: any) {
             key="content"
             className="py-3 text-xs border-t border-border-base"
           >
-            {items?.map((currentItem) => { 
+            {items?.map((currentItem) => {
               const childDepth = depth + 1;
               return (
                 <SidebarMenuItem
@@ -119,14 +118,7 @@ function SidebarMenuItem({ className, item, depth = 0 }: any) {
   );
 }
 
-function SidebarMenu({
-  items,
-  className,
-}: {
- 
-  items: any;
-  className?: string;
-}) {
+function SidebarMenu({ items, className }: { items: any; className?: string }) {
   return (
     <ul className={cn(className)}>
       {items?.map((item: any) => (

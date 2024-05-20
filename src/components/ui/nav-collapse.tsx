@@ -7,11 +7,7 @@ type CollapseProps = {
   content?: any;
 };
 
-export const NavCollapse: React.FC<CollapseProps> = ({
-  title,
-  content,
-}) => {
-
+export const NavCollapse: React.FC<CollapseProps> = ({ title, content }) => {
   return (
     <div className="w-full px-3">
       <div className="w-full mx-auto mb-4 ">

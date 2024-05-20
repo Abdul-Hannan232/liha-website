@@ -6,5 +6,5 @@ export const metadata: Metadata = {
 };
 
 export default async function HelpCenter() {
-  return <Help  />;
+  return <Help />;
 }

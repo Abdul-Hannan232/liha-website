@@ -37,7 +37,7 @@ const HeroBannerWithCategory: React.FC<Props> = ({
         </div>
       </div>
       <div className="w-full trendy-main-content">
-        <BannerGridTwo data={bannersMedium}  />
+        <BannerGridTwo data={bannersMedium} />
         <BannerAllCarousel
           data={bannerDiscount}
           buttonSize="small"

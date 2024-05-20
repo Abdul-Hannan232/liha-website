@@ -14,19 +14,19 @@ export const metadata: Metadata = {
 export default async function Page() {
   return (
     <>
-      <PageContactHeroSection  />
+      <PageContactHeroSection />
       <Container>
         <div className="max-w-[1420px] mx-auto mb-12 lg:mb-14 xl:mb-16">
           <div className="flex flex-wrap bg-brand-light w-full p-5 md:p-7 lg:p-10 xl:p-16 3xl:px-[70px] xl:py-12 shadow-contact rounded-md -mt-8 relative z-10">
             <div className="w-full md:w-[53%] xl:w-[60%] md:ltr:pr-8 md:rtl:pl-8 lg:ltr:pr-0 lg:rtl:pl-0 2xl:ltr:pr-24 2xl:rtl:pl-24 lg:mb-0 mb-8">
-              <ContactSupport  />
+              <ContactSupport />
             </div>
             <div className="w-full md:w-[47%] xl:w-[40%] pb-0.5 lg:ltr:pl-12 lg:rtl:pr-12 pt-1.5">
-              <ContactForm  />
+              <ContactForm />
             </div>
           </div>
         </div>
-        <ContactInformation  />
+        <ContactInformation />
       </Container>
       <div className="mt-12 md:mt-16 xl:mt-20 2xl:mt-24 bg-fill-two relative h-[420px]">
         <Map
@@ -37,7 +37,7 @@ export default async function Page() {
           showInfoWindow={true}
         />
       </div>
-      <DownloadApps  />
+      <DownloadApps />
     </>
   );
 }

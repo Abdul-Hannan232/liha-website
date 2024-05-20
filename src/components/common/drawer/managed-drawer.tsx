@@ -27,7 +27,7 @@ export default function ManagedDrawer() {
       {...motionProps}
     >
       {drawerView === 'CART_SIDEBAR' && <Cart />}
-      {drawerView === 'ORDER_DETAILS' && <OrderDetails  />}
+      {drawerView === 'ORDER_DETAILS' && <OrderDetails />}
     </Drawer>
   );
 }

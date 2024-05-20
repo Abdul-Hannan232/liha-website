@@ -28,7 +28,7 @@ export default function Schedule() {
       <div className="w-full mx-auto">
         <RadioGroup value={dateSchedule} onChange={setDateSchedule}>
           <RadioGroup.Label className="sr-only">
-          Delivery Schedule
+            Delivery Schedule
           </RadioGroup.Label>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-6">
             {deliveryDateSchedule.map((date) => (
@@ -74,7 +74,7 @@ export default function Schedule() {
           onChange={setTimeSchedule}
         >
           <RadioGroup.Label className="sr-only">
-          Delivery Schedule
+            Delivery Schedule
           </RadioGroup.Label>
           <div className="flex flex-wrap justify-between grid-cols-2 gap-4 lg:grid sm:grid-cols-3 lg:grid-cols-5">
             {deliveryTimeSchedule.map((time) => (

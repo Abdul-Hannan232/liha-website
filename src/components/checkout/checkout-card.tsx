@@ -37,7 +37,7 @@ const CheckoutCard = () => {
     },
     {
       id: 2,
-      name:'Shipping',
+      name: 'Shipping',
       price: '$0',
     },
     {
@@ -51,11 +51,9 @@ const CheckoutCard = () => {
     <>
       <div className="px-4 pt-4 border rounded-md border-border-base text-brand-light xl:py-6 xl:px-7">
         <div className="flex pb-2 text-sm font-semibold rounded-md text-heading">
-          <span className="font-medium text-15px text-brand-dark">
-          Product
-          </span>
+          <span className="font-medium text-15px text-brand-dark">Product</span>
           <span className="font-medium ltr:ml-auto rtl:mr-auto shrink-0 text-15px text-brand-dark">
-          Subtotal
+            Subtotal
           </span>
         </div>
         {isLoading ? (
@@ -87,21 +85,20 @@ const CheckoutCard = () => {
         </Button>
       </div>
       <Text className="mt-8">
-      By placing your order, you agree to be bound by the BoroBazar
+        By placing your order, you agree to be bound by the BoroBazar
         <Link href={`${ROUTES.TERMS}`} legacyBehavior>
-          <a className="font-medium underline text-brand">
-          Terms of Service
-          </a>
+          <a className="font-medium underline text-brand">Terms of Service</a>
         </Link>
         and
         <Link href={`${ROUTES.PRIVACY}`} legacyBehavior>
-          <a className="font-medium underline text-brand">
-          Privacy
-          </a>
+          <a className="font-medium underline text-brand">Privacy</a>
         </Link>
         . Your credit/debit card data will not saved.
       </Text>
-      <Text className="mt-4">A bag fee may be added to your final total if required by law or the retailer. The fee will be visible on your receipt after delivery.</Text>
+      <Text className="mt-4">
+        A bag fee may be added to your final total if required by law or the
+        retailer. The fee will be visible on your receipt after delivery.
+      </Text>
     </>
   );
 };

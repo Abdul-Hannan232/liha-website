@@ -16,7 +16,7 @@ export default function CompleteOrderContent() {
     <>
       <Divider />
       <Container>
-        <OrderInformation  />
+        <OrderInformation />
       </Container>
       <Divider />
     </>

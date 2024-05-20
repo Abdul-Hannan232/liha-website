@@ -67,7 +67,7 @@ export default function AccountLayout({
         <div className="pt-10 2xl:pt-12 pb-12 lg:pb-14 xl:pb-16 2xl:pb-20 xl:max-w-screen-xl 2xl:max-w-[1300px] mx-auto">
           <div className="flex flex-col w-full lg:flex-row">
             <div className="lg:hidden">
-              <AccountNavMobile options={accountMenu}  />
+              <AccountNavMobile options={accountMenu} />
             </div>
             <div className="hidden lg:block shrink-0 w-56 xl:w-72 2xl:w-[385px] ltr:mr-7 rtl:ml-7 xl:ltr:mr-8 xl:rtl:ml-8">
               <AccountNav options={accountMenu} />

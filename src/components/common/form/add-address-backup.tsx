@@ -14,7 +14,7 @@ interface ContactFormValues {
   default: boolean;
 }
 
-const AddAddressForm: React.FC<{ lang: string }> = () => {
+const AddAddressForm = () => {
   const { data } = useModalState();
   const {
     register,

@@ -10,6 +10,6 @@ export default function AccountDetailsPage() {
       ) : (
         <div>Loading...</div>
       )}
- </div>
+    </div>
   );
 }

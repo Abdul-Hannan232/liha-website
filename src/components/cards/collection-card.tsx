@@ -31,7 +31,6 @@ const CollectionCard: React.FC<Props> = ({
   return (
     <Link
       href={`${href}`}
-
       className="flex flex-col overflow-hidden rounded-md group shadow-card "
     >
       <Image

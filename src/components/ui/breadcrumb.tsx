@@ -61,11 +61,10 @@ export const BreadcrumbItems = (props: any) => {
   );
 };
 
-const Breadcrumb: React.FC<{ separator?: string;}> = ({
+const Breadcrumb: React.FC<{ separator?: string }> = ({
   separator = (
     <IoChevronForward className="text-brand-dark text-opacity-40 text-15px" />
   ),
- 
 }) => {
   const breadcrumbs = useBreadcrumb();
   // const { t } = useTranslation(lang, 'common');

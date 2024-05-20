@@ -71,16 +71,16 @@ export default function SignUpForm({
               <Logo />
             </div>
             <h4 className="text-xl font-semibold text-brand-dark sm:text-2xl sm:pt-3 ">
-            SignUp for free!
+              SignUp for free!
             </h4>
             <div className="mt-3 mb-1 text-sm text-center sm:text-base text-body">
-            Already registered?
+              Already registered?
               <button
                 type="button"
                 className="text-sm font-semibold ltr:ml-1 rtl:mr-1 sm:text-base text-brand hover:no-underline focus:outline-none"
                 onClick={handleSignIn}
               >
-               Sign In Now
+                Sign In Now
               </button>
             </div>
           </div>
@@ -91,7 +91,7 @@ export default function SignUpForm({
           >
             <div className="flex flex-col space-y-4">
               <Input
-                label=''
+                label=""
                 type="text"
                 variant="solid"
                 {...register('name', {
@@ -100,7 +100,7 @@ export default function SignUpForm({
                 error={errors.name?.message}
               />
               <Input
-                label='Email Address'
+                label="Email Address"
                 type="email"
                 variant="solid"
                 {...register('email', {
@@ -114,7 +114,7 @@ export default function SignUpForm({
                 error={errors.email?.message}
               />
               <PasswordInput
-                label='Password'
+                label="Password"
                 error={errors.password?.message}
                 {...register('password', {
                   required: `You must need to provide your password`,
@@ -153,8 +153,7 @@ export default function SignUpForm({
                   className="w-full mt-2 tracking-normal h-11 md:h-12 font-15px md:font-15px"
                   variant="formButton"
                 >
-                 Register
-
+                  Register
                 </Button>
               </div>
             </div>

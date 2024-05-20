@@ -18,7 +18,6 @@ import {
 } from 'react-share';
 
 interface Props {
- 
   className?: string;
   shareUrl?: string;
 }
@@ -29,12 +28,7 @@ const defaultValues = {
   shareLink: '',
 };
 
-const SocialShareBox: React.FC<Props> = ({
- 
-  className = '',
-  shareUrl = '',
-}) => {
-
+const SocialShareBox: React.FC<Props> = ({ className = '', shareUrl = '' }) => {
   const [copyText, setCopyText] = useState({
     value: shareUrl,
     copied: false,
@@ -60,7 +54,9 @@ const SocialShareBox: React.FC<Props> = ({
       )}
     >
       <Heading className="mb-2">Share in social network</Heading>
-      <Text variant="small">To reach the highest traffic view share this product</Text>
+      <Text variant="small">
+        To reach the highest traffic view share this product
+      </Text>
       <div className="flex flex-wrap items-center mb-4 -mx-1">
         <FacebookShareButton url={shareUrl} className="mx-1">
           <FacebookIcon

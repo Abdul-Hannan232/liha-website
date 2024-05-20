@@ -6,7 +6,6 @@ import CategoryListCardLoader from '@components/ui/loaders/category-list-card-lo
 import { useCategoriesQuery } from '@framework/category/get-all-categories';
 
 export const CategoryFilter = () => {
-
   const {
     data,
     isLoading: loading,
@@ -32,7 +31,7 @@ export const CategoryFilter = () => {
       <div className="max-h-full overflow-hidden border rounded border-border-base">
         <Scrollbar className="w-full category-filter-scrollbar">
           {data?.categories?.data?.length ? (
-            <CategoryFilterMenu items={data?.categories?.data}  />
+            <CategoryFilterMenu items={data?.categories?.data} />
           ) : (
             <div className="min-h-full pt-6 pb-8 px-9 lg:p-8">
               No results found

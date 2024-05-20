@@ -1,4 +1,3 @@
-
 import ManagedModal from '@components/common/modal/managed-modal';
 import { ManagedUIContext } from '@contexts/ui.context';
 import { Inter, Manrope } from 'next/font/google';
@@ -9,7 +8,7 @@ import { Metadata } from 'next';
 import ToasterProvider from 'src/app/provider/toaster-provider';
 import Providers from 'src/app/provider/provider';
 // import  "./[lang]/globals.css"
-import  "./globals.css"
+import './globals.css';
 import AntiqueRefinedLayout from '@layouts/antique-refined/layout';
 
 // external
@@ -54,20 +53,20 @@ export default function RootLayout({
 }) {
   return (
     <>
-    <html dir={dir('en')}>
-      <body className={`${inter.variable} ${manrope.variable}`}>
-        <Providers>
-          <ManagedUIContext>
-          {/* <AntiqueRefinedLayout> */}
-            {children}
-            {/* </ AntiqueRefinedLayout > */}
-            <ManagedModal />
-            <ManagedDrawer />
-            <ToasterProvider />
-          </ManagedUIContext>
-        </Providers>
-      </body>
-    </html>
+      <html dir={dir('en')}>
+        <body className={`${inter.variable} ${manrope.variable}`}>
+          <Providers>
+            <ManagedUIContext>
+              {/* <AntiqueRefinedLayout> */}
+              {children}
+              {/* </ AntiqueRefinedLayout > */}
+              <ManagedModal />
+              <ManagedDrawer />
+              <ToasterProvider />
+            </ManagedUIContext>
+          </Providers>
+        </body>
+      </html>
     </>
   );
 }

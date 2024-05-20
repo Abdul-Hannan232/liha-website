@@ -112,7 +112,7 @@ const Search = forwardRef<HTMLDivElement, Props>(
                           className="py-2.5 ltr:pl-5 rtl:pr-5 ltr:pr-10 rtl:pl-10 scroll-snap-align-start transition-colors duration-200 hover:bg-fill-base"
                           onClick={clear}
                         >
-                          <SearchProduct item={item} key={index}  />
+                          <SearchProduct item={item} key={index} />
                         </div>
                       ))}
                 </div>

@@ -55,7 +55,7 @@ const Counter: React.FC<CounterProps> = ({
           },
         )}
       >
-      {/* > */}
+        {/* > */}
         <span className="sr-only">-</span>
         {/* <span className="sr-only">{t('button-minus')}</span> */}
         <MinusIcon width={size} height={size} opacity="1" />

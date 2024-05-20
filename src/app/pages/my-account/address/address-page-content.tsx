@@ -8,7 +8,7 @@ export default function AddressPageContent() {
   return (
     <>
       {!isLoading ? (
-        <AddressGrid address={data?.data}  />
+        <AddressGrid address={data?.data} />
       ) : (
         <div>Loading...</div>
       )}

@@ -19,7 +19,7 @@ export default async function CheckoutPage() {
               <CheckoutDetails />
             </div>
             <div className="w-full col-start-9 col-end-13 mt-7 lg:mt-0">
-              <CheckoutCard  />
+              <CheckoutCard />
             </div>
           </div>
         </div>

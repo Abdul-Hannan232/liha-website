@@ -23,15 +23,15 @@ export default async function Page() {
           data={banners}
           className="my-3 md:my-4 lg:mt-0 lg:mb-5 xl:mb-6"
         />
-        <FeatureGrid  />
+        <FeatureGrid />
       </Container>
-      <BestSellerProductFeed  />
-      <FreshVegetablesProductFeed  />
-      <ChipsProductFeed  />
-      <CollectionGrid className="mb-12 lg:mb-14 xl:mb-16"  />
-      <CookiesProductFeed  />
+      <BestSellerProductFeed />
+      <FreshVegetablesProductFeed />
+      <ChipsProductFeed />
+      <CollectionGrid className="mb-12 lg:mb-14 xl:mb-16" />
+      <CookiesProductFeed />
       <PopcornJerkyProductFeed />
-      <DownloadApps  />
+      <DownloadApps />
     </>
   );
 }

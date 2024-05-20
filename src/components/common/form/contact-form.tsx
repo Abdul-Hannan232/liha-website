@@ -32,7 +32,9 @@ const ContactForm = () => {
         variant="solid"
         label="Full Name (required)"
         placeholder="Enter Your Full Name"
-        {...register('name', { required: 'You must need to provide your full name' })}
+        {...register('name', {
+          required: 'You must need to provide your full name',
+        })}
         error={errors.name?.message}
       />
       <Input

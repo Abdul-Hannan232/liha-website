@@ -10,11 +10,7 @@ export const metadata: Metadata = {
   title: 'Bundles',
 };
 
-export default async function Page({
-}: {
-  params: {
-  };
-}) {
+export default async function Page({}: { params: {} }) {
   return (
     <>
       <BundleHeroSection />
@@ -22,13 +18,10 @@ export default async function Page({
       <Container>
         <ProductBundleGrid
           className="pb-20 mt-7 md:mt-8 xl:mt-10"
-          element={
-            <BannerGridTwo data={banners} className="py-5"  />
-          }
-         
+          element={<BannerGridTwo data={banners} className="py-5" />}
         />
       </Container>
-      <DownloadApps  />
+      <DownloadApps />
     </>
   );
 }

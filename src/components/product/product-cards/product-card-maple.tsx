@@ -18,11 +18,7 @@ interface ProductProps {
   product: Product;
   className?: string;
 }
-function RenderPopupOrAddToCart({
-  props,
-}: {
-  props: Object;
-}) {
+function RenderPopupOrAddToCart({ props }: { props: Object }) {
   let { data }: any = props;
 
   const { id, quantity, product_type } = data ?? {};
@@ -47,11 +43,9 @@ function RenderPopupOrAddToCart({
         className="w-full grid grid-cols-[1fr,max-content] items-center bg-[#F4F6F8] rounded-[4px] mt-[10px] no-underline text-[15px] transition-all text-gray-600 hover:text-black font-medium"
         aria-label="Count Button"
       >
-        <span className="flex items-center justify-center lg:hidden">
-        View
-        </span>
+        <span className="flex items-center justify-center lg:hidden">View</span>
         <span className="hidden lg:flex sm:items-center sm:justify-center">
-        View Products
+          View Products
         </span>
         <span className="w-10 h-10 bg-[#E5E8EC] rounded-tr-[4px] rounded-br-[4px] flex items-center justify-center ml-auto">
           <Eye width={iconSize} height={iconSize} opacity="1" />
@@ -61,10 +55,7 @@ function RenderPopupOrAddToCart({
   }
   return <AddToCart data={data} variant="venus" />;
 }
-const ProductCardMaple: React.FC<ProductProps> = ({
-  product,
-  className,
-}) => {
+const ProductCardMaple: React.FC<ProductProps> = ({ product, className }) => {
   const { name, image, unit, product_type } = product ?? {};
   const { openModal } = useModalAction();
   // const { t } = useTranslation(lang, 'common');

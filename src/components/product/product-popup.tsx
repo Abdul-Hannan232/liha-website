@@ -53,7 +53,6 @@ const breakpoints = {
 };
 
 export default function ProductPopup() {
-
   const { data } = useModalState();
   const { width } = useWindowSize();
   const { closeModal } = useModalAction();
@@ -222,7 +221,7 @@ export default function ProductPopup() {
                   <>
                     {Number(quantity) > 0 || !outOfStock ? (
                       <span className="text-sm font-medium text-yellow">
-                        Only + ' ' + quantity + ' ' + item left!
+                        {` Only  ${quantity} item left!`}
                       </span>
                     ) : (
                       <div className="text-base text-brand-danger whitespace-nowrap">

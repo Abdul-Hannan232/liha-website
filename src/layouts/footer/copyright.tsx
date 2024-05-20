@@ -2,7 +2,6 @@ import Image from '@components/ui/image';
 import { siteSettings } from '@settings/site-settings';
 
 interface CopyrightProps {
- 
   variant?: 'default' | 'medium';
   payment?: {
     id: string | number;
@@ -15,7 +14,6 @@ interface CopyrightProps {
 }
 const year = new Date().getFullYear();
 const Copyright: React.FC<CopyrightProps> = ({
-
   payment,
   variant = 'default',
 }) => {

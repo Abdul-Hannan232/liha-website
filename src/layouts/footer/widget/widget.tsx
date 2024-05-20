@@ -7,16 +7,13 @@ import cn from 'classnames';
 interface WidgetsProps {
   variant?: 'default' | 'medium';
   widgets: {
-    id: number; 
+    id: number;
     widgetTitle: string;
     lists: any;
   }[];
 }
 
-const Widgets: React.FC<WidgetsProps> = ({
-  widgets,
-  variant = 'default',
-}) => {
+const Widgets: React.FC<WidgetsProps> = ({ widgets, variant = 'default' }) => {
   const { social } = footer;
   return (
     <div

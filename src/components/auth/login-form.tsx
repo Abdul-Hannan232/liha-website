@@ -19,10 +19,7 @@ interface LoginFormProps {
   className?: string;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({
-  isPopup = true,
-  className,
-}) => {
+const LoginForm: React.FC<LoginFormProps> = ({ isPopup = true, className }) => {
   const { closeModal, openModal } = useModalAction();
   const { mutate: login, isPending } = useLoginMutation();
   const [remember, setRemember] = useState(false);
@@ -75,10 +72,10 @@ const LoginForm: React.FC<LoginFormProps> = ({
               <Logo />
             </div>
             <h4 className="text-xl font-semibold text-brand-dark sm:text-2xl sm:pt-3 ">
-            Welcome Back!
+              Welcome Back!
             </h4>
             <div className="mt-3 mb-1 text-sm text-center sm:text-15px text-body">
-            Don’t have an account?
+              Don’t have an account?
               <button
                 type="button"
                 className="text-sm font-semibold text-brand sm:text-15px ltr:ml-1 rtl:mr-1 hover:no-underline focus:outline-none"
@@ -95,7 +92,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
           >
             <div className="flex flex-col space-y-3.5">
               <Input
-                label='Email Address'
+                label="Email Address"
                 type="email"
                 variant="solid"
                 {...register('email', {
@@ -103,13 +100,13 @@ const LoginForm: React.FC<LoginFormProps> = ({
                   pattern: {
                     value:
                       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                    message:'Please provide valid email address',
+                    message: 'Please provide valid email address',
                   },
                 })}
                 error={errors.email?.message}
               />
               <PasswordInput
-                label='Password'
+                label="Password"
                 error={errors.password?.message}
                 {...register('password', {
                   required: `You must need to provide your password`,
@@ -124,7 +121,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
                     onClick={() => setRemember(!remember)}
                     className="mt-1 text-sm cursor-pointer shrink-0 text-heading ltr:pl-2.5 rtl:pr-2.5"
                   >
-                   Remember me
+                    Remember me
                   </label>
                 </div>
                 <div className="flex ltr:ml-auto rtl:mr-auto mt-[3px]">
@@ -152,7 +149,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
           </form>
           <div className="relative flex flex-col items-center justify-center text-sm">
             <span className="mt-6 text-sm text-brand-dark opacity-70">
-            or continue with
+              or continue with
             </span>
           </div>
 

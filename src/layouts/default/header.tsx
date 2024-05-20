@@ -84,7 +84,7 @@ function Header() {
                 isAuthorized={isAuthorized}
                 href={`${ROUTES.ACCOUNT}`}
                 btnProps={{
-                  children: 'Sign In', 
+                  children: 'Sign In',
                   onClick: handleLogin,
                 }}
               >
@@ -140,11 +140,11 @@ function Header() {
                     // href={`/${lang}${ROUTES.ACCOUNT}`}
                     href={`${ROUTES.ACCOUNT}`}
                     btnProps={{
-                      children:'Sign In',
+                      children: 'Sign In',
                       onClick: handleLogin,
                     }}
                   >
-                   Account
+                    Account
                   </AuthMenu>
                 </div>
                 {/* End of auth */}

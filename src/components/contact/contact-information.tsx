@@ -24,7 +24,8 @@ const data = [
       <PhoneIcon className="w-12 lg:w-13 xl:w-[60px] h-12 lg:h-13 xl:h-[60px]" />
     ),
     name: 'Call us anytime',
-    description: 'Change the design through a range +89 5631 564    +88 5321 036',
+    description:
+      'Change the design through a range +89 5631 564    +88 5321 036',
   },
   {
     id: 3,
@@ -36,7 +37,7 @@ const data = [
     description: 'support@demoagency.com hire.us@demoteam.io',
   },
 ];
-const ContactInformation: FC<{ lang: string }> = () => {
+const ContactInformation = () => {
   return (
     <>
       {data.length > 0 && (

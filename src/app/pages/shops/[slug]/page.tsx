@@ -5,9 +5,8 @@ import DownloadApps from '@components/common/download-apps';
 export default async function ShopDetailsPage() {
   return (
     <>
-      <ShopsSingleDetails  />
-      <DownloadApps  />
+      <ShopsSingleDetails />
+      <DownloadApps />
     </>
   );
 }
-

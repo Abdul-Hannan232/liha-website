@@ -15,7 +15,6 @@ interface Props {
 }
 
 const FeaturedCard: React.FC<Props> = ({ item, className }) => {
-
   const { icon, title, description } = item;
   return (
     <div

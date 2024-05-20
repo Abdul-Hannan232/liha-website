@@ -13,7 +13,7 @@ interface ContactFormValues {
   default: boolean;
 }
 
-const AddContactForm: React.FC<{ lang: string }> = () => {
+const AddContactForm = () => {
   const { data } = useModalState();
   const { closeModal } = useModalAction();
   const {
@@ -71,7 +71,7 @@ const AddContactForm: React.FC<{ lang: string }> = () => {
           </label>
         </div>
         <Button className="h-11 md:h-12 w-full mt-1.5" type="submit">
-        Save Number
+          Save Number
         </Button>
       </form>
     </div>

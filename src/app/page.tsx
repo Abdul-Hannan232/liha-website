@@ -1,4 +1,3 @@
-
 import Container from '@components/ui/container';
 import { refinedSixHeroBanner as heroBanner } from '@framework/static/banner';
 import { Metadata } from 'next';
@@ -9,7 +8,6 @@ import Footer from '@layouts/footer/footer';
 import Header from '@layouts/ancient/header';
 import MobileNavigation from '@layouts/mobile-navigation/mobile-navigation';
 
-
 export const metadata: Metadata = {
   title: 'Liha',
 };
@@ -17,8 +15,8 @@ export const metadata: Metadata = {
 export default async function Page() {
   return (
     <>
-          <Header />
-      <Container className='mt-24'>
+      <Header />
+      <Container className="mt-24">
         <HeroCarouselBlock heroBanner={heroBanner} />
         <CategoryWithProduct />
       </Container>
