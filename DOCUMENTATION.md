@@ -24,7 +24,7 @@ Tech specification for this template is given below
 
 ## Getting Started & Installation
 
-For getting started with the template you have to follow the below procedure. First navigate to the `borobazar` directory.
+For getting started with the template you have to follow the below procedure. First navigate to the `liha` directory.
 
 ### Step 1 : Configure your env file
 
