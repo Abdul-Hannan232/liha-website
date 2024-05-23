@@ -23,5 +23,5 @@ export const ROUTES = {
   BUNDLE: '/pages/bundles',
   CATEGORY: '/pages/category',
   ORDER: '/pages/complete-order',
-  WISHLIST: '/pages/pages/my-account/wishlist',
+  WISHLIST: '/pages/my-account/wishlist',
 };

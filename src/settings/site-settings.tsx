@@ -222,24 +222,77 @@ export const siteSettings = {
     pagesMenu: [
       {
         id: 1,
-        path: '/pages/search',
-        label: 'menu-best-deals',
+        path: '/',
+        label: 'Home',
       },
       {
         id: 2,
-        path: '/pages/about-us',
-        label: 'menu-about-us',
-      },
-      {
-        id: 3,
-        path: '/pages/contact-us',
-        label: 'menu-contact-us',
+        path: '/pages/search',
+        label: 'Categories',
+        subMenu: [
+          {
+            id: 1,
+            path: '/pages/search',
+            label: 'Fresh Vegetables',
+          },
+          {
+            id: 2,
+            path: '/pages/search',
+            label: 'Diet Nutrition',
+          },
+          {
+            id: 3,
+            path: '/pages/search',
+            label: 'Healthy Foods',
+          },
+          {
+            id: 4,
+            path: '/pages/search',
+            label: 'Grocery Items',
+          },
+          {
+            id: 5,
+            path: '/pages/search',
+            label: 'Beaf Steak',
+          },
+        ],
       },
       {
         id: 4,
-        path: '/pages/faq',
-        label: 'menu-faq',
+        path: '/pages/search',
+        label: 'Search',
       },
+
+      {
+        id: 4,
+        path: '/pages/my-account/account-settings',
+        label: 'My Account',
+      },
+      {
+        id: 5,
+        path: '/pages/faq',
+        label: 'Faq',
+      },
+      // {
+      //   id: 1,
+      //   path: '/pages/search',
+      //   label: 'menu-best-deals',
+      // },
+      // {
+      //   id: 2,
+      //   path: '/pages/about-us',
+      //   label: 'menu-about-us',
+      // },
+      // {
+      //   id: 3,
+      //   path: '/pages/contact-us',
+      //   label: 'menu-contact-us',
+      // },
+      // {
+      //   id: 4,
+      //   path: '/pages/faq',
+      //   label: 'menu-faq',
+      // },
     ],
   },
 };
