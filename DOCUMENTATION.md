@@ -133,7 +133,7 @@ const { data, isLoading, error } = useProductQuery(slug as string);
 
 If you want to host the template in vercel.com then follow the below procedure
 
-- Navigate to `borobazar`
+- Navigate to `liha`
 - Put your api endpoint at `vercel.json` file.
 - Now run below command
 

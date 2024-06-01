@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import Link from '@components/ui/link';
 import { IoIosArrowForward } from 'react-icons/io';
-import Image from '@components/ui/image';
+import Image from '@components/ui/image'; 
 import { ROUTES } from '@utils/routes';
 
 function SidebarMenuItem({ className, item, depth = 0, lang }: any) {

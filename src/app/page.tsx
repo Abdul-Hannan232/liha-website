@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 export default async function Page() {
   return (
     <>
+    
       <Header />
       <Container className="mt-24">
         <HeroCarouselBlock heroBanner={heroBanner} />
@@ -23,6 +24,7 @@ export default async function Page() {
       <DownloadAppsTwo />
       <Footer />
       <MobileNavigation />
+
     </>
   );
 }

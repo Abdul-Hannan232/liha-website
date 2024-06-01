@@ -16,10 +16,10 @@ const HeaderMenu: React.FC<MenuProps> = ({ data, className }) => {
         className,
       )}
     >
-      {data?.map((item: any) => (
+      {data?.map((item: any, index: number) => (
         <div
           className="relative py-3 mx-3 cursor-pointer menuItem group xl:mx-4"
-          key={item.id}
+          key={item.id + index}
         >
           <Link
             href={`${item.path}`}
@@ -45,7 +45,8 @@ const HeaderMenu: React.FC<MenuProps> = ({ data, className }) => {
                       data={menu}
                       hasSubMenu={menu.subMenu}
                       menuName={menuName}
-                      key={menuName}
+                      // key={menuName}
+                      key={index}
                       menuIndex={index}
                     />
                   );

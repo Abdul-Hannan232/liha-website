@@ -13,6 +13,7 @@ import Switch from '@components/ui/switch';
 import CloseButton from '@components/ui/close-button';
 import { FaFacebook, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 import cn from 'classnames';
+import { useUser } from '@contexts/user/userContext';
 
 interface LoginFormProps {
   isPopup?: boolean;
@@ -21,7 +22,8 @@ interface LoginFormProps {
 
 const LoginForm: React.FC<LoginFormProps> = ({ isPopup = true, className }) => {
   const { closeModal, openModal } = useModalAction();
-  const { mutate: login, isPending } = useLoginMutation();
+  const { signin } = useUser();
+  const { mutate: login, isPending } = useLoginMutation(signin);
   const [remember, setRemember] = useState(false);
 
   const {
@@ -30,20 +32,20 @@ const LoginForm: React.FC<LoginFormProps> = ({ isPopup = true, className }) => {
     formState: { errors },
   } = useForm<LoginInputType>();
 
-  function onSubmit({ email, password, remember_me }: LoginInputType) {
+  function onSubmit({ email, password, remember }: LoginInputType) {
     login({
       email,
       password,
-      remember_me,
+      remember,
     });
     closeModal();
-    console.log(email, password, remember_me, 'data');
+    // console.log(email, password, remember, 'data');
   }
   function handelSocialLogin() {
     login({
       email: 'demo@demo.com',
       password: 'demo',
-      remember_me: true,
+      remember: true,
     });
     closeModal();
   }

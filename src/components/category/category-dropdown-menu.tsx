@@ -18,6 +18,10 @@ export default function CategoryDropdownMenu({
   } = useCategoriesQuery({
     limit: 15,
   });
+
+
+  console.log('--------------',data);
+  
   return (
     <div className={cn('absolute z-30', className)}>
       <div className="max-h-full overflow-hidden">
@@ -33,6 +37,7 @@ export default function CategoryDropdownMenu({
             />
           ))
         ) : (
+          // <CategoryMenu items={data?.categories?.data.slice(0, 9)} />
           <CategoryMenu items={data?.categories?.data.slice(0, 9)} />
         )}
       </div>

@@ -25,7 +25,7 @@ export const useCart = () => {
     throw new Error(`useCart must be used within a CartProvider`);
   }
   return context;
-};
+}; 
 
 export function CartProvider(props: React.PropsWithChildren<any>) {
   const [savedCart, saveCart] = useLocalStorage(
@@ -35,7 +35,7 @@ export function CartProvider(props: React.PropsWithChildren<any>) {
   const [state, dispatch] = React.useReducer(
     cartReducer,
     JSON.parse(savedCart!),
-  );
+  ); 
 
   React.useEffect(() => {
     saveCart(JSON.stringify(state));

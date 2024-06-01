@@ -6,6 +6,8 @@ import { FaChevronDown } from 'react-icons/fa';
 import { usePathname, useRouter } from 'next/navigation';
 import { useLogoutMutation } from '@framework/auth/use-logout';
 import LogoutIcon from '@components/icons/account-logout';
+// import { useUser } from '@contexts/user/userContext';
+
 
 type Option = {
   name: string;
@@ -14,6 +16,7 @@ type Option = {
 };
 
 export default function AccountNavMobile({ options }: { options: Option[] }) {
+  // const { logoutuser } = useUser();
   const router = useRouter();
   const pathname = usePathname();
   const pathnameSplit = pathname.split('/');
@@ -34,7 +37,10 @@ export default function AccountNavMobile({ options }: { options: Option[] }) {
     setSelectedItem(slugs);
     router.push(`${slugs.slug}`);
   }
+
+  // console.log('logoutuser', logoutuser);
   const { mutate: logout } = useLogoutMutation();
+  // const { mutate: logout } = useLogoutMutation(logoutuser);
 
   return (
     <Listbox value={selectedItem} onChange={handleItemClick}>

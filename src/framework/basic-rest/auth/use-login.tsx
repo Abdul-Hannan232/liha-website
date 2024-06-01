@@ -1,25 +1,42 @@
 import { useUI } from '@contexts/ui.context';
 import Cookies from 'js-cookie';
 import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
+
 
 export interface LoginInputType {
-  email: string;
+  email: string; 
   password: string;
-  remember_me: boolean;
+  remember: boolean;
 }
 async function login(input: LoginInputType) {
-  return {
-    token: `${input.email}.${input.remember_me}`.split('').reverse().join(''),
-  };
+
+  try {
+    const response = await axios.post(
+      'http://localhost:5055/api/user/login',
+      input,
+    );  
+    
+    // console.log('response', response.data);
+
+    return response.data;
+  } catch (error) {
+    throw new Error('Signup failed');
+    // throw new Error(error.response?.data?.message || 'Signup failed');
+  }
+  // return {
+  //   token: `${input.email}.${input.remember}`.split('').reverse().join(''),
+  // };
 }
-export const useLoginMutation = () => {
+export const useLoginMutation = (signin: Function) => {
   const { authorize, closeModal } = useUI();
   return useMutation({
     mutationFn: (input: LoginInputType) => login(input),
     onSuccess: (data) => {
       Cookies.set('auth_token', data.token);
+      signin(data.user)
       authorize();
-      closeModal();
+      // closeModal();
     },
     onError: (data) => {
       console.log(data, 'login error response');

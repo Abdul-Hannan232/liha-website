@@ -7,6 +7,8 @@ import ManagedDrawer from '@components/common/drawer/managed-drawer';
 import { Metadata } from 'next';
 import ToasterProvider from 'src/app/provider/toaster-provider';
 import Providers from 'src/app/provider/provider';
+import { UserProvider } from '@contexts/user/userProvider';
+
 // import  "./[lang]/globals.css"
 import './globals.css';
 import AntiqueRefinedLayout from '@layouts/antique-refined/layout';
@@ -56,6 +58,7 @@ export default function RootLayout({
       <html dir={dir('en')}>
         <body className={`${inter.variable} ${manrope.variable}`}>
           <Providers>
+            <UserProvider>
             <ManagedUIContext>
               {/* <AntiqueRefinedLayout> */}
               {children}
@@ -64,6 +67,7 @@ export default function RootLayout({
               <ManagedDrawer />
               <ToasterProvider />
             </ManagedUIContext>
+            </UserProvider>
           </Providers>
         </body>
       </html>

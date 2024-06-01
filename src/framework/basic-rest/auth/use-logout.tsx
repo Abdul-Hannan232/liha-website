@@ -6,7 +6,7 @@ import { useMutation } from '@tanstack/react-query';
 export interface LoginInputType {
   email: string;
   password: string;
-  remember_me: boolean;
+  remember: boolean;
 }
 async function logout() {
   return {
@@ -15,12 +15,15 @@ async function logout() {
   };
 }
 export const useLogoutMutation = () => {
+// export const useLogoutMutation = (logoutuser: Function) => {
   const { unauthorize } = useUI();
   const router = useRouter();
   return useMutation({
     mutationFn: logout,
     onSuccess: (_data) => {
       Cookies.remove('auth_token');
+      // logoutuser()
+      localStorage.removeItem('user');
       unauthorize();
       // router.push(`/${lang}`);
       router.push(`/`);

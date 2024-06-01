@@ -14,7 +14,8 @@ import Switch from '@components/ui/switch';
 import CloseButton from '@components/ui/close-button';
 import cn from 'classnames';
 import { ROUTES } from '@utils/routes';
-// import { useTranslation } from 'src/app/i18n/client';
+import { useUser } from '@contexts/user/userContext';
+
 
 interface SignUpFormProps {
   isPopup?: boolean;
@@ -25,10 +26,11 @@ export default function SignUpForm({
   isPopup = true,
   className,
 }: SignUpFormProps) {
-  // const { t } = useTranslation(lang);
-  const { mutate: signUp, isPending } = useSignUpMutation();
+  const { signin } = useUser();
+  const { mutate: signUp, isPending } = useSignUpMutation(signin);
   const { closeModal, openModal } = useModalAction();
   const [remember, setRemember] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -37,13 +39,24 @@ export default function SignUpForm({
   function handleSignIn() {
     return openModal('LOGIN_VIEW');
   }
-  function onSubmit({ name, email, password, remember_me }: SignUpInputType) {
-    signUp({
-      name,
-      email,
-      password,
-      remember_me,
-    });
+  function onSubmit({ name, email, password, remember }: SignUpInputType) {
+    signUp(
+      {
+        name,
+        email,
+        password,
+        remember,
+      }, {
+        onSuccess: () => {
+          closeModal();
+          console.log(name, email, password, 'sign form values');
+        },
+        onError: (error) => {
+          console.error('Signup failed:', error);
+        },
+      },
+    );
+    closeModal();
     console.log(name, email, password, 'sign form values');
   }
   return (
@@ -91,7 +104,7 @@ export default function SignUpForm({
           >
             <div className="flex flex-col space-y-4">
               <Input
-                label=""
+                label="Name"
                 type="text"
                 variant="solid"
                 {...register('name', {

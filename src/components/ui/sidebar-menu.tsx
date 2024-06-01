@@ -14,9 +14,12 @@ function SidebarMenuItem({ className, item, depth = 0 }: any) {
   const { updateQueryparams } = useQueryParam(pathname ?? '/');
   const [formState, setFormState] = useState<string>('');
   const active = searchParams.get('category');
-  const isActive =
-    active === item.slug ||
-    item?.children?.some((_item: any) => _item.slug === active);
+  const isActive = false
+    // active === item.slug ||
+    // item?.children?.some((_item: any) => _item.slug === active);
+  // const isActive =
+  //   active === item.slug ||
+  //   item?.children?.some((_item: any) => _item.slug === active);
   const [isOpen, setOpen] = useState<boolean>(isActive);
   useEffect(() => {
     setOpen(isActive);
@@ -114,7 +117,7 @@ function SidebarMenuItem({ className, item, depth = 0 }: any) {
           </ul>
         </li>
       ) : null}
-    </>
+    </> 
   );
 }
 
