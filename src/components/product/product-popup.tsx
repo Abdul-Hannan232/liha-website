@@ -71,8 +71,24 @@ export default function ProductPopup() {
     currencyCode: 'USD',
   });
   const variations = getVariations(data.variations);
-  const { slug, image, name, unit, description, gallery, tag, quantity } = data;
-  const productUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}${ROUTES.PRODUCT}/${slug}`;
+  // const { slug, image, name, unit, description, gallery, tag, quantity } = data;
+  const {
+    slug,
+    image,
+    title,
+    unit,
+    description,
+    gallery,
+    tag,
+    parent,
+    quantity,
+    stock,
+    status,
+    category_id
+  } = data;
+  // console.log('data???????????? ', data);
+  
+  const productUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}${ROUTES.PRODUCT}/${title}`;
   // const productUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/${lang}${ROUTES.PRODUCT}/${slug}`;
   const handleChange = () => {
     setShareButtonStatus(!shareButtonStatus);
@@ -137,11 +153,12 @@ export default function ProductPopup() {
   function navigateToProductPage() {
     closeModal();
     // router.push(`/${lang}/${ROUTES.PRODUCT}/${slug}`);
-    router.push(`${ROUTES.PRODUCT}/${slug}`);
+    router.push(`${ROUTES.PRODUCT}/${title}`);
+    // router.push(`${ROUTES.PRODUCT}/${slug}`);
   }
 
   useEffect(() => setSelectedQuantity(1), [data.id]);
-
+  // console.log('image>>>>>?>>>>>>>>>>> ', image)
   return (
     <div className="md:w-[600px] lg:w-[940px] xl:w-[1180px] 2xl:w-[1360px] mx-auto p-1 lg:p-0 xl:p-3 bg-brand-light rounded-md">
       <CloseButton onClick={closeModal} />
@@ -154,8 +171,10 @@ export default function ProductPopup() {
               ) : (
                 <div className="flex items-center justify-center w-auto">
                   <Image
-                    src={image?.original ?? productGalleryPlaceholder}
-                    alt={name!}
+                    src={image.replace('http://localhost:4000/', ' http://localhost:5055/') ?? productGalleryPlaceholder}
+                    // src={image?.original ?? productGalleryPlaceholder}
+                    // alt={name!}
+                    alt={title!}
                     width={650}
                     height={590}
                     style={{ width: 'auto' }}
@@ -172,10 +191,11 @@ export default function ProductPopup() {
                   role="button"
                 >
                   <h2 className="text-lg font-medium transition-colors duration-300 text-brand-dark md:text-xl xl:text-2xl hover:text-brand">
-                    {name}
+                    {title}
+                    {/* {name} */}
                   </h2>
                 </div>
-                {unit && isEmpty(variations) ? (
+                {/* {unit && isEmpty(variations) ? (
                   <div className="text-sm font-medium md:text-15px">{unit}</div>
                 ) : (
                   <VariationPrice
@@ -183,7 +203,7 @@ export default function ProductPopup() {
                     minPrice={data.min_price}
                     maxPrice={data.max_price}
                   />
-                )}
+                )} */}
 
                 {isEmpty(variations) && (
                   <div className="flex items-center mt-5">
@@ -219,9 +239,9 @@ export default function ProductPopup() {
                 {/* check that item isInCart and place the available quantity or the item quantity */}
                 {isEmpty(variations) && (
                   <>
-                    {Number(quantity) > 0 || !outOfStock ? (
+                    {Number(stock) > 0  ? (
                       <span className="text-sm font-medium text-yellow">
-                        {` Only  ${quantity} item left!`}
+                        {` Only  ${stock} item left!`}
                       </span>
                     ) : (
                       <div className="text-base text-brand-danger whitespace-nowrap">
@@ -231,7 +251,16 @@ export default function ProductPopup() {
                   </>
                 )}
 
-                {!isEmpty(selectedVariation) && (
+                {/* {status === 'Hide' ? (
+                  <span className="text-sm font-medium text-yellow">
+                    Out Of Stock
+                  </span>
+                ) : (
+                  <span className="text-sm font-medium text-brand">
+                    Available
+                  </span>
+                )} */}
+                {/* {!isEmpty(selectedVariation) && (
                   <span className="text-sm font-medium text-yellow">
                     {selectedVariation?.is_disable ||
                     selectedVariation.quantity === 0
@@ -244,7 +273,7 @@ export default function ProductPopup() {
                           'item left!'
                         }`}
                   </span>
-                )}
+                )} */}
               </div>
 
               <div className="pt-1.5 lg:pt-3 xl:pt-4 space-y-2.5 md:space-y-3.5">
@@ -265,7 +294,8 @@ export default function ProductPopup() {
                 <Button
                   onClick={addToCart}
                   className="w-full px-1.5"
-                  disabled={!isSelected}
+                  // disabled={!isSelected}
+                  disabled={status==='Hide'}
                   loading={addToCartLoader}
                 >
                   <CartIcon color="#ffffff" className="ltr:mr-3 rtl:ml-3" />
@@ -314,8 +344,8 @@ export default function ProductPopup() {
                   <li className="relative inline-flex items-center justify-center text-sm md:text-15px text-brand-dark text-opacity-80 ltr:mr-2 rtl:ml-2 top-1">
                     <LabelIcon className="ltr:mr-2 rtl:ml-2" /> Tags :
                   </li>
-                  {tag?.map((item: any) => (
-                    <li className="inline-block p-[3px]" key={`tag-${item.id}`}>
+                  {JSON.parse(tag)?.map((item: any, i: number) => (
+                    <li className="inline-block p-[3px]" key={`tag-${i}`}>
                       <TagLabel data={item} />
                     </li>
                   ))}
@@ -342,6 +372,7 @@ export default function ProductPopup() {
         <RelatedProductFeed
           carouselBreakpoint={breakpoints}
           className="mb-0.5 md:mb-2 lg:mb-3.5 xl:mb-4 2xl:mb-6"
+          uniqueKey={category_id}
         />
       </div>
     </div>

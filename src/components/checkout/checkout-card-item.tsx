@@ -21,6 +21,7 @@ export const CheckoutItem: React.FC<{ item: Item }> = ({ item }) => {
         />
       </div>
       <h6 className="font-normal text-15px text-brand-dark ltr:pl-3 rtl:pr-3">
+        hello
         {generateCartItemName(item.name, item.attributes)}
       </h6>
       <div className="flex font-normal ltr:ml-auto rtl:mr-auto text-15px text-brand-dark ltr:pl-2 rtl:pr-2 shrink-0">

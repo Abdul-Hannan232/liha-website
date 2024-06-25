@@ -54,7 +54,7 @@ export const BrandFilter = () => {
               label={item.name}
               name={item.name.toLowerCase()}
               checked={formState.includes(item.slug)}
-              value={item.slug}
+              value={item.name}
               onChange={handleItemClick}
             />
           ))}
@@ -71,8 +71,8 @@ export const BrandFilter = () => {
                           key={`${item.name}-key-${item.id}`}
                           label={item.name}
                           name={item.name.toLowerCase()}
-                          checked={formState.includes(item.slug)}
-                          value={item.slug}
+                          checked={formState.includes(item.name)}
+                          value={item.name}
                           onChange={handleItemClick}
                         />
                       ))}

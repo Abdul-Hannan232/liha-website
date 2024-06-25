@@ -10,32 +10,42 @@ import { LIMITS } from '@framework/utils/limits';
 import { Product } from '@framework/types';
 import useQueryParam from '@utils/use-query-params';
 
-interface ProductGridProps {
+interface ProductGridProps { 
   className?: string;
+    data: any;
+    isLoading: boolean;
+    error: any;
+    fetchNextPage:any;
+    hasNextPage:any;
+    loadingMore:any;
 }
 
-export const ProductGrid: FC<ProductGridProps> = ({ className = '' }) => {
-  const pathname = usePathname();
-  const { getParams, query } = useQueryParam(pathname ?? '/');
-  const newQuery: any = getParams(
-    // @ts-ignore
-    `${process.env.NEXT_PUBLIC_WEBSITE_URL}${query}`,
-  );
+export const ProductGrid: FC<ProductGridProps> = ({data,loadingMore,hasNextPage, isLoading, error, className = '', fetchNextPage }) => {
+// export const ProductGrid: FC<ProductGridProps> = ({ className = ''}) => {
+  // const pathname = usePathname();
+  // const { getParams, query } = useQueryParam(pathname ?? '/');
+  // const newQuery: any = getParams(
+  //   // @ts-ignore
+  //   `${process.env.NEXT_PUBLIC_WEBSITE_URL}${query}`,
+  // );  
+  //  console.log('newQuery, newQuery' , newQuery);
 
-  const {
-    isFetching: isLoading,
-    isFetchingNextPage: loadingMore,
-    fetchNextPage,
-    hasNextPage,
-    data,
-    error,
-  } = useProductsQuery({
-    limit: LIMITS.PRODUCTS_LIMITS,
-    // @ts-ignore
-    newQuery,
-  });
+  // const {
+  //   isFetching: isLoading,
+  //   isFetchingNextPage: loadingMore,
+  //   fetchNextPage,
+  //   hasNextPage,
+  //   data,
+  //   error,
+  // } = useProductsQuery({
+  //   // limit: LIMITS.PRODUCTS_LIMITS,
+  //   // @ts-ignore
+  //   text: newQuery.category ? `category=${newQuery?.category}` : 'all=true',
+  // });
 
+  
   return (
+  
     <>
       <div
         className={cn(

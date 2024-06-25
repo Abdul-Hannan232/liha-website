@@ -23,6 +23,7 @@
       "@settings/*": ["src/settings/*"],
       "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"],
+      "@pages/*": ["src/app/*"],
       "@assets/*": ["src/assets/*"],
       "@public/*": ["public/*"]
     },

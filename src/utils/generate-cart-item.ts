@@ -3,10 +3,11 @@ interface Item {
   id: string | number;
   name: string;
   slug: string;
-  image: {
-    thumbnail: string;
-    [key: string]: unknown;
-  };
+  image: string;
+  // image: {
+  //   thumbnail: string;
+  //   [key: string]: unknown;
+  // };
   price: number;
   sale_price?: number;
   quantity?: number;
@@ -21,26 +22,30 @@ interface Variation {
   [key: string]: unknown;
 }
 export function generateCartItem(item: Item, variation: Variation) {
-  const { id, name, slug, image, price, sale_price, quantity, unit } = item;
+  const { id,title, name, slug, image, price, sale_price, quantity, unit } = item;
   if (!isEmpty(variation)) {
     return {
       id: `${id}.${variation.id}`,
       productId: id,
-      name: `${name} - ${variation.title}`,
+      name: `${title}`,
+      // name: `${name} - ${variation.title}`,
       slug,
       unit,
       stock: variation.quantity,
       price: variation.sale_price ? variation.sale_price : variation.price,
-      image: image?.thumbnail,
+      image: image,
+      // image: image?.thumbnail,
       variationId: variation.id,
     };
   }
   return {
     id,
-    name,
+    title,
+    // name,
     slug,
     unit,
-    image: image?.thumbnail,
+    image: image,
+    // image: image?.thumbnail,
     stock: quantity,
     price: sale_price ? sale_price : price,
   };

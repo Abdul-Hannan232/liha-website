@@ -23,12 +23,13 @@ export type ProductsQueryOptionsType = {
 export type QueryOptionsType = {
   text?: string;
   category?: string;
+  categoryId?:number;
   status?: string;
   limit?: number;
 };
 
 export type QueryParamsType = {
-  queryKey: QueryKey;
+  queryKey: QueryKey; 
   pageParam?: string;
 };
 export type Attachment = {
@@ -71,11 +72,12 @@ export type Dietary = {
   slug: string;
   [key: string]: unknown;
 };
-export type Tag = {
-  id: string | number;
-  name: string;
-  slug: string;
-};
+export type Tag =string[]
+// export type Tag = {
+//   id: string | number;
+//   name: string;
+//   slug: string;
+// };
 export type Product = {
   id: number | string;
   name: string;
@@ -87,7 +89,8 @@ export type Product = {
   sale_price?: number;
   min_price?: number;
   max_price?: number;
-  image: Attachment;
+  image: string;
+  // image: Attachment;
   sku?: string;
   gallery?: Attachment[];
   category?: Category;

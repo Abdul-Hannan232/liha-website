@@ -33,6 +33,8 @@ const SocialShareBox: React.FC<Props> = ({ className = '', shareUrl = '' }) => {
     value: shareUrl,
     copied: false,
   });
+
+  
   const { register } = useForm<NewsLetterFormValues>({
     defaultValues,
   });

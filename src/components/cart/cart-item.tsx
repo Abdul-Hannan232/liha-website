@@ -11,6 +11,8 @@ type CartItemProps = {
 };
 
 const CartItem: React.FC<CartItemProps> = ({ item }) => {
+  // console.log('cart ',item);
+
   const { isInStock, addItemToCart, removeItemFromCart, clearItemFromCart } =
     useCart();
   const { price: totalPrice } = usePrice({
@@ -21,15 +23,20 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
   return (
     <div
       className={`group w-full h-auto flex justify-start items-center text-brand-light py-4 md:py-7 border-b border-border-one border-opacity-70 relative last:border-b-0`}
-      title={item?.name}
+      title={item?.title}
+      // title={item?.name}
     >
       <div className="relative flex rounded overflow-hidden shrink-0 cursor-pointer w-[90px] md:w-[100px] h-[90px] md:h-[100px]">
         <Image
-          src={item?.image ?? '/assets/placeholder/cart-item.svg'}
+          src={
+            item?.image.replace('4000', '5055') ??
+            '/assets/placeholder/cart-item.svg'
+          }
           width={100}
           height={100}
           loading="eager"
-          alt={item.name || 'Product Image'}
+          alt={item.title || 'Product Image'}
+          // alt={item.name || 'Product Image'}
           style={{ width: 'auto' }}
           className="object-cover bg-fill-thumbnail"
         />
@@ -48,10 +55,11 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
             href={`${ROUTES.PRODUCT}/${item?.slug}`}
             className="block leading-5 transition-all text-brand-dark text-13px sm:text-sm lg:text-15px hover:text-brand"
           >
-            {item?.name}
+            {item?.title}
           </Link>
           <div className="text-13px sm:text-sm text-brand-muted mt-1.5 block mb-2">
-            {item.unit} X {item.quantity}
+            1 {item.title} X {item.quantity}
+            {/* {item.unit} X {item.quantity} */}
           </div>
           <Counter
             value={item.quantity}

@@ -5,7 +5,7 @@ import { IoArrowBack, IoArrowForward } from 'react-icons/io5';
 import { getDirection } from '@utils/get-direction';
 import { usePathname } from 'next/navigation';
 import Heading from '@components/ui/heading';
-
+ 
 const FilterSidebar = () => {
   const { closeFilter } = useUI();
   const pathname = usePathname();
@@ -29,7 +29,7 @@ const FilterSidebar = () => {
           className="w-full text-center ltr:pr-6 rtl:pl-6"
         >
           Filters
-        </Heading>
+        </Heading> 
       </div>
 
       <Scrollbar className="flex-grow mb-auto menu-scrollbar">
@@ -39,7 +39,7 @@ const FilterSidebar = () => {
       </Scrollbar>
 
       <div className="flex items-center justify-center leading-4 text-15px md:text-base px-7 shrink-0 h-14 bg-fill-secondary text-brand-dark ">
-        2,683 Items Found
+        2,6835 Items Found
       </div>
     </div>
   );

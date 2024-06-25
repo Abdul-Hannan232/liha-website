@@ -18,10 +18,12 @@ const AuthMenu = dynamic(() => import('@layouts/header/auth-menu'), {
 });
 const CartButton = dynamic(() => import('@components/cart/cart-button'), {
   ssr: false,
-});
+}); 
 
 type DivElementRef = React.MutableRefObject<HTMLDivElement>;
 const { site_header } = siteSettings;
+
+
 
 function Header() {
   const { openSidebar, isAuthorized, displayMobileSearch } = useUI();
@@ -60,9 +62,10 @@ function Header() {
 
             <Logo className="-mt-1" />
           </div>
-
+ 
           <HeaderMenu
-            data={site_header.pagesMenu}
+            // data={site_header.pagesMenu}
+            data={site_header}
             className="hidden w-auto ltr:pl-10 rtl:pr-10 2xl:flex"
           />
           <Search

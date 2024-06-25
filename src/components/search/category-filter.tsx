@@ -24,6 +24,7 @@ export const CategoryFilter = () => {
     );
   }
   if (error) return <Alert message={error.message} />;
+// console.log('data?.categories?.data,', data?.categories?.data);
 
   return (
     <div className="block">

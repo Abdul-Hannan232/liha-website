@@ -16,7 +16,8 @@ function SidebarMenuItem({ className, item, depth = 0, lang }: any) {
         }`}
       >
         <Link
-          href={`${ROUTES.SEARCH}`}
+          // href={`${ROUTES.SEARCH}`}
+          href={`/pages/search`}
           className={cn(
             'flex items-center w-full ltr:text-left rtl:text-right outline-none focus:outline-none focus:ring-0 focus:text-brand-dark',
           )}
@@ -25,7 +26,7 @@ function SidebarMenuItem({ className, item, depth = 0, lang }: any) {
             <div className="inline-flex w-8 shrink-0 3xl:h-auto">
               <Image
                 src={icon ?? '/assets/placeholder/category-small.svg'}
-                alt={name || `text-category-thumbnail`}
+                alt={name || `Ctegoy Thumbnail`}
                 // alt={name || t('text-category-thumbnail')}
                 width={25}
                 height={25}
@@ -66,7 +67,7 @@ function SidebarMenuItem({ className, item, depth = 0, lang }: any) {
   );
 }
 
-function SidebarMenu({ items, className, lang }: any) {
+function SidebarMenu({ items, className }: any) {
   return (
     <ul
       className={cn(

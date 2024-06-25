@@ -106,7 +106,8 @@ const Search = forwardRef<HTMLDivElement, Props>(
                           />
                         </div>
                       ))
-                    : data?.map((item: Product[], index: number) => (
+                    : (data as [])?.map((item: Product[], index: number) => (
+                    // : data?.map((item: Product[], index: number) => (
                         <div
                           key={`search-result-key-${index}`}
                           className="py-2.5 ltr:pl-5 rtl:pr-5 ltr:pr-10 rtl:pl-10 scroll-snap-align-start transition-colors duration-200 hover:bg-fill-base"

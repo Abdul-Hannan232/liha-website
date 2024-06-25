@@ -1,3 +1,4 @@
+'use client';
 import { Fragment } from 'react';
 import ProductCardAlpine from '@components/product/product-cards/product-card-alpine';
 import type { FC } from 'react';
@@ -21,6 +22,8 @@ const RefinedAllProductFeed: FC<ProductFeedProps> = ({ className = '' }) => {
     // @ts-ignore
     `${process.env.NEXT_PUBLIC_WEBSITE_URL}${query}`,
   );
+  // console.log('query' , newQuery);
+
   const {
     isFetching: isLoading,
     isFetchingNextPage: loadingMore,
@@ -29,10 +32,14 @@ const RefinedAllProductFeed: FC<ProductFeedProps> = ({ className = '' }) => {
     data,
     error,
   } = useProductsQuery({
-    limit: LIMITS.REFINED_PRODUCTS_LIMITS,
+    // limit: LIMITS.REFINED_PRODUCTS_LIMITS,
     // @ts-ignore
-    newQuery,
+    text: newQuery.category ? `category=${newQuery?.category}` : 'all=true',
+    // text: 'all=true',
+    // newQuery: 'all=true',
   });
+  // console.log('data ',data?.pages[0]?.data);
+  // console.log(data);
 
   const { openModal } = useModalAction();
 
@@ -40,6 +47,7 @@ const RefinedAllProductFeed: FC<ProductFeedProps> = ({ className = '' }) => {
     openModal('CATEGORY_VIEW');
   }
 
+  // console.log('--------->>>>', data?.pages[0]?.data.length)
   return (
     <div className={cn(className)}>
       <div className="xl:hidden flex items-center justify-between pb-0.5 mb-4 lg:mb-5 xl:mb-6">
@@ -67,7 +75,24 @@ const RefinedAllProductFeed: FC<ProductFeedProps> = ({ className = '' }) => {
             )
           ) : (
             <>
-              {data?.pages?.map((page: any, index) => {
+              {data?.pages[0]?.data.length === 0 ? (
+                <>
+                  <h1>No Products Found</h1>
+                </>
+              ) : (
+                data?.pages[0]?.data?.map((product: any, index) => {
+                  return (
+                    <Fragment key={index}>
+                      <ProductCardAlpine
+                        key={`product--key${product.id}`}
+                        product={product}
+                      />
+                    </Fragment>
+                  );
+                })
+              )}
+
+              {/* {data?.pages?.map((page: any, index) => {
                 return (
                   <Fragment key={index}>
                     {page?.data
@@ -80,7 +105,7 @@ const RefinedAllProductFeed: FC<ProductFeedProps> = ({ className = '' }) => {
                       ))}
                   </Fragment>
                 );
-              })}
+              })} */}
             </>
           )}
         </div>

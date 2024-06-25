@@ -6,6 +6,8 @@ import { IoIosArrowDown } from 'react-icons/io';
 import Logo from '@components/ui/logo';
 import { useUI } from '@contexts/ui.context';
 import cn from 'classnames';
+import { useCategoriesQuery } from '@framework/category/get-all-categories';
+
 
 import {
   IoLogoInstagram,
@@ -44,12 +46,52 @@ const social = [
     className: 'instagram',
     title: 'text-instagram',
   },
-];
+]; 
 
 export default function MobileMenu() {
   const [activeMenus, setActiveMenus] = useState<any>([]);
   const { site_header } = siteSettings;
   const { closeSidebar } = useUI();
+
+
+  const {
+    data: categories,
+    isLoading: loading,
+    error,
+  } = useCategoriesQuery({
+    limit: 10,
+  });
+
+  const data = [
+    {
+      id: 1,
+      path: '/',
+      name: 'Home',
+    },
+    {
+      id: 6,
+      path: '/pages/my-account/account-settings',
+      name: 'Categories',
+      subMenu: categories?.categories?.data
+    },
+    {
+      id: 4,
+      path: '/pages/search',
+      name: 'Search',
+    },
+
+    {
+      id: 5,
+      path: '/pages/my-account/account-settings',
+      name: 'My Account',
+    },
+    {
+      id: 6,
+      path: '/pages/faq',
+      name: 'Faq',
+    },
+   
+  ];
 
   const handleArrowClick = (menuName: string) => {
     let newActiveMenus = [...activeMenus];
@@ -72,15 +114,17 @@ export default function MobileMenu() {
     menuIndex,
     className = '',
   }: any) =>
-    data.label && (
+    (data.name || typeof data === 'string')   && (
+     
       <li className={`transition-colors duration-200 ${className}`}>
         <div className="relative flex items-center justify-between">
           <Link
-            href={`${data.path}`}
+            href={data.path ? data.path: `/pages/search?category=${data.name ? data?.name : data}`}
+            // href={`${data.path}`}
             className="relative w-full py-4 transition duration-300 ease-in-out menu-item ltr:pl-5 rtl:pr-5 md:ltr:pl-7 md:rtl:pr-7 ltr:pr-4 rtl:pl-4 text-brand-dark"
           >
             <span className="block w-full" onClick={closeSidebar}>
-              {data.label}
+              {data.name? data.name : data.name? data.name : data}
             </span>
           </Link>
           {hasSubMenu && (
@@ -99,7 +143,7 @@ export default function MobileMenu() {
         {hasSubMenu && (
           <SubMenu
             dept={dept}
-            data={data.subMenu}
+            data={data.subMenu ?  data.subMenu: JSON.parse(data.children)}
             toggle={activeMenus.includes(menuName)}
             menuIndex={menuIndex}
           />
@@ -112,18 +156,20 @@ export default function MobileMenu() {
       return null;
     }
 
+    // console.log('---------------->>>>' ,data);
+    
+
     dept = dept + 1;
 
     return (
       <ul className={cn('mobile-sub-menu', dept > 2 && 'ltr:-ml-4 rtl:-mr-4')}>
         {data?.map((menu: any, index: number) => {
           const menuName: string = `sidebar-submenu-${dept}-${menuIndex}-${index}`;
-
           return (
             <ListMenu
               dept={dept}
               data={menu}
-              hasSubMenu={menu.subMenu}
+              hasSubMenu={menu?.children}
               menuName={menuName}
               key={menuName}
               menuIndex={index}
@@ -158,7 +204,8 @@ export default function MobileMenu() {
         <Scrollbar className="flex-grow mb-auto menu-scrollbar">
           <div className="flex flex-col px-0 py-6 text-brand-dark h-[calc(100vh_-_150px)]">
             <ul className="mobile-menu">
-              {site_header.menu.map((menu, index) => {
+              {/* {site_header.menu.map((menu, index) => { */}
+              {data.map((menu, index) => {
                 const dept: number = 1;
                 const menuName: string = `sidebar-menu-${dept}-${index}`;
 
@@ -166,7 +213,8 @@ export default function MobileMenu() {
                   <ListMenu
                     dept={dept}
                     data={menu}
-                    hasSubMenu={menu.subMenu}
+                    hasSubMenu={menu?.subMenu ? menu?.subMenu : false}
+                    // hasSubMenu={menu.subMenu}
                     menuName={menuName}
                     key={menuName}
                     menuIndex={index}

@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import { Tab } from '@headlessui/react';
-import Heading from '@components/ui/heading';
+// import Heading from '@components/ui/heading';
 import ProductReviewRating from './product-review-rating';
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function ProductDetailsTab() {
+interface ProductDetailsTab  {
+  products_detail :string;
+}
+
+export default function ProductDetailsTab({products_detail}: { products_detail: string }) {
   let [tabHeading] = useState({
     Product_Details: '',
     Review_Rating: '',
@@ -36,7 +40,9 @@ export default function ProductDetailsTab() {
         <Tab.Panels className="mt-6 lg:mt-9">
           <Tab.Panel className="lg:flex">
             <div className="text-sm sm:text-15px text-brand-muted leading-[2em] space-y-4 lg:space-y-5 xl:space-y-7">
-              <p>
+            <p>{products_detail}</p>
+            
+              {/* <p>
                 Go sporty this summer with this vintage navy and white striped
                 v-neck t-shirt from the Abercrombie & Fitch. Perfect for pairing
                 with denim and white kicks for a stylish sporty vibe. Will fit a
@@ -62,9 +68,9 @@ export default function ProductDetailsTab() {
                 v-neck t-shirt from the Abercrombie & Fitch. Perfect for pairing
                 with denim and white kicks for a stylish sporty vibe. Will fit a
                 UK 8-10, model shown is a UK 8 and 5’5. !!
-              </p>
+              </p> */}
             </div>
-            <div className="shrink-0 lg:w-[400px] xl:w-[480px] 2xl:w-[550px] 3xl:w-[680px] lg:ltr:pl-10 lg:rtl:pr-10 xl:ltr:pl-14 xl:rtl:pr-14 2xl:ltr:pl-20 2xl:rtl:pr-20 pt-5 lg:pt-0">
+            {/* <div className="shrink-0 lg:w-[400px] xl:w-[480px] 2xl:w-[550px] 3xl:w-[680px] lg:ltr:pl-10 lg:rtl:pr-10 xl:ltr:pl-14 xl:rtl:pr-14 2xl:ltr:pl-20 2xl:rtl:pr-20 pt-5 lg:pt-0">
               <Heading
                 variant="mediumHeading"
                 className="xl:text-lg mb-4 pt-0.5"
@@ -126,7 +132,7 @@ export default function ProductDetailsTab() {
                   </tbody>
                 </table>
               </div>
-            </div>
+            </div> */}
           </Tab.Panel>
           <Tab.Panel>
             <ProductReviewRating />

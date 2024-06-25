@@ -12,7 +12,8 @@ export default function ListBox({ options }: { options: Option[] }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { updateQueryparams } = useQueryParam(pathname ?? '/');
-  const hasQueryKey = searchParams?.get('sort_by');
+  // const hasQueryKey = searchParams?.get('sort_by');
+  const hasQueryKey = searchParams?.get('price');
   const currentSelectedItem = hasQueryKey
     ? options.find((o) => o.value === hasQueryKey)!
     : options[0];
@@ -23,12 +24,14 @@ export default function ListBox({ options }: { options: Option[] }) {
   }, [currentSelectedItem]);
 
   useEffect(() => {
-    updateQueryparams('sort_by', currentSelectedItem.value.toString());
+    // updateQueryparams('sort_by', currentSelectedItem.value.toString());
+    updateQueryparams('price', currentSelectedItem.value.toString());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSelectedItem.value]);
 
   function handleItemClick(value: string) {
-    updateQueryparams('sort_by', value);
+    // updateQueryparams('sort_by', value);
+    updateQueryparams('price', value);
   }
 
   return (

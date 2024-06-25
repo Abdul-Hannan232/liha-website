@@ -8,6 +8,25 @@ export interface Item {
 
 export interface UpdateItemInput extends Partial<Omit<Item, 'id'>> {}
 
+// export function addItemWithQuantity(
+//   items: Item[],
+//   item: Item,
+//   quantity: number,
+// ) {
+//   if (quantity <= 0)
+//     throw new Error("cartQuantity can't be zero or less than zero");
+//   const existingItemIndex = items.findIndex(
+//     (existingItem) => existingItem.id === item.id,
+//   );
+//   console.log('existingItemIndex ', existingItemIndex);
+
+//   if (existingItemIndex > -1) {
+//     const newItems = [...items];
+//     newItems[existingItemIndex].quantity! += quantity;
+//     return newItems;
+//   }
+//   return [...items, { ...item, quantity }];
+// }
 export function addItemWithQuantity(
   items: Item[],
   item: Item,
@@ -15,18 +34,24 @@ export function addItemWithQuantity(
 ) {
   if (quantity <= 0)
     throw new Error("cartQuantity can't be zero or less than zero");
+
   const existingItemIndex = items.findIndex(
     (existingItem) => existingItem.id === item.id,
   );
 
+  console.log('existingItemIndex ', existingItemIndex);
+
   if (existingItemIndex > -1) {
     const newItems = [...items];
-    newItems[existingItemIndex].quantity! += quantity;
+    newItems[existingItemIndex] = {
+      ...newItems[existingItemIndex],
+      quantity: (newItems[existingItemIndex].quantity || 0) + quantity,
+    };
     return newItems;
   }
+
   return [...items, { ...item, quantity }];
 }
-
 export function removeItemOrQuantity(
   items: Item[],
   id: Item['id'],
@@ -68,8 +93,8 @@ export function removeItem(items: Item[], id: Item['id']) {
 
 export function inStock(items: Item[], id: Item['id']) {
   const item = getItem(items, id);
-  if (item) return item['quantity']! < item['stock']!;
-  return false;
+  // if (item) return item['quantity']! < item['stock']!;
+  return true;
 }
 
 export const calculateItemTotals = (items: Item[]) =>

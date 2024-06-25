@@ -3,11 +3,16 @@ import http from '@framework/utils/http';
 import { API_ENDPOINTS } from '@framework/utils/api-endpoints';
 import { useQuery } from '@tanstack/react-query';
 
-export const fetchRelatedProducts = async ({ queryKey }: any) => {
-  const { data } = await http.get(API_ENDPOINTS.RELATED_PRODUCTS);
+export const fetchRelatedProducts = async ({ limit , categoryId}: any) => {
+  // console.log('fetchRelatedProducts queryKey', queryKey);
+  
+  // const { data } = await http.get(API_ENDPOINTS.RELATED_PRODUCTS);
+  const { data } = await http.get( `http://localhost:5055/api/products/bycategory/${categoryId}`);
   return data;
 };
 export const useRelatedProductsQuery = (options: QueryOptionsType) => {
+  // console.log('fetchRelatedProducts optoons', options);
+
   return useQuery<Product[], Error>({
     queryKey: [API_ENDPOINTS.RELATED_PRODUCTS, options],
     queryFn: () => fetchRelatedProducts(options),

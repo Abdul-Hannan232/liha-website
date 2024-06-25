@@ -21,6 +21,9 @@ export default function CategoryDropdownSidebar({
   } = useCategoriesQuery({
     limit: 10,
   });
+
+  // console.log(  '/////////////////',  data  );
+  
   return (
     <aside className={cn('category-mobile-sidebar', className)}>
       <div className="h-full max-h-full overflow-hidden border rounded border-border-base">

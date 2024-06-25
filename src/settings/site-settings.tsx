@@ -30,7 +30,7 @@ export const siteSettings = {
       {
         id: 1,
         path: '/',
-        label: 'Home',
+        label: 'Homee4',
         // subMenu: [
         //   {
         //     id: 1,

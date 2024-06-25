@@ -20,8 +20,6 @@ export default function CategoryDropdownMenu({
   });
 
 
-  console.log('--------------',data);
-  
   return (
     <div className={cn('absolute z-30', className)}>
       <div className="max-h-full overflow-hidden">

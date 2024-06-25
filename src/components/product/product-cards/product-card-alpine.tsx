@@ -22,7 +22,7 @@ function RenderPopupOrAddToCart({ props }: { props: Object }) {
   let { data }: any = props;
   // console.log(variant);
 
-  const { id, quantity, product_type } = data ?? {};
+  const { id, quantity, stock, product_type, status } = data ?? {};
   const { width } = useWindowSize();
   const { openModal } = useModalAction();
   const { isInCart, isInStock } = useCart();
@@ -31,28 +31,62 @@ function RenderPopupOrAddToCart({ props }: { props: Object }) {
   function handlePopupView() {
     openModal('PRODUCT_VIEW', data);
   }
-  if (Number(quantity) < 1 || outOfStock) {
+  // if (status === 'Hide') {
+  //   return (
+  //     <>
+  //      {/* <span className="text-[11px] md:text-xs font-bold text-brand-light uppercase inline-block bg-brand-danger rounded-full px-2.5 pt-1 pb-[3px] mx-0.5 sm:mx-1">
+  //       Out Of Stock
+  //     </span> */}
+  //       <button
+  //         className="inline-flex items-center justify-center w-8 h-8 text-4xl rounded-full bg-brand lg:w-10 lg:h-10 text-brand-light focus:outline-none focus-visible:outline-none"
+  //         aria-label="Count Button"
+  //         onClick={handlePopupView}
+  //       >
+  //         <Eye width={iconSize} height={iconSize} opacity="1" />
+  //       </button>
+  //     </>
+  //     // <>
+  //     //  <span className="text-[11px] md:text-xs font-bold text-brand-light uppercase inline-block bg-brand-danger rounded-full px-2.5 pt-1 pb-[3px] mx-0.5 sm:mx-1">
+  //     //   Out Of Stock
+  //     // </span>
+  //     //   <button
+  //     //     className="inline-flex items-center justify-center w-8 h-8 text-4xl rounded-full bg-brand lg:w-10 lg:h-10 text-brand-light focus:outline-none focus-visible:outline-none"
+  //     //     aria-label="Count Button"
+  //     //     onClick={handlePopupView}
+  //     //   >
+  //     //     <Eye width={iconSize} height={iconSize} opacity="1" />
+  //     //   </button>
+  //     // </>
+  //   );
+  // }
+  if (Number(stock) < 1 || outOfStock) {
     return (
       <span className="text-[11px] md:text-xs font-bold text-brand-light uppercase inline-block bg-brand-danger rounded-full px-2.5 pt-1 pb-[3px] mx-0.5 sm:mx-1">
         Out Of Stock
       </span>
     );
   }
-  if (product_type === 'variable') {
-    return (
-      <button
-        className="inline-flex items-center justify-center w-8 h-8 text-4xl rounded-full bg-brand lg:w-10 lg:h-10 text-brand-light focus:outline-none focus-visible:outline-none"
-        aria-label="Count Button"
-        onClick={handlePopupView}
-      >
-        <Eye width={iconSize} height={iconSize} opacity="1" />
-      </button>
-    );
-  }
+
+  // if (status === 'Show') {
+  //   // if (product_type === 'variable') {
+  //   return (
+  //     <button
+  //       className="inline-flex items-center justify-center w-8 h-8 text-4xl rounded-full bg-brand lg:w-10 lg:h-10 text-brand-light focus:outline-none focus-visible:outline-none"
+  //       aria-label="Count Button"
+  //       onClick={handlePopupView}
+  //     >
+  //       <Eye width={iconSize} height={iconSize} opacity="1" />
+  //     </button>
+  //   );
+  // }
   return <AddToCart data={data} variant="mercury" />;
 }
 const ProductCardAlpine: React.FC<ProductProps> = ({ product, className }) => {
-  const { name, image, unit, product_type } = product ?? {};
+  // console.log('----------------- ', product.image);
+
+  const { title, image, unit, stock, product_type } = product ?? {};
+  // console.log('title,', title);
+  
   const { openModal } = useModalAction();
   // const { t } = useTranslation(lang, 'common');
   const { price, basePrice, discount } = usePrice({
@@ -72,6 +106,12 @@ const ProductCardAlpine: React.FC<ProductProps> = ({ product, className }) => {
   function handlePopupView() {
     openModal('PRODUCT_VIEW', product);
   }
+
+  const imageUrl =
+    typeof image === 'string'
+      ? (image as string).replace('4000', '5055')
+      : productPlaceholder;
+
   return (
     <article
       className={cn(
@@ -79,13 +119,14 @@ const ProductCardAlpine: React.FC<ProductProps> = ({ product, className }) => {
         className,
       )}
       onClick={handlePopupView}
-      title={name}
+      title={title as string}
     >
       <div className="relative shrink-0">
         <div className="overflow-hidden mx-auto w-full sm:w-[180px] h-[180px] md:w-[200px] md:h-[200px] transition duration-200 ease-in-out transform group-hover:scale-105 relative">
           <Image
-            src={image?.thumbnail ?? productPlaceholder}
-            alt={name || 'Product Image'}
+            src={imageUrl}
+            // src={image?.thumbnail ?? productPlaceholder}
+            alt={(title as string) || 'Product Image'}
             quality={100}
             priority
             fill
@@ -119,7 +160,7 @@ const ProductCardAlpine: React.FC<ProductProps> = ({ product, className }) => {
           )}
         </div>
         <h2 className="text-brand-dark text-13px sm:text-sm lg:text-15px leading-5 sm:leading-6 mb-1.5">
-          {name}
+          {title as string}
         </h2>
         <div className="mt-auto text-13px sm:text-sm">{unit}</div>
       </div>

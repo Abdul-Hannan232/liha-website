@@ -15,8 +15,9 @@ export default function ProductsPageContent() {
           <ShopFilters />
         </div>
         <div className="w-full lg:ltr:-ml-4 lg:rtl:-mr-2 xl:ltr:-ml-8 xl:rtl:-mr-8 lg:-mt-1">
-          <SearchTopBar />
-          <ProductGrid />
+          {/* <SearchTopBar /> */}
+          {/* <ProductGrid  data={data} loadingMore={loadingMore} hasNextPage={hasNextPage} isLoading={isLoading} error={error}  fetchNextPage={fetchNextPage}/> */}
+          {/* <ProductGrid /> */}
         </div>
       </Element>
     </Container>

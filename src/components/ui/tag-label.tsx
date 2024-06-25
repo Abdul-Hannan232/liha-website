@@ -5,13 +5,14 @@ import { useRouter } from 'next/navigation';
 import { useModalAction } from '@components/common/modal/modal.context';
 
 interface Props {
-  data: Tag;
+  // data: Tag;
+  data: string;
   className?: string;
 }
 
 const TagLabel: React.FC<Props> = ({ className, data }) => {
-  const { name } = data;
-  const router = useRouter();
+  // const { name } = data;
+  const router = useRouter();  
   const { closeModal } = useModalAction();
   function changeTags() {
     closeModal();
@@ -26,7 +27,8 @@ const TagLabel: React.FC<Props> = ({ className, data }) => {
       role="button"
       onClick={changeTags}
     >
-      {name}
+      {data}
+      {/* {name} */}
     </div>
   );
 };

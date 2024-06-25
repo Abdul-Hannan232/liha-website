@@ -15,6 +15,7 @@ import { useModalAction } from '@components/common/modal/modal.context';
 import cn from 'classnames';
 import Search from '@components/common/search';
 
+
 const AuthMenu = dynamic(() => import('@layouts/header/auth-menu'), {
   ssr: false,
 });
@@ -26,6 +27,9 @@ type DivElementRef = React.MutableRefObject<HTMLDivElement>;
 const { site_header } = siteSettings;
 
 function Header() {
+
+  
+  
   const { openSidebar, isAuthorized, displayMobileSearch } = useUI();
   const { openModal } = useModalAction();
   const siteHeaderRef = useRef() as DivElementRef;

@@ -3,8 +3,37 @@
 module.exports = {
   reactStrictMode: true,
   swcMinify: true,
+  // images: {
+  //   domains: ['localhost', 'i.postimg.cc', 'i.ibb.co'],
+  // },
   images: {
-    domains: ['localhost', 'i.postimg.cc', 'i.ibb.co'],
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '4000',
+        pathname: '/upload/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '5055',
+        pathname: '/upload/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.postimg.cc',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.ibb.co',
+        port: '',
+        pathname: '/**',
+      },
+     
+    ],
   },
   // experimental: {
   //   // Required:

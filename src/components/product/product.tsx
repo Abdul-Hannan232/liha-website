@@ -26,21 +26,37 @@ import ProductDetailsTab from '@components/product/product-details/product-tab';
 import VariationPrice from './variation-price';
 import isEqual from 'lodash/isEqual';
 
-const ProductSingleDetails = () => {
+
+// interface ChildProps {
+//   getCid: (data: number) => void;
+// }
+const ProductSingleDetails= () => {
+// const ProductSingleDetails:React.FC<ChildProps> = ({getCid}) => {
   const pathname = useParams();
   const { slug } = pathname;
   const { width } = useWindowSize();
   const { data, isLoading } = useProductQuery(slug as string);
+  
+  // if(data && (typeof data?.category_id === 'number')){
+
+  //   getCid(data?.category_id)
+  // }
+
+
   const { addItemToCart, isInCart, getItemFromCart, isInStock } = useCart();
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [attributes, setAttributes] = useState<{ [key: string]: string }>({});
   const [favorite, setFavorite] = useState<boolean>(false);
-  const [quantity, setQuantity] = useState(1);
+  const [stock, setStock] = useState(1);
   const [addToCartLoader, setAddToCartLoader] = useState<boolean>(false);
   const [addToWishlistLoader, setAddToWishlistLoader] =
     useState<boolean>(false);
   const [shareButtonStatus, setShareButtonStatus] = useState<boolean>(false);
+  // console.log('----------pathname ', pathname);
+  
   const productUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}${ROUTES.PRODUCT}/${pathname.slug}`;
+
+  // const productUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}${ROUTES.PRODUCT}/${data?.title}`;
   const { price, basePrice, discount } = usePrice(
     data && {
       amount: data.sale_price ? data.sale_price : data.price,
@@ -81,7 +97,7 @@ const ProductSingleDetails = () => {
     }, 1500);
 
     const item = generateCartItem(data!, selectedVariation);
-    addItemToCart(item, quantity);
+    addItemToCart(item, stock);
     toast('Added to the bag', {
       progressClassName: 'fancy-progress-bar',
       position: width! > 768 ? 'bottom-right' : 'top-right',
@@ -114,6 +130,14 @@ const ProductSingleDetails = () => {
     });
   }
 
+  let tags: string[] = [];
+  if (data?.tag) {
+    try {
+      tags = Array.isArray(data.tag) ? data.tag : JSON.parse(data.tag);
+    } catch (error) {
+      console.error('Failed to parse tags:', error);
+    }
+  }
   return (
     <div className="pt-6 pb-2 md:pt-7">
       <div className="grid-cols-10 lg:grid gap-7 2xl:gap-8">
@@ -127,8 +151,15 @@ const ProductSingleDetails = () => {
           ) : (
             <div className="flex items-center justify-center w-auto">
               <Image
-                src={data?.image?.original ?? '/product-placeholder.svg'}
-                alt={data?.name!}
+                // src={data?.image?.original ?? '/product-placeholder.svg'}
+                src={
+                  data?.image?.replace(
+                    'http://localhost:4000/',
+                    'http://localhost:5055/',
+                  ) ?? '/product-placeholder.svg'
+                }
+                alt={data?.title! as string}
+                // alt={data?.name!}
                 width={900}
                 height={680}
                 style={{ width: 'auto' }}
@@ -141,10 +172,11 @@ const ProductSingleDetails = () => {
           <div className="pb-3 lg:pb-5">
             <div className="md:mb-2.5 block -mt-1.5">
               <h2 className="text-lg font-medium transition-colors duration-300 text-brand-dark md:text-xl xl:text-2xl">
-                {data?.name}
+                {data?.title as string}
+                {/* {data?.name} */}
               </h2>
             </div>
-            {data?.unit && isEmpty(variations) ? (
+            {/* {data?.unit && isEmpty(variations) ? (
               <div className="text-sm font-medium md:text-15px">
                 {data?.unit}
               </div>
@@ -154,7 +186,7 @@ const ProductSingleDetails = () => {
                 minPrice={data?.min_price}
                 maxPrice={data?.max_price}
               />
-            )}
+            )} */}
 
             {isEmpty(variations) && (
               <div className="flex items-center mt-5">
@@ -190,9 +222,9 @@ const ProductSingleDetails = () => {
             {/* check that item isInCart and place the available quantity or the item quantity */}
             {isEmpty(variations) && (
               <>
-                {Number(quantity) > 0 || !outOfStock ? (
+                {Number(stock) > 0 || !outOfStock ? (
                   <span className="text-sm font-medium text-yellow">
-                    {` Only  ${quantity} item left!`}
+                    {` Only  ${stock} item left!`}
                   </span>
                 ) : (
                   <div className="text-base text-red-500 whitespace-nowrap">
@@ -285,8 +317,9 @@ const ProductSingleDetails = () => {
               <li className="relative inline-flex items-center justify-center text-sm md:text-15px text-brand-dark text-opacity-80 ltr:mr-2 rtl:ml-2 top-1">
                 <LabelIcon className="ltr:mr-2 rtl:ml-2" /> Tags:
               </li>
-              {data?.tag?.map((item: any) => (
-                <li className="inline-block p-[3px]" key={`tag-${item.id}`}>
+
+              {tags.map((item: any, i: number) => (
+                <li className="inline-block p-[3px]" key={`tag-${i}`}>
                   <TagLabel data={item} />
                 </li>
               ))}
@@ -294,7 +327,7 @@ const ProductSingleDetails = () => {
           )}
         </div>
       </div>
-      <ProductDetailsTab />
+      <ProductDetailsTab  products_detail = {data?.description as string}/> 
     </div>
   );
 };

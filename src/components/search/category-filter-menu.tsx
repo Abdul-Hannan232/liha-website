@@ -13,9 +13,20 @@ function checkIsActive(arr: any, item: string) {
   }
   return false;
 }
+
+function safeJSONParse(value: string | null) {
+  try {
+    return value ? JSON.parse(value) : [];
+  } catch (e) {
+    console.error('Error parsing JSON:', e);
+    return [];
+  }
+}
+
 function CategoryFilterMenuItem({
   className = 'hover:bg-fill-base border-t border-border-base first:border-t-0 px-3.5 2xl:px-4 py-3 xl:py-3.5 2xl:py-2.5 3xl:py-3',
   item,
+  subItem,
   depth = 0,
 }: any) {
   const pathname = usePathname();
@@ -23,16 +34,32 @@ function CategoryFilterMenuItem({
   const { updateQueryparams } = useQueryParam(pathname ?? '/');
   const [formState, setFormState] = useState<string[]>([]);
 
-  const isActive =
-    checkIsActive(formState, item.slug) ||
-    item?.children?.some((_item: any) => checkIsActive(formState, _item.slug));
-  const [isOpen, setOpen] = useState<boolean>(isActive);
+  // console.log('item', item);
+
   const [subItemAction, setSubItemAction] = useState<boolean>(false);
+  const [items, setItems] = useState('');
+  const isActive =
+    checkIsActive(formState, item?.name || item) ||
+    // checkIsActive(formState, item.slug) ||
+    // item?.children?.some((_item: any) => checkIsActive(formState, _item.slug));
+    (item?.children &&
+      JSON.parse(item?.children)?.some(
+        (_item: any) => checkIsActive(formState, _item.name),
+        // checkIsActive(formState, _item.slug),
+      ));
+
+  const [isOpen, setOpen] = useState<boolean>(isActive);
+
   useEffect(() => {
     setOpen(isActive);
   }, [isActive]);
-  const { slug, name, children: items, icon } = item;
+  // const { slug, name, children: items, icon } = item;
+  const { name, icon } = item;
   const { displaySidebar, closeSidebar } = useUI();
+
+  useEffect(() => {
+    setItems(safeJSONParse(item?.children));
+  }, [item?.children]);
 
   function toggleCollapse() {
     setOpen((prevValue) => !prevValue);
@@ -58,10 +85,15 @@ function CategoryFilterMenuItem({
       toggleCollapse();
     } else {
       setFormState(
-        formState.includes(slug)
-          ? formState.filter((item) => item !== slug)
-          : [...formState, slug],
+        formState.includes(name || item)
+          ? formState.filter((title) => title !== (name || item))
+          : [...formState, name || item],
       );
+      // setFormState(
+      //   formState.includes(slug)
+      //     ? formState.filter((item) => item !== slug)
+      //     : [...formState, slug],
+      // );
 
       displaySidebar && closeSidebar();
     }
@@ -105,15 +137,17 @@ function CategoryFilterMenuItem({
               />
             </div>
           )}
-          <span className="text-brand-dark capitalize py-0.5">{name}</span>
+          <span className="text-brand-dark capitalize py-0.5">
+            {name || item}
+          </span>
           {depth > 0 && (
             <span
               className={`w-[22px] h-[22px] text-13px flex items-center justify-center border-2 border-border-four rounded-full ltr:ml-auto rtl:mr-auto transition duration-500 ease-in-out group-hover:border-yellow-100 text-brand-light ${
-                formState.includes(item.slug) &&
+                formState.includes(item.name || item) &&
                 'border-yellow-100 bg-yellow-100'
               }`}
             >
-              {formState.includes(item.slug) && <FaCheck />}
+              {formState.includes(item.name || item) && <FaCheck />}
             </span>
           )}
           {expandIcon && (
@@ -126,9 +160,11 @@ function CategoryFilterMenuItem({
           <ul key="content" className="px-4 text-xs">
             {items?.map((currentItem: any) => {
               const childDepth = depth + 1;
+              // console.log('currentItem ', currentItem);
+
               return (
                 <CategoryFilterMenuItem
-                  key={`${currentItem.name}${currentItem.slug}`}
+                  key={`${currentItem.name}${currentItem.name}`}
                   item={currentItem}
                   depth={childDepth}
                   className="px-0 border-t border-border-base first:border-t-0 mx-[3px] bg-transparent"
@@ -143,11 +179,13 @@ function CategoryFilterMenuItem({
 }
 
 function CategoryFilterMenu({ items, className }: any) {
+  // console.log('fffffffffffffff ', items);
+
   return (
     <ul className={cn(className)}>
       {items?.map((item: any) => (
         <CategoryFilterMenuItem
-          key={`${item.slug}-key-${item.id}`}
+          key={`${item.name}-key-${item.id}`}
           item={item}
         />
       ))}

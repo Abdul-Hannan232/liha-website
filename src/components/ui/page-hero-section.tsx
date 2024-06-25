@@ -46,8 +46,11 @@ const PageHeroSection: React.FC<HeaderProps> = ({
           )}
         >
           <span className="block mb-3 font-bold font-manrope md:mb-4 lg:mb-5 2xl:mb-7 ">
-            Page Section Title
+          Frequently Ask Question
           </span>
+          {/* <span className="block mb-3 font-bold font-manrope md:mb-4 lg:mb-5 2xl:mb-7 ">
+            Page Section Title
+          </span> */}
         </h2>
         <Breadcrumb />
       </div>

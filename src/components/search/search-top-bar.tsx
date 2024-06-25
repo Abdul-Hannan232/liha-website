@@ -5,8 +5,13 @@ import FilterSidebar from '@components/search/filter-sidebar';
 import ListBox from '@components/ui/filter-list-box';
 import { getDirection } from '@utils/get-direction';
 import motionProps from '@components/common/drawer/motion';
+import { useProductsQuery } from '@framework/product/get-all-products';
 
-export default function SearchTopBar() {
+// export default function SearchTopBar() {
+
+export default  function SearchTopBar({ itemsLength }:{itemsLength:number}) {
+
+
   const { openFilter, displayFilter, closeFilter } = useUI();
 
   const dir = getDirection('ltr');
@@ -22,7 +27,9 @@ export default function SearchTopBar() {
       </button>
       <div className="flex items-center justify-end w-full lg:justify-between">
         <div className="shrink-0 text-brand-dark font-medium text-15px leading-4 md:ltr:mr-6 md:rtl:ml-6 hidden lg:block mt-0.5">
-          2,683 Items Found
+          {/* {data?.categories?.data?.length} Items Found */}
+        {itemsLength || 0} Items Found
+          {/* 2,6836 Items Found */}
         </div>
         <ListBox
           options={[
@@ -47,4 +54,4 @@ export default function SearchTopBar() {
       </Drawer>
     </div>
   );
-}
+};

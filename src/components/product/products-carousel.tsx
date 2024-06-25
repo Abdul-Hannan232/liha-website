@@ -19,7 +19,8 @@ interface ProductsCarouselProps {
   loading: boolean;
   error?: string;
   limit?: number;
-  uniqueKey?: string;
+  uniqueKey?: number;
+  // uniqueKey?: string;
   carouselBreakpoint?: {} | any;
 }
 

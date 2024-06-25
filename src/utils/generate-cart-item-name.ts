@@ -8,3 +8,4 @@ export function generateCartItemName(name: string, attributes: object) {
   }
   return name;
 }
+ 

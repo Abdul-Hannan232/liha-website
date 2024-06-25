@@ -7,10 +7,19 @@ type PaginatedProduct = {
   data: Product[];
   paginatorInfo: any;
 };
-const fetchProducts = async ({ queryKey }: any) => {
-  const { data } = await http.get(API_ENDPOINTS.PRODUCTS);
+// const fetchProducts = async ({queryKey }: any) => {
+const fetchProducts = async (pageParam: any, queryKey : any) => {
+  // console.log('queryKey ', queryKey);
+  
+  // const { data } = await http.get(API_ENDPOINTS.PRODUCTS);
+  const { data } = await http.get(
+    `http://localhost:5055/api/products?${queryKey}`,
+  );
+  // console.log('data', data.products); 
+
   return {
-    data: shuffle(data) as Product[],
+    // data: shuffle(data.products) as Product[],
+    data: queryKey.includes('price') ?  data.products as Product[]: shuffle(data.products) as Product[],
     paginatorInfo: {
       nextPageUrl: '',
     },
@@ -18,9 +27,12 @@ const fetchProducts = async ({ queryKey }: any) => {
 };
 
 const useProductsQuery = (options: QueryOptionsType) => {
+  // console.log(options);
+  
   return useInfiniteQuery<PaginatedProduct, Error>({
-    queryKey: [API_ENDPOINTS.PRODUCTS, options],
-    queryFn: ({ pageParam }) => fetchProducts(pageParam),
+    queryKey: ['http://localhost:5055/api/products', options?.text],
+    // queryKey: [API_ENDPOINTS.PRODUCTS, options],
+    queryFn: ({ pageParam }) => fetchProducts(pageParam , options?.text),
     initialPageParam: 0,
     getNextPageParam: ({ paginatorInfo }) => paginatorInfo.nextPageUrl,
   });
