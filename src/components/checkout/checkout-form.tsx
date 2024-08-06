@@ -69,6 +69,7 @@ const CheckoutForm = () => {
             {...register('address', {
               required: 'forms:address-required',
             })}
+            type='number'
             error={errors.address?.message}
             variant="solid"
           />

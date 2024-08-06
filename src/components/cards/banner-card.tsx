@@ -30,7 +30,8 @@ const BannerCard: React.FC<BannerProps> = ({
   return (
     <div className={cn('mx-auto', className)}>
       <Link
-        href={`${slug}`}
+        // href={`${slug}`}
+        href={`/pages/search`}
         className={cn(
           'h-full group flex justify-center relative overflow-hidden',
           classNameInner,

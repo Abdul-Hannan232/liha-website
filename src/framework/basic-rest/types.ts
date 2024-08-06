@@ -26,6 +26,7 @@ export type QueryOptionsType = {
   categoryId?:number;
   status?: string;
   limit?: number;
+  id?:string;
 };
 
 export type QueryParamsType = {
@@ -81,18 +82,19 @@ export type Tag =string[]
 export type Product = {
   id: number | string;
   name: string;
-  slug: string;
+  slug?: string;
   price: number;
   quantity: number;
-  sold: number;
-  unit: string;
+  sold?: number;
+  unit?: string;
   sale_price?: number;
   min_price?: number;
   max_price?: number;
   image: string;
   // image: Attachment;
   sku?: string;
-  gallery?: Attachment[];
+  // gallery?: Attachment[];
+  gallery?: string;
   category?: Category;
   tag?: Tag[];
   meta?: any[];
@@ -101,26 +103,26 @@ export type Product = {
   variations?: object;
   [key: string]: unknown;
 };
-export type OrderItem = {
-  id: number | string;
-  name: string;
-  price: number;
-  quantity: number;
-};
-export type Order = {
-  id: string | number;
-  name: string;
-  slug: string;
-  products: OrderItem[];
-  total: number;
-  tracking_number: string;
-  customer: {
-    id: number;
-    email: string;
-  };
-  shipping_fee: number;
-  payment_gateway: string;
-};
+// export type OrderItem = {
+//   id: number | string;
+//   name?: string;
+//   price: number;
+//   quantity: number;
+// };
+// export type Order = {
+//   id: string | number;
+//   name: string;
+//   slug: string;
+//   products: OrderItem[];
+//   total: number;
+//   tracking_number: string;
+//   customer: {
+//     id: number;
+//     email: string;
+//   };
+//   shipping_fee: number;
+//   payment_gateway: string;
+// };
 
 export type ShopsQueryOptionsType = {
   text?: string;
@@ -146,3 +148,57 @@ export type Shop = {
   created_at: string;
   updated_at: string;
 };
+
+
+ export interface CheckoutCardProps {
+  userData: {
+    address: string | null;
+    phone: string | null;
+    id: number | null;
+  };
+}
+
+export interface OrderItem {
+  id?:number;
+  productId: number;
+  quantity: number;
+  price? : number;
+  productDetails?: any;
+}
+
+export interface Order {
+  id? :number;
+  userId: number;
+  items: OrderItem[];
+  totalPrice: number;
+  user?:User;
+  paymentMethod?: number;
+  createdAt?: string;
+
+}
+
+
+export interface ContactFormValues {
+  address: string | null;
+  phone: string | null;
+  id: number | null
+}
+
+export interface DeliveryInstructionsProps {
+  initialData?: ContactFormValues;
+  onUpdate: (values: ContactFormValues) => void;
+}
+
+
+
+export interface User {
+  id: number;
+  address?: string | null;
+  city?: string | null;
+  country?: string | null;
+  createdAt?: string;
+  email: string;
+  image?: string | null;
+  name: string;
+  phone?:string | null;
+}

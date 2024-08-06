@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 export const fetchCategories = async ({ queryKey }: any) => {
   // const options = queryKey[1];
   // const { data } = await http.get(API_ENDPOINTS.CATEGORIES);
-  const { data } = await http.get('http://localhost:5055/api/category');
+  const { data } = await http.get(`${process.env.NEXT_PUBLIC_REST_API_ENDPOINT}/category`);
 // console.log('================== ', data);
 
   return {
@@ -20,7 +20,7 @@ export const fetchCategories = async ({ queryKey }: any) => {
 export const useCategoriesQuery = (options: CategoriesQueryOptionsType) => {
   return useQuery<{ categories: { data: Category[] } }, Error>({
     // queryKey: [API_ENDPOINTS.CATEGORIES, options],
-    queryKey: ['http://localhost:5055/api/category', options],
+    queryKey: [`${process.env.NEXT_PUBLIC_REST_API_ENDPOINT}/category`, options],
     queryFn: fetchCategories,
   });
 };

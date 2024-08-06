@@ -11,10 +11,32 @@ import {
 } from '@framework/customer/use-update-customer';
 import Switch from '@components/ui/switch';
 import Text from '@components/ui/text';
+import { useState } from 'react';
+import { fetchUser } from '@framework/auth/fetchUser';
 
-const defaultValues = {};
+
+
 
 const AccountDetails = () => {
+
+  const isBrowser = typeof window !== 'undefined';
+
+const [user, setUser] = useState(() => {
+  
+  if (isBrowser) {
+    const storedUser = localStorage.getItem('user');
+    return storedUser ? JSON.parse(storedUser) : null;
+  }
+  return null;
+});
+
+const defaultValues = {
+  id: user?.id,
+  name: user?.name,
+  phone: user?.phone,
+  email: user?.email,
+};
+
   const { mutate: updateUser, isPending } = useUpdateUserMutation();
   const {
     register,
@@ -23,9 +45,11 @@ const AccountDetails = () => {
     control,
   } = useForm<UpdateUserType>({
     defaultValues,
-  });
-  function onSubmit(input: UpdateUserType) {
-    updateUser(input);
+  }); 
+  async function onSubmit(input: UpdateUserType) {
+     updateUser({...user, ...input});
+    //  fetchUser();
+    
   }
   return (
     <div className="flex flex-col w-full">
@@ -41,15 +65,15 @@ const AccountDetails = () => {
           <div className="flex flex-col space-y-4 sm:space-y-5">
             <div className="flex flex-col sm:flex-row -mx-1.5 md:-mx-2.5 space-y-4 sm:space-y-0">
               <Input
-                label="First Name *"
-                {...register('firstName', {
+                label="Name *"
+                {...register('name', {
                   required: 'forms:first-name-required',
                 })}
                 variant="solid"
                 className="w-full sm:w-1/2 px-1.5 md:px-2.5"
-                error={errors.firstName?.message}
+                error={errors.name?.message}
               />
-              <Input
+              {/* <Input
                 label="Last Name *"
                 {...register('lastName', {
                   required: 'forms:last-name-required',
@@ -57,18 +81,18 @@ const AccountDetails = () => {
                 variant="solid"
                 className="w-full sm:w-1/2 px-1.5 md:px-2.5"
                 error={errors.lastName?.message}
-              />
+              /> */}
             </div>
             <div className="flex flex-col sm:flex-row -mx-1.5 md:-mx-2.5 space-y-4 sm:space-y-0">
               <Input
                 type="tel"
                 label="Phone/Mobile *"
-                {...register('phoneNumber', {
+                {...register('phone', {
                   required: 'forms:phone-required',
                 })}
                 variant="solid"
                 className="w-full sm:w-1/2 px-1.5 md:px-2.5"
-                error={errors.phoneNumber?.message}
+                error={errors.phone?.message}
               />
             </div>
           </div>
@@ -98,7 +122,7 @@ const AccountDetails = () => {
                 error={errors.email?.message}
               />
             </div>
-            <div className="flex flex-col sm:flex-row -mx-1.5 md:-mx-2.5 space-y-4 sm:space-y-0">
+            {/* <div className="flex flex-col sm:flex-row -mx-1.5 md:-mx-2.5 space-y-4 sm:space-y-0">
               <PasswordInput
                 label="Password"
                 {...register('password', {
@@ -115,7 +139,7 @@ const AccountDetails = () => {
                 error={errors.confirmPassword?.message}
                 className="w-full sm:w-1/2 px-1.5 md:px-2.5"
               />
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="relative flex pt-6 md:pt-8 lg:pt-10">

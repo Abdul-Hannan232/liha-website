@@ -28,7 +28,7 @@ export const CategoryFilter = () => {
 
   return (
     <div className="block">
-      <Heading className="mb-5 -mt-1">Categories</Heading>
+      {/* <Heading  className="mb-5 -mt-1">Categories</Heading> */}
       <div className="max-h-full overflow-hidden border rounded border-border-base">
         <Scrollbar className="w-full category-filter-scrollbar">
           {data?.categories?.data?.length ? (

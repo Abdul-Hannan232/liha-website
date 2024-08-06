@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Button from '@components/ui/button';
 import Counter from '@components/ui/counter';
 import { useParams } from 'next/navigation';
@@ -20,40 +21,41 @@ import CartIcon from '@components/icons/cart-icon';
 import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io';
 import TagLabel from '@components/ui/tag-label';
 import LabelIcon from '@components/icons/label-icon';
-import { IoArrowRedoOutline } from 'react-icons/io5';
+import { IoArrowRedoOutline, IoCartOutline } from 'react-icons/io5';
 import SocialShareBox from '@components/ui/social-share-box';
 import ProductDetailsTab from '@components/product/product-details/product-tab';
 import VariationPrice from './variation-price';
 import isEqual from 'lodash/isEqual';
-
+import CheckoutPage from '@pages/pages/checkout/page';
 
 // interface ChildProps {
 //   getCid: (data: number) => void;
 // }
-const ProductSingleDetails= () => {
-// const ProductSingleDetails:React.FC<ChildProps> = ({getCid}) => {
+const ProductSingleDetails = () => {
+  // const ProductSingleDetails:React.FC<ChildProps> = ({getCid}) => {
+  const router = useRouter();
   const pathname = useParams();
   const { slug } = pathname;
   const { width } = useWindowSize();
   const { data, isLoading } = useProductQuery(slug as string);
-  
+
   // if(data && (typeof data?.category_id === 'number')){
 
   //   getCid(data?.category_id)
   // }
 
-
   const { addItemToCart, isInCart, getItemFromCart, isInStock } = useCart();
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [attributes, setAttributes] = useState<{ [key: string]: string }>({});
   const [favorite, setFavorite] = useState<boolean>(false);
-  const [stock, setStock] = useState(1);
+  const [stock, setStock] = useState();
+  // const [gallery, setGallery] = useState([]);
   const [addToCartLoader, setAddToCartLoader] = useState<boolean>(false);
   const [addToWishlistLoader, setAddToWishlistLoader] =
     useState<boolean>(false);
   const [shareButtonStatus, setShareButtonStatus] = useState<boolean>(false);
-  // console.log('----------pathname ', pathname);
-  
+  // console.log('----------pathname ', data?.stock);
+
   const productUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}${ROUTES.PRODUCT}/${pathname.slug}`;
 
   // const productUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}${ROUTES.PRODUCT}/${data?.title}`;
@@ -64,9 +66,35 @@ const ProductSingleDetails= () => {
       currencyCode: 'USD',
     },
   );
+
+  const shareRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (
+        shareRef.current &&
+        !shareRef.current.contains(event.target as Node)
+      ) {
+        setShareButtonStatus(false);
+      }
+    };
+
+    if (shareButtonStatus) {
+      window.addEventListener('click', handleClickOutside);
+    } else {
+      window.removeEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
+  }, [shareButtonStatus]);
+
   const handleChange = () => {
     setShareButtonStatus(!shareButtonStatus);
   };
+
+  // console.log(shareButtonStatus);
   if (isLoading) return <p>Loading...</p>;
   const variations = getVariations(data?.variations);
 
@@ -97,7 +125,7 @@ const ProductSingleDetails= () => {
     }, 1500);
 
     const item = generateCartItem(data!, selectedVariation);
-    addItemToCart(item, stock);
+    addItemToCart(item, data?.stock as number);
     toast('Added to the bag', {
       progressClassName: 'fancy-progress-bar',
       position: width! > 768 ? 'bottom-right' : 'top-right',
@@ -138,13 +166,47 @@ const ProductSingleDetails= () => {
       console.error('Failed to parse tags:', error);
     }
   }
+
+  let gallery: string[] = [];
+  if (data?.gallery) {
+    try {
+      gallery = Array.isArray(data.gallery)
+        ? data.gallery
+        : JSON.parse(data.gallery);
+    } catch (error) {
+      console.error('Failed to parse gallery:', error);
+    }
+  }
+
+  // console.log('gallery', gallery);
+
+  const orderNow = () => {
+    // router.push({
+    //   pathname: '/pages/checkout',
+    //   query: {
+    //     id: data?.id,
+    //     name: data?.name,
+    //     price: data?.price,
+    //   },
+    // });
+
+    // const serializedProduct = encodeURIComponent(JSON.stringify(data));
+    // router.push({
+    //   pathname: '/pages/checkout',
+    //   query: { product: serializedProduct },
+    // });
+
+    router.push(`/pages/checkout?id=${data?.id}&q=${selectedQuantity}`);
+  };
+
   return (
     <div className="pt-6 pb-2 md:pt-7">
       <div className="grid-cols-10 lg:grid gap-7 2xl:gap-8">
         <div className="col-span-5 mb-6 overflow-hidden xl:col-span-6 md:mb-8 lg:mb-0">
-          {!!data?.gallery?.length ? (
+          {/* {!!gallery?.length ? ( */}
+          {Array.isArray(gallery) && gallery?.length > 0 ? (
             <ThumbnailCarousel
-              gallery={data?.gallery}
+              gallery={gallery}
               thumbnailClassName="xl:w-[700px] 2xl:w-[900px]"
               galleryClassName="xl:w-[150px] 2xl:w-[170px]"
             />
@@ -220,7 +282,7 @@ const ProductSingleDetails= () => {
 
           <div className="pb-2">
             {/* check that item isInCart and place the available quantity or the item quantity */}
-            {isEmpty(variations) && (
+            {/* {isEmpty(variations) && (
               <>
                 {Number(stock) > 0 || !outOfStock ? (
                   <span className="text-sm font-medium text-yellow">
@@ -232,8 +294,34 @@ const ProductSingleDetails= () => {
                   </div>
                 )}
               </>
-            )}
+            )} */}
 
+            {isEmpty(selectedVariation) && data && (
+              <>
+                {/* {console.log('>>>>>>>>>>>>>>>>>> stock', data.stock)} */}
+
+                {/* {(selectedQuantity >  Number(stock)) ? ( */}
+                {(
+                  isInCart(item.id)
+                    ? getItemFromCart(item.id).quantity + selectedQuantity >=
+                      Number(data.stock)
+                    : selectedQuantity >= Number(data.stock)
+                ) ? (
+                  <span className="text-sm font-medium text-red-500">
+                    {` Only  ${data.stock} items are Available!`}
+                  </span>
+                ) : Number(data.stock) > 0 ? (
+                  <span className="text-sm font-medium text-yellow">
+                    {` Only  ${data.stock} item left!`}
+                  </span>
+                ) : (
+                  <div className="text-base text-brand-danger whitespace-nowrap">
+                    Out Of Stock
+                  </div>
+                )}
+              </>
+            )}
+            {/* 
             {!isEmpty(selectedVariation) && (
               <span className="text-sm font-medium text-yellow">
                 {selectedVariation?.is_disable ||
@@ -247,11 +335,11 @@ const ProductSingleDetails= () => {
                       'item left!'
                     }`}
               </span>
-            )}
+            )} */}
           </div>
 
           <div className="pt-1.5 lg:pt-3 xl:pt-4 space-y-2.5 md:space-y-3.5">
-            <Counter
+            {/* <Counter
               variant="single"
               value={selectedQuantity}
               onIncrement={() => setSelectedQuantity((prev) => prev + 1)}
@@ -259,13 +347,28 @@ const ProductSingleDetails= () => {
                 setSelectedQuantity((prev) => (prev !== 1 ? prev - 1 : 1))
               }
               disabled={
-                isInCart(item.id)
+             data && (  isInCart(item.id)
                   ? getItemFromCart(item.id).quantity + selectedQuantity >=
-                    Number(item.stock)
-                  : selectedQuantity >= Number(item.stock)
+                    Number(data.stock)
+                  : selectedQuantity >= Number(data.stock))
               }
-            />
-            <Button
+            /> */}
+
+<Counter
+                  variant="single"
+                  value={selectedQuantity}
+                  onIncrement={() => setSelectedQuantity((prev) => prev + 1)}
+                  onDecrement={() =>
+                    setSelectedQuantity((prev) => (prev !== 1 ? prev - 1 : 1))
+                  }
+                  disabled={
+                    isInCart(item.id)
+                      ? getItemFromCart(item.id).quantity + selectedQuantity >=
+                        Number(data?.stock)
+                      : selectedQuantity >= Number(data?.stock)
+                  }
+                />
+            {/* <Button
               onClick={addToCart}
               className="w-full px-1.5"
               disabled={!isSelected}
@@ -273,7 +376,34 @@ const ProductSingleDetails= () => {
             >
               <CartIcon color="#ffffff" className="ltr:mr-3 rtl:ml-3" />
               Add to Cart
-            </Button>
+            </Button> */}
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <Button
+                onClick={orderNow}
+                className="w-full px-1.5"
+                // disabled={!isSelected}
+                disabled={status === 'Hide'}
+                // loading={addToCartLoader}
+              >
+                <CartIcon color="#ffffff" className="ltr:mr-3 rtl:ml-3" />
+                Order now
+              </Button>
+
+              <Button
+                onClick={addToCart}
+                className="w-full px-1.5"
+                // disabled={!isSelected}
+                disabled={status === 'Hide'}
+                loading={addToCartLoader}
+              >
+                <IoCartOutline
+                  color="#ffffff"
+                  className="ltr:mr-3 rtl:ml-3 text-3xl"
+                />
+                Add to Cart
+              </Button>
+            </div>
             <div className="grid grid-cols-2 gap-2.5">
               <Button
                 variant="border"
@@ -292,6 +422,7 @@ const ProductSingleDetails= () => {
               </Button>
               <div className="relative group">
                 <Button
+                  ref={shareRef}
                   variant="border"
                   className={`w-full hover:text-brand ${
                     shareButtonStatus === true && 'text-brand'
@@ -327,7 +458,7 @@ const ProductSingleDetails= () => {
           )}
         </div>
       </div>
-      <ProductDetailsTab  products_detail = {data?.description as string}/> 
+      <ProductDetailsTab products_detail={data?.description as string} />
     </div>
   );
 };

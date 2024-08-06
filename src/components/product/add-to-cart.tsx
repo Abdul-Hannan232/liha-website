@@ -30,7 +30,7 @@ const AddToCart = ({
     e: React.MouseEvent<HTMLButtonElement | MouseEvent>,
   ) => {
     e.stopPropagation();
-    addItemToCart(item, 1);
+    addItemToCart (item, 1);
   };
   const handleRemoveClick = (e: any) => {
     e.stopPropagation();
@@ -45,7 +45,12 @@ const AddToCart = ({
         className="w-full grid grid-cols-[1fr,max-content] items-center bg-[#F4F6F8] rounded-[4px] mt-[10px] no-underline transition-all text-gray-600 hover:text-black font-medium"
         aria-label="Count Button"
         onClick={handleAddClick}
-        disabled={disabled || outOfStock}
+        // disabled={
+        //   isInCart(item.id)
+        //     ? getItemFromCart(item.id).quantity + selectedQuantity >=
+        //       Number(item.stock)
+        //     : selectedQuantity >= Number(item.stock)
+        //  || outOfStock}
       >
         <span className="sm:flex text-[15px] sm:items-center sm:justify-center">
           Add
@@ -69,7 +74,13 @@ const AddToCart = ({
       value={getItemFromCart(item.id).quantity}
       onDecrement={handleRemoveClick}
       onIncrement={handleAddClick}
-      disabled={outOfStock}
+      // disabled={outOfStock}
+      disabled={
+        isInCart(item.id)
+          ? getItemFromCart(item.id).quantity  >=
+            Number(data?.stock)
+          : getItemFromCart(item.id).quantity  >= Number(data?.stock)
+      }
       className="w-full h-10"
       variant={variant}
     />

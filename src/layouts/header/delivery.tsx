@@ -5,8 +5,8 @@ import { useModalAction } from '@components/common/modal/modal.context';
 import { useUI } from '@contexts/ui.context';
 
 interface DeliveryProps {
-  className?: string;
-}
+  className?: string; 
+} 
 const Delivery: React.FC<DeliveryProps> = ({ className }) => {
   const { isAuthorized } = useUI();
   const { openModal } = useModalAction();

@@ -27,6 +27,8 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
       // title={item?.name}
     >
       <div className="relative flex rounded overflow-hidden shrink-0 cursor-pointer w-[90px] md:w-[100px] h-[90px] md:h-[100px]">
+       
+       
         <Image
           src={
             item?.image.replace('4000', '5055') ??
@@ -52,7 +54,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
       <div className="flex items-start justify-between w-full overflow-hidden">
         <div className="ltr:pl-3 rtl:pr-3 md:ltr:pl-4 md:rtl:pr-4">
           <Link
-            href={`${ROUTES.PRODUCT}/${item?.slug}`}
+            href={`${ROUTES.PRODUCT}/${item?.title}`}
             className="block leading-5 transition-all text-brand-dark text-13px sm:text-sm lg:text-15px hover:text-brand"
           >
             {item?.title}

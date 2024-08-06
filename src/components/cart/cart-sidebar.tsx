@@ -22,6 +22,9 @@ export default function CartSidebar() {
     amount: total,
     currencyCode: 'USD',
   });
+
+
+
   return (
     <div className="flex flex-col justify-between w-full h-full">
       <div className="relative flex items-center justify-between w-full px-5 py-5 border-b border-gray-base md:px-7">
@@ -42,6 +45,8 @@ export default function CartSidebar() {
 
       {!isEmpty ? (
         <Scrollbar className="flex-grow w-full cart-scrollbar ">
+         
+
           <div className="w-full px-5 md:px-7  h-[calc(100vh_-_420px)]">
             {items?.map((item) => <CartItem item={item} key={item.id} />)}
           </div>

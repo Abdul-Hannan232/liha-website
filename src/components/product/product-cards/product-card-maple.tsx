@@ -87,7 +87,8 @@ const ProductCardMaple: React.FC<ProductProps> = ({ product, className }) => {
     >
       <figure className="flex overflow-hidden max-w-[230px] mx-auto transition duration-200 ease-in-out transform group-hover:scale-105 relative">
         <Image
-          src={image?.thumbnail ?? productPlaceholder}
+          // src={image?.thumbnail ?? productPlaceholder}
+          src={image ?? productPlaceholder}
           alt={name || 'Product Image'}
           width={230}
           height={200}

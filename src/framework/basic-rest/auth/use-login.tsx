@@ -13,7 +13,7 @@ async function login(input: LoginInputType) {
 
   try {
     const response = await axios.post(
-      'http://localhost:5055/api/user/login',
+      `${process.env.NEXT_PUBLIC_REST_API_ENDPOINT}/user/login`,
       input,
     );  
     

@@ -21,6 +21,7 @@ import '@assets/css/scrollbar.css';
 import '@assets/css/swiper-carousel.css';
 import '@assets/css/custom-plugins.css';
 import '@assets/css/rc-drawer.css';
+import CustomerCare from '@components/common/customer-care/customerCare';
 
 const inter = Inter({
   weight: ['400', '500', '600', '700'],
@@ -56,12 +57,37 @@ export default function RootLayout({
   return (
     <>
       <html dir={dir('en')}>
+           <head>
+        {/* Load the Facebook SDK */}
+        <script
+          async
+          defer
+          crossOrigin="anonymous"
+          src="https://connect.facebook.net/en_US/sdk.js"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.fbAsyncInit = function() {
+                FB.init({
+                  appId: '${process.env.NEXT_PUBLIC_FACEBOOK_APP_ID}',
+                  autoLogAppEvents: true,
+                  xfbml: true,
+                  version: 'v12.0' // Use the latest version here
+                });
+              };
+            `,
+          }}
+        />
+      </head>
         <body className={`${inter.variable} ${manrope.variable}`}>
           <Providers>
             <UserProvider>
             <ManagedUIContext>
               {/* <AntiqueRefinedLayout> */}
+            
               {children}
+              <CustomerCare />
               {/* </ AntiqueRefinedLayout > */}
               <ManagedModal />
               <ManagedDrawer />
@@ -69,6 +95,8 @@ export default function RootLayout({
             </ManagedUIContext>
             </UserProvider>
           </Providers>
+
+          <script async defer crossOrigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
         </body>
       </html>
     </>

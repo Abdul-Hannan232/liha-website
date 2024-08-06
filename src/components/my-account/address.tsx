@@ -6,7 +6,9 @@ export default function AccountDetailsPage() {
   return (
     <div className="pt-4">
       {!isLoading ? (
-        <AddressGrid address={data?.data} />
+        // <AddressGrid address={data?.data} />
+        <AddressGrid  />
+
       ) : (
         <div>Loading...</div>
       )}

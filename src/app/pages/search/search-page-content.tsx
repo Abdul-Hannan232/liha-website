@@ -23,7 +23,7 @@ export default function SearchPageContent() {
     isFetching: isLoading,
     isFetchingNextPage: loadingMore,
     fetchNextPage,
-    hasNextPage,
+    hasNextPage, 
     data,
     error,
   } = useProductsQuery({

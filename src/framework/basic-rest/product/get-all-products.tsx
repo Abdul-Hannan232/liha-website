@@ -13,7 +13,7 @@ const fetchProducts = async (pageParam: any, queryKey : any) => {
   
   // const { data } = await http.get(API_ENDPOINTS.PRODUCTS);
   const { data } = await http.get(
-    `http://localhost:5055/api/products?${queryKey}`,
+    `${process.env.NEXT_PUBLIC_REST_API_ENDPOINT}/products?${queryKey}`,
   );
   // console.log('data', data.products); 
 
@@ -30,7 +30,7 @@ const useProductsQuery = (options: QueryOptionsType) => {
   // console.log(options);
   
   return useInfiniteQuery<PaginatedProduct, Error>({
-    queryKey: ['http://localhost:5055/api/products', options?.text],
+    queryKey: [`${process.env.NEXT_PUBLIC_REST_API_ENDPOINT}/products`, options?.text],
     // queryKey: [API_ENDPOINTS.PRODUCTS, options],
     queryFn: ({ pageParam }) => fetchProducts(pageParam , options?.text),
     initialPageParam: 0,

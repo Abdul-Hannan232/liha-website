@@ -7,7 +7,7 @@ export const fetchRelatedProducts = async ({ limit , categoryId}: any) => {
   // console.log('fetchRelatedProducts queryKey', queryKey);
   
   // const { data } = await http.get(API_ENDPOINTS.RELATED_PRODUCTS);
-  const { data } = await http.get( `http://localhost:5055/api/products/bycategory/${categoryId}`);
+  const { data } = await http.get( `${process.env.NEXT_PUBLIC_REST_API_ENDPOINT}/products/bycategory/${categoryId}`);
   return data;
 };
 export const useRelatedProductsQuery = (options: QueryOptionsType) => {

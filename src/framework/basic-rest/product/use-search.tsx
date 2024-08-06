@@ -38,7 +38,7 @@ export const fetchSearchedProducts = async ({ queryKey }: any) => {
   //   text: 'all=true',
   // });
   // const { data } = await http.get(API_ENDPOINTS.SEARCH);
-  const { data } = await http.get(`http://localhost:5055/api/products?all=true`);
+  const { data } = await http.get(`${process.env.NEXT_PUBLIC_REST_API_ENDPOINT}/products?all=true`);
 // console.log('data', data.products);
 
 

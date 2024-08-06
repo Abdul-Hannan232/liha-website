@@ -26,6 +26,7 @@ const ChangePassword = () => {
   });
   function onSubmit(input: ChangePasswordInputType) {
     changePassword(input);
+   
   }
   return (
     <>

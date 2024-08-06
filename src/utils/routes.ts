@@ -10,7 +10,7 @@ export const ROUTES = {
   CHANGE_PASSWORD: '/pages/my-account/change-password',
   ACCOUNT: '/pages/my-account/account-settings',
   ORDERS: '/pages//my-account/orders',
-  ACCOUNT_SETTING: '/ ',
+  ACCOUNT_SETTING: '/pages/my-account/account-settings',
   ADDRESS: '/pages/my-account/address',
   HELP_CENTER: '/pages/my-account/help-center',
   LEGAL_NOTICE: '/pages/my-account/legal-notice',

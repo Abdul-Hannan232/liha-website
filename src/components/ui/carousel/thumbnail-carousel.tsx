@@ -64,14 +64,15 @@ const ThumbnailCarousel: React.FC<Props> = ({
           }}
           {...swiperParams}
         >
-          {gallery?.map((item: any) => (
+          {Array.isArray(gallery) && gallery?.map((item: any, i:number) => (
             <SwiperSlide
-              key={`product-gallery-${item.id}`}
+              key={`product-gallery-${i}`}
               className="flex items-center justify-center"
             >
               <Image
-                src={item?.original ?? productGalleryPlaceholder}
-                alt={`Product gallery ${item.id}`}
+                // src={item?.original ?? productGalleryPlaceholder}
+                src={item ?? productGalleryPlaceholder}
+                alt={`Product gallery ${i}`}
                 width={650}
                 height={590}
                 className="mx-auto rounded-lg"
@@ -108,14 +109,15 @@ const ThumbnailCarousel: React.FC<Props> = ({
           observeParents={true}
           breakpoints={galleryCarouselBreakpoints}
         >
-          {gallery?.map((item: any) => (
+          {Array.isArray(gallery) && gallery.map((item: any, i:number) => (
             <SwiperSlide
               key={`product-thumb-gallery-${item.id}`}
               className="flex items-center justify-center overflow-hidden transition border rounded cursor-pointer border-border-base hover:opacity-75"
             >
               <Image
-                src={item?.thumbnail ?? productGalleryPlaceholder}
-                alt={`Product thumb gallery ${item.id}`}
+                // src={item?.thumbnail ?? productGalleryPlaceholder}
+                src={item ?? productGalleryPlaceholder}
+                alt={`Product thumb gallery ${i}`}
                 width={170}
                 height={170}
                 style={{ width: 'auto' }}

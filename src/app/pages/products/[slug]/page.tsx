@@ -10,7 +10,7 @@ import Divider from '@components/ui/divider';
 
 export default async function Page() {
 
-  // const [id, setId] = useState<number>();
+  // const [id, setId] = useState<number>(); 
 
 // const getCategoryId =(category_id:number)=>{
 //   console.log(category_id);

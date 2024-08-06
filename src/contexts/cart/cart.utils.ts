@@ -93,7 +93,7 @@ export function removeItem(items: Item[], id: Item['id']) {
 
 export function inStock(items: Item[], id: Item['id']) {
   const item = getItem(items, id);
-  // if (item) return item['quantity']! < item['stock']!;
+  if (item) return item['quantity']! < item['stock']!;
   return true;
 }
 
@@ -104,9 +104,9 @@ export const calculateItemTotals = (items: Item[]) =>
   }));
 
 export const calculateTotal = (items: Item[]) =>
-  items.reduce((total, item) => total + item.quantity! * item.price, 0);
+  items?.reduce((total, item) => total + item.quantity! * item.price, 0);
 
 export const calculateTotalItems = (items: Item[]) =>
-  items.reduce((sum, item) => sum + item.quantity!, 0);
+  items?.reduce((sum, item) => sum + item.quantity!, 0);
 
 export const calculateUniqueItems = (items: Item[]) => items.length;

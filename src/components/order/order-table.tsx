@@ -11,7 +11,10 @@ import timezone from 'dayjs/plugin/timezone';
 import { GrNext, GrPrevious } from 'react-icons/gr';
 import { BsSearch } from 'react-icons/bs';
 
+
+
 export const CreatedAt: React.FC<{ createdAt?: any }> = ({ createdAt }) => {
+
   dayjs.extend(relativeTime);
   dayjs.extend(utc);
   dayjs.extend(timezone);
@@ -23,32 +26,50 @@ export const CreatedAt: React.FC<{ createdAt?: any }> = ({ createdAt }) => {
 };
 
 export const Status: React.FC<{ item?: any }> = ({ item }) => {
+  
   return (
     <span className={item?.status?.name?.replace(/\s/g, '_').toLowerCase()}>
       <span
         className="bullet"
         style={{ backgroundColor: item?.status?.color }}
       />
-      {item?.status?.name}
+      {item?.status}
     </span>
   );
 };
+const OrderTable: React.FC<{ orders?: any }> = ({ orders }) => {
+
+
 
 const columns = [
   {
     title: 'Order Number',
-    dataIndex: 'tracking_number',
-    key: 'tracking_number',
+    dataIndex: 'id',
+    key: 'id',
     className: 'id-cell',
     width: 140,
+    render: function orderNumber(item: any) {
+      return `#ON00${item}`; 
+    },
   },
+  // {
+  //   title: 'Order Date',
+  //   dataIndex: 'created_at',
+  //   key: 'created_at',
+  //   width: 140,
+  //   render: function createdAt(item: any) {
+  //    
+
+  //     return <CreatedAt createdAt={item} />;
+  //   },
+  // },
   {
     title: 'Order Date',
-    dataIndex: 'created_at',
-    key: 'created_at',
+    dataIndex: 'createdAt',
+    key: 'createdAt',
     width: 140,
-    render: function createdAt(items: any) {
-      return <CreatedAt createdAt={items} />;
+    render: function createdAt(item: any) {
+      return <CreatedAt createdAt={item} />;
     },
   },
   {
@@ -59,18 +80,19 @@ const columns = [
       return <Status item={item} />;
     },
   },
-  {
-    title: 'Delivery Time',
-    dataIndex: 'delivery_time',
-    key: 'delivery_time',
-    width: 140,
-  },
+  // {
+  //   title: 'Delivery Time',
+  //   dataIndex: 'delivery_time',
+  //   key: 'delivery_time',
+  //   width: 140,
+  // },
   {
     title: 'Total Price',
-    key: 'total',
+    key: 'totalPrice',
     width: 130,
-    render: function totalPrice(items: any) {
-      return <TotalPrice items={items} />;
+    render: function totalPrice(item: any) {
+      // return <TotalPrice items={items} />;
+      return   <span className="total_price">{item.totalPrice}</span>  ;
     },
   },
   {
@@ -84,7 +106,6 @@ const columns = [
   },
 ];
 
-const OrderTable: React.FC<{ orders?: any }> = ({ orders }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [value, setValue] = useState('');
   const countPerPage = 5;
@@ -98,10 +119,13 @@ const OrderTable: React.FC<{ orders?: any }> = ({ orders }) => {
   };
 
   const onChangeSearch = (e: any) => {
+
+   
+    
     setCurrentPage(1);
     let filter: any = orders
-      .filter((item: any) =>
-        item.tracking_number
+      .filter((item: any) => 
+      ( '#ON00' + item.id)
           .toLowerCase()
           .includes(e.target.value.toLowerCase()),
       )

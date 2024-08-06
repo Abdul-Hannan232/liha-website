@@ -21,6 +21,9 @@ export default function Cart() {
     amount: total,
     currencyCode: 'USD',
   });
+
+  // console.log('----------- cart',items)
+
   return (
     <div className="flex flex-col justify-between w-full h-full">
       <div className="relative flex items-center justify-between w-full border-b ltr:pl-5 rtl:pr-5 md:ltr:pl-7 md:rtl:pr-7 border-border-base">

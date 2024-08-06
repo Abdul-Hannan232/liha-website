@@ -35,7 +35,7 @@ import axios from 'axios';
 
 const useFetchFaqs = async () => {
   try {
-    const res = await axios.get('http://localhost:5055/api/faqs/all');
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_REST_API_ENDPOINT}/faqs/all`);
     if (res) {
       // console.log(res);
 

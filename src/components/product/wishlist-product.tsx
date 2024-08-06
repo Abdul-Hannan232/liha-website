@@ -3,6 +3,7 @@ import { useWishlistProductsQuery } from '@framework/product/get-wishlist-produc
 import ProductCardLoader from '@components/ui/loaders/product-card-loader';
 import Alert from '@components/ui/alert';
 import cn from 'classnames';
+import { useEffect, useState } from 'react';
 
 interface ProductWishlistProps {
   className?: string;
@@ -11,10 +12,29 @@ interface ProductWishlistProps {
 export default function ProductWishlistGrid({
   className = '',
 }: ProductWishlistProps) {
-  const limit = 35;
-  const { data, isLoading, error } = useWishlistProductsQuery({
-    limit: limit,
-  });
+  const [data, setDAta] = useState([]);
+  const [isLoading, setIsLaoading] = useState(true);
+  const [error, setError] = useState<any>(false);
+  // const limit = 35;
+  // const { data, isLoading, error } = useWishlistProductsQuery({
+  //   limit: limit,
+  // });
+
+  useEffect(() => {
+    // Check if the product is already in the wishlist
+    const wishlist =
+      JSON.parse(localStorage.getItem('wishlist') as string) || [];
+    if (wishlist) {
+      setDAta(wishlist);
+      
+    }else{
+      setError({ message: 'Error in fetching whishList' });
+    }
+    setIsLaoading(false);
+  }, []);
+
+  console.log('wishlist ', data);
+
   return (
     <div className={cn(className)}>
       {error ? (

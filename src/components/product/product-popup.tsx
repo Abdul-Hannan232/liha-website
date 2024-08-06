@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import isEmpty from 'lodash/isEmpty';
 import { ROUTES } from '@utils/routes';
@@ -16,10 +16,11 @@ import Heading from '@components/ui/heading';
 import Text from '@components/ui/text';
 import TagLabel from '@components/ui/tag-label';
 import LabelIcon from '@components/icons/label-icon';
-import { IoArrowRedoOutline } from 'react-icons/io5';
 import RelatedProductFeed from '@components/product/feeds/related-product-feed';
 import SocialShareBox from '@components/ui/social-share-box';
 import { IoIosHeart, IoIosHeartEmpty } from 'react-icons/io';
+import { IoArrowRedoOutline, IoCartOutline } from 'react-icons/io5';
+
 import { toast } from 'react-toastify';
 import useWindowSize from '@utils/use-window-size';
 import {
@@ -84,15 +85,17 @@ export default function ProductPopup() {
     quantity,
     stock,
     status,
-    category_id
+    category_id,
   } = data;
   // console.log('data???????????? ', data);
-  
-  const productUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}${ROUTES.PRODUCT}/${title}`;
+
+  const productUrl = encodeURIComponent(
+    `${process.env.NEXT_PUBLIC_WEBSITE_URL}${ROUTES.PRODUCT}/${title}`,
+  );
   // const productUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/${lang}${ROUTES.PRODUCT}/${slug}`;
-  const handleChange = () => {
-    setShareButtonStatus(!shareButtonStatus);
-  };
+  // const handleChange = () => {
+  //   setShareButtonStatus(!shareButtonStatus);
+  // };
   const isSelected = !isEmpty(variations)
     ? !isEmpty(attributes) &&
       Object.keys(variations).every((variation) =>
@@ -129,16 +132,67 @@ export default function ProductPopup() {
       draggable: true,
     });
   }
-  function addToWishlist() {
+  // function addToWishlist() {
+  //   setAddToWishlistLoader(true);
+  //   setFavorite(!favorite);
+  //   const toastStatus: string =
+  //     favorite === true
+  //       ? 'Remove from favorite list'
+  //       : 'Added to favorite list';
+  //   setTimeout(() => {
+  //     setAddToWishlistLoader(false);
+  //   }, 1500);
+
+  //   localStorage.setItem('wishlist', JSON.stringify(data))
+  //   toast(toastStatus, {
+  //     progressClassName: 'fancy-progress-bar',
+  //     position: width! > 768 ? 'bottom-right' : 'top-right',
+  //     autoClose: 1500,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //   });
+  // }
+
+  useEffect(() => {
+    // Check if the product is already in the wishlist
+    const wishlist =
+      JSON.parse(localStorage.getItem('wishlist') as string) || [];
+    const isFavorite = wishlist.some((item: any) => item.id === data.id);
+    setFavorite(isFavorite);
+  }, [data.id]);
+
+  function addToWishlist(newItem: any) {
     setAddToWishlistLoader(true);
     setFavorite(!favorite);
-    const toastStatus: string =
+    const toastStatus =
       favorite === true
         ? 'Remove from favorite list'
         : 'Added to favorite list';
+
+    // Retrieve existing wishlist 
+    let wishlist =
+      JSON.parse(localStorage?.getItem('wishlist') as string) || [];
+    console.log(wishlist);
+
+   
+    const itemIndex = wishlist.findIndex((item: any) => item.id === newItem.id);
+
+    if (itemIndex === -1) {
+            wishlist.push(newItem);
+    } else {
+      // remove item
+      wishlist.splice(itemIndex, 1);
+    }
+
+    // Save updated wishlist 
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+
     setTimeout(() => {
       setAddToWishlistLoader(false);
     }, 1500);
+
     toast(toastStatus, {
       progressClassName: 'fancy-progress-bar',
       position: width! > 768 ? 'bottom-right' : 'top-right',
@@ -159,6 +213,50 @@ export default function ProductPopup() {
 
   useEffect(() => setSelectedQuantity(1), [data.id]);
   // console.log('image>>>>>?>>>>>>>>>>> ', image)
+
+  let galleryImgs: string[] = [];
+  if (gallery) {
+    try {
+      galleryImgs = Array.isArray(gallery) ? gallery : JSON.parse(gallery);
+    } catch (error) {
+      console.error('Failed to parse gallery:', error);
+    }
+  }
+
+  const orderNow = () => {
+    router.push(`/pages/checkout?id=${data?.id}&q=${selectedQuantity}`);
+    closeModal();
+  };
+
+  // close share popup
+
+  const shareRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (
+        shareRef.current &&
+        !shareRef.current.contains(event.target as Node)
+      ) {
+        setShareButtonStatus(false);
+      }
+    };
+
+    if (shareButtonStatus) {
+      window.addEventListener('click', handleClickOutside);
+    } else {
+      window.removeEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
+  }, [shareButtonStatus]);
+
+  const handleChange = () => {
+    setShareButtonStatus(!shareButtonStatus);
+  };
+
   return (
     <div className="md:w-[600px] lg:w-[940px] xl:w-[1180px] 2xl:w-[1360px] mx-auto p-1 lg:p-0 xl:p-3 bg-brand-light rounded-md">
       <CloseButton onClick={closeModal} />
@@ -166,12 +264,18 @@ export default function ProductPopup() {
         <div className="px-4 pt-4 md:px-6 lg:p-8 2xl:p-10 mb-9 lg:mb-2 md:pt-7 2xl:pt-10">
           <div className="items-start justify-between lg:flex">
             <div className="items-center justify-center mb-6 overflow-hidden xl:flex md:mb-8 lg:mb-0">
-              {!!gallery?.length ? (
-                <ThumbnailCarousel gallery={gallery} />
+              {/* {!!galleryImgs?.length ? ( */}
+              {Array.isArray(galleryImgs) && galleryImgs?.length > 0 ? (
+                <ThumbnailCarousel gallery={galleryImgs} />
               ) : (
                 <div className="flex items-center justify-center w-auto">
                   <Image
-                    src={image.replace('http://localhost:4000/', ' http://localhost:5055/') ?? productGalleryPlaceholder}
+                    src={
+                      image.replace(
+                        'http://localhost:4000/',
+                        ' http://localhost:5055/',
+                      ) ?? productGalleryPlaceholder
+                    }
                     // src={image?.original ?? productGalleryPlaceholder}
                     // alt={name!}
                     alt={title!}
@@ -239,7 +343,18 @@ export default function ProductPopup() {
                 {/* check that item isInCart and place the available quantity or the item quantity */}
                 {isEmpty(variations) && (
                   <>
-                    {Number(stock) > 0  ? (
+                    {/* {(selectedQuantity >  Number(stock)) ? ( */}
+                    {(
+                      isInCart(item.id)
+                        ? getItemFromCart(item.id).quantity +
+                            selectedQuantity >=
+                          Number(stock)
+                        : selectedQuantity >= Number(stock)
+                    ) ? (
+                      <span className="text-sm font-medium text-red-500">
+                        {` Only  ${stock} items are Available!`}
+                      </span>
+                    ) : Number(stock) > 0 ? (
                       <span className="text-sm font-medium text-yellow">
                         {` Only  ${stock} item left!`}
                       </span>
@@ -276,7 +391,10 @@ export default function ProductPopup() {
                 )} */}
               </div>
 
-              <div className="pt-1.5 lg:pt-3 xl:pt-4 space-y-2.5 md:space-y-3.5">
+              {/* <div className="pt-1.5 lg:pt-3 xl:pt-4 space-y-2.5 md:space-y-3.5"> */}
+              <div
+                className={`pt-1.5 lg:pt-3 xl:pt-4 space-y-2.5 md:space-y-3.5 `}
+              >
                 <Counter
                   variant="single"
                   value={selectedQuantity}
@@ -287,24 +405,41 @@ export default function ProductPopup() {
                   disabled={
                     isInCart(item.id)
                       ? getItemFromCart(item.id).quantity + selectedQuantity >=
-                        Number(item.stock)
-                      : selectedQuantity >= Number(item.stock)
+                        Number(stock)
+                      : selectedQuantity >= Number(stock)
                   }
                 />
-                <Button
-                  onClick={addToCart}
-                  className="w-full px-1.5"
-                  // disabled={!isSelected}
-                  disabled={status==='Hide'}
-                  loading={addToCartLoader}
-                >
-                  <CartIcon color="#ffffff" className="ltr:mr-3 rtl:ml-3" />
-                  Add to Cart
-                </Button>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <Button
+                    onClick={orderNow}
+                    className="w-full px-1.5"
+                    // disabled={!isSelected}
+                    disabled={status === 'Hide'}
+                    loading={addToCartLoader}
+                  >
+                    <CartIcon color="#ffffff" className="ltr:mr-3 rtl:ml-3" />
+                    Order now
+                  </Button>
+
+                  <Button
+                    onClick={addToCart}
+                    className="w-full px-1.5"
+                    // disabled={!isSelected}
+                    disabled={status === 'Hide'}
+                    loading={addToCartLoader}
+                  >
+                    <IoCartOutline
+                      color="#ffffff"
+                      className="ltr:mr-3 rtl:ml-3 text-3xl"
+                    />
+                    Add to Cart
+                  </Button>
+                </div>
+
                 <div className="grid grid-cols-2 gap-2.5">
                   <Button
                     variant="border"
-                    onClick={addToWishlist}
+                    onClick={() => addToWishlist(data)}
                     loading={addToWishlistLoader}
                     className={`group hover:text-brand ${
                       favorite === true && 'text-brand'
@@ -320,6 +455,7 @@ export default function ProductPopup() {
                   <div className="relative group">
                     <Button
                       variant="border"
+                      ref={shareRef}
                       className={`w-full hover:text-brand ${
                         shareButtonStatus === true && 'text-brand'
                       }`}

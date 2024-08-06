@@ -26,7 +26,7 @@ export default function CategoryDropdownSidebar({
   
   return (
     <aside className={cn('category-mobile-sidebar', className)}>
-      <div className="h-full max-h-full overflow-hidden border rounded border-border-base">
+      <div className="h-full max-h-full overflow-auto border rounded border-border-base">
         {error ? (
           <div className="2xl:ltr:pr-4 2xl:rtl:pl-4">
             <Alert message={error.message} />

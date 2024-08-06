@@ -2,14 +2,57 @@ import { BsThreeDots } from 'react-icons/bs';
 import { Popover, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { useUI } from '@contexts/ui.context';
+import useWindowSize from '@utils/use-window-size';
+import { toast } from 'react-toastify';
+import http from '@framework/utils/http';
+
 
 const ActionsButton: React.FC<{ item?: any }> = ({ item }) => {
-  const { openDrawer, setDrawerView } = useUI();
+
+  // console.log('----------- ActionsButton ',item);
+  
+  const { openDrawer, setDrawerView, closeDrawer } = useUI();
+  const { width } = useWindowSize();
+
 
   function handleCartOpen(item: any) {
     setDrawerView('ORDER_DETAILS');
     return openDrawer(item);
   }
+
+
+
+  const handleCancelOrder = async (orderId: number) => {
+    // console.log('orderId: ' , orderId);
+
+    closeDrawer();
+    try {
+      const response = await http.put(
+        `${process.env.NEXT_PUBLIC_REST_API_ENDPOINT}/orders/${orderId}`,
+        {
+          status: 'Cancel',
+        },
+      );
+
+      if (response.status === 200) {
+        // @ts-ignore
+        toast(response.data.message, {
+          progressClassName: 'fancy-progress-bar',
+          position: width! > 768 ? 'bottom-right' : 'top-right',
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        // getUpdatedOrder()
+
+      }
+    } catch (error) {
+      console.error('Error cancelling order:', error);
+      alert('Failed to cancel order');
+    }
+  };
 
   return (
     <>
@@ -42,7 +85,7 @@ const ActionsButton: React.FC<{ item?: any }> = ({ item }) => {
                 >
                   Order Details
                 </div>
-                <div className="text-[14px] whitespace-nowrap text-[#F35C5C] py-2 px-5 hover:bg-[#F6F9FC] transition-all cursor-pointer">
+                <div onClick={()=>handleCancelOrder(item.id)} className="text-[14px] whitespace-nowrap text-[#F35C5C] py-2 px-5 hover:bg-[#F6F9FC] transition-all cursor-pointer">
                   Cancel Order
                 </div>
               </Popover.Panel>

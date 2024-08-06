@@ -22,7 +22,7 @@ function RenderPopupOrAddToCart({ props }: { props: Object }) {
   let { data }: any = props;
   // console.log(variant);
 
-  const { id, quantity, stock, product_type, status } = data ?? {};
+  const { id, quantity, stock, product_type, status, gallery } = data ?? {};
   const { width } = useWindowSize();
   const { openModal } = useModalAction();
   const { isInCart, isInStock } = useCart();
@@ -59,7 +59,8 @@ function RenderPopupOrAddToCart({ props }: { props: Object }) {
   //     // </>
   //   );
   // }
-  if (Number(stock) < 1 || outOfStock) {
+  // if (Number(stock) < 1 || outOfStock) {
+  if (Number(stock) < 1) {
     return (
       <span className="text-[11px] md:text-xs font-bold text-brand-light uppercase inline-block bg-brand-danger rounded-full px-2.5 pt-1 pb-[3px] mx-0.5 sm:mx-1">
         Out Of Stock
@@ -79,14 +80,20 @@ function RenderPopupOrAddToCart({ props }: { props: Object }) {
   //     </button>
   //   );
   // }
-  return <AddToCart data={data} variant="mercury" />;
+  return (
+    <AddToCart
+      data={data}
+      variant="mercury"
+     
+    />
+  );
 }
 const ProductCardAlpine: React.FC<ProductProps> = ({ product, className }) => {
   // console.log('----------------- ', product.image);
 
-  const { title, image, unit, stock, product_type } = product ?? {};
+  const { title, image, gallery, unit, stock, product_type } = product ?? {};
   // console.log('title,', title);
-  
+
   const { openModal } = useModalAction();
   // const { t } = useTranslation(lang, 'common');
   const { price, basePrice, discount } = usePrice({
@@ -112,6 +119,15 @@ const ProductCardAlpine: React.FC<ProductProps> = ({ product, className }) => {
       ? (image as string).replace('4000', '5055')
       : productPlaceholder;
 
+  let galleryImgs: string[] = [];
+  if (gallery) {
+    try {
+      galleryImgs = Array.isArray(gallery) ? gallery : JSON.parse(gallery);
+    } catch (error) {
+      console.error('Failed to parse gallery:', error);
+    }
+  }
+
   return (
     <article
       className={cn(
@@ -123,18 +139,33 @@ const ProductCardAlpine: React.FC<ProductProps> = ({ product, className }) => {
     >
       <div className="relative shrink-0">
         <div className="overflow-hidden mx-auto w-full sm:w-[180px] h-[180px] md:w-[200px] md:h-[200px] transition duration-200 ease-in-out transform group-hover:scale-105 relative">
-          <Image
-            src={imageUrl}
-            // src={image?.thumbnail ?? productPlaceholder}
-            alt={(title as string) || 'Product Image'}
-            quality={100}
-            priority
-            fill
-            sizes="(max-width: 768px) 100vw,
+          {Array.isArray(galleryImgs) && galleryImgs?.length > 0 ? (
+            <Image
+              src={galleryImgs[0].replace('4000', '5055')}
+              // src={image?.thumbnail ?? productPlaceholder}
+              alt={(title as string) || 'Product Image'}
+              quality={100}
+              priority
+              fill
+              sizes="(max-width: 768px) 100vw,
+            (max-width: 1200px) 50vw,
+            33vw"
+              className="object-cover bg-fill-thumbnail"
+            />
+          ) : (
+            <Image
+              src={imageUrl}
+              // src={image?.thumbnail ?? productPlaceholder}
+              alt={(title as string) || 'Product Image'}
+              quality={100}
+              priority
+              fill
+              sizes="(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               33vw"
-            className="object-cover bg-fill-thumbnail"
-          />
+              className="object-cover bg-fill-thumbnail"
+            />
+          )}
         </div>
         <div className="w-full h-full absolute top-0 pt-2.5 md:pt-3.5 px-3 md:px-4 lg:px-[18px] z-10 -mx-0.5 sm:-mx-1">
           {discount && (

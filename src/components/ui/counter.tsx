@@ -79,7 +79,7 @@ const Counter: React.FC<CounterProps> = ({
         onClick={onIncrement}
         disabled={disabled}
         className={cn(
-          'group flex items-center justify-center h-full shrink-0 transition-all ease-in-out duration-300 focus:outline-none focus-visible:outline-none pr-2',
+          ` group flex items-center justify-center h-full shrink-0 transition-all ease-in-out duration-300 focus:outline-none focus-visible:outline-none pr-2`,
           {
             'w-10 h-8 rounded-2xl text-heading hover:bg-fill-four !pr-0':
               variant === 'mercury',

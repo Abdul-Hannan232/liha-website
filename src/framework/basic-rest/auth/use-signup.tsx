@@ -15,7 +15,7 @@ async function signUp(input: SignUpInputType) {
 
   try {
     const response = await axios.post(
-      'http://localhost:5055/api/user/register',
+      `${process.env.NEXT_PUBLIC_REST_API_ENDPOINT}/user/register`,
       input,
     );  
     // login(response.data);

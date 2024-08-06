@@ -2,8 +2,8 @@ import isEmpty from 'lodash/isEmpty';
 interface Item {
   id: string | number;
   name: string;
-  slug: string;
-  image: string;
+  slug?: string;
+  image?: string;
   // image: {
   //   thumbnail: string;
   //   [key: string]: unknown;
@@ -22,7 +22,13 @@ interface Variation {
   [key: string]: unknown;
 }
 export function generateCartItem(item: Item, variation: Variation) {
-  const { id,title, name, slug, image, price, sale_price, quantity, unit } = item;
+  const { id,title, name, slug, image, gallery, price, sale_price, quantity, unit } = item;
+
+  // console.log('generateCartItem ', typeof gallery);
+  
+  let img =   JSON.parse(gallery as string)[0] || image;
+// console.log('------------------gallery ', img);
+
   if (!isEmpty(variation)) {
     return {
       id: `${id}.${variation.id}`,
@@ -33,7 +39,7 @@ export function generateCartItem(item: Item, variation: Variation) {
       unit,
       stock: variation.quantity,
       price: variation.sale_price ? variation.sale_price : variation.price,
-      image: image,
+      image: img ,
       // image: image?.thumbnail,
       variationId: variation.id,
     };
@@ -44,7 +50,7 @@ export function generateCartItem(item: Item, variation: Variation) {
     // name,
     slug,
     unit,
-    image: image,
+    image: img,
     // image: image?.thumbnail,
     stock: quantity,
     price: sale_price ? sale_price : price,
