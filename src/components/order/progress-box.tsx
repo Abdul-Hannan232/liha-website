@@ -128,8 +128,7 @@ const ProgressBox: React.FC<ProgressProps> = ({ status, data }) => {
     >
       <div className="flex flex-row flex-wrap w-full pt-8 pb-10">
         {data?.map((item: any, index: number) => (
-          <>
-           {/* { console.log('currentSerial >= item?.serial ', currentSerial >= item?.serial )} */}
+         
           <div className="block w-3/12" key={index}>
             {currentSerial >= item?.serial ? (
               <div className="text-center">
@@ -176,7 +175,7 @@ const ProgressBox: React.FC<ProgressProps> = ({ status, data }) => {
               </div>
             )}
           </div>
-          </>
+          
         ))}
       </div>
     </Scrollbar>

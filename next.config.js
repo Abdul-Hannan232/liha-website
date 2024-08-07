@@ -3,9 +3,6 @@
 module.exports = {
   reactStrictMode: true,
   swcMinify: true,
-  // images: {
-  //   domains: ['localhost', 'i.postimg.cc', 'i.ibb.co'],
-  // },
   images: {
     remotePatterns: [
       {
@@ -32,13 +29,14 @@ module.exports = {
         port: '',
         pathname: '/**',
       },
-     
+      {
+        protocol: 'https',
+        hostname: 'lihabackend.mayonity.com',
+        port: '',
+        pathname: '/upload/**',
+      },
     ],
   },
-  // experimental: {
-  //   // Required:
-  //   appDir: true,
-  // },
   ...(process.env.NODE_ENV === 'production' && {
     typescript: {
       ignoreBuildErrors: true,
@@ -47,13 +45,4 @@ module.exports = {
       ignoreDuringBuilds: true,
     },
   }),
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/',
-  //       destination: '/',
-  //       permanent: true,
-  //     },
-  //   ];
-  // },
 };
