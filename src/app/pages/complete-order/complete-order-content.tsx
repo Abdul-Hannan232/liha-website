@@ -10,7 +10,7 @@ import { useSearchParams } from 'next/navigation';
 // import { Order } from '@framework/types';
 
 export default function CompleteOrderContent() {
-  const[id, setId] = useState<number | null>()
+  const[id, setId] = useState<number | null>(1)
   const searchParams = useSearchParams();
   const oid = searchParams.get('oid');
 

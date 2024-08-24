@@ -14,7 +14,8 @@ export const fetchOrder = async (_id: number) => {
 };
 export const useOrderQuery = (id: number) => {
   return useQuery<Order, Error>({
-    queryKey: [API_ENDPOINTS.ORDER, id],
+    // queryKey: [API_ENDPOINTS.ORDER, id],
+    queryKey: [`${process.env.NEXT_PUBLIC_REST_API_ENDPOINT}/orders/${Number(id)}`, id],
     queryFn: () => fetchOrder(id),
   });
 };
