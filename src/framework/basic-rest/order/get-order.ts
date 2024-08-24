@@ -5,9 +5,12 @@ import { useQuery } from '@tanstack/react-query';
 
 export const fetchOrder = async (_id: number) => {
   // const { data } = await http.get(`${API_ENDPOINTS.ORDER}`);
-  const { data } = await http.get(`${process.env.NEXT_PUBLIC_REST_API_ENDPOINT}/orders/${Number(_id)}`);
-  
-  return data;
+  if(_id){
+    const { data } = await http.get(`${process.env.NEXT_PUBLIC_REST_API_ENDPOINT}/orders/${Number(_id)}`);
+    
+    return data;
+
+  }
 };
 export const useOrderQuery = (id: number) => {
   return useQuery<Order, Error>({

@@ -6,8 +6,8 @@ import Divider from '@components/ui/divider';
 import { useCart } from '@contexts/cart/cart.context';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import http from '@framework/utils/http';
-import { Order } from '@framework/types';
+// import http from '@framework/utils/http';
+// import { Order } from '@framework/types';
 
 export default function CompleteOrderContent() {
   const[id, setId] = useState<number | null>()
