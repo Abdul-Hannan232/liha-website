@@ -11,7 +11,7 @@ type CartItemProps = {
 };
 
 const CartItem: React.FC<CartItemProps> = ({ item }) => {
-  console.log('cart ',item);
+  // console.log('cart ',item);
 
   const { isInStock, addItemToCart, removeItemFromCart, clearItemFromCart, isInCart, getItemFromCart } =
     useCart();
