@@ -17,34 +17,10 @@ export default function CompleteOrderContent() {
   useEffect(() => {
     if (oid) {
       setId(Number(oid))
-      // const fetchOrder = async () => {
-      //     try {
-      //       const { data } = await http.get(
-      //         `http://localhost:5055/api/orders/${Number(oid)}`,
-      //       );
-
-      //       // console.log('>>>>>>>>>>>>>>>>>> order',data)
-      //       setOrder(data);
-      //     } catch (error) {
-      //       console.error('Error fetching user data:', error);
-      //     }
-        
-      // };
-
-      // fetchOrder();
+     
     }
   }, [oid]);
-
-  // const pathname = usePathname();
-  // const { getParams, query } = useQueryParam(pathname ?? '/');
-
-  // const newQuery: any = getParams(
-  //   // @ts-ignore
-  //   `${process.env.NEXT_PUBLIC_WEBSITE_URL}${query}`,
-  // );
-
-  // console.log(newQuery);
-
+  
   const { resetCart } = useCart();
   useEffect(() => {
     resetCart();
@@ -60,3 +36,5 @@ export default function CompleteOrderContent() {
     </>
   );
 }
+
+
