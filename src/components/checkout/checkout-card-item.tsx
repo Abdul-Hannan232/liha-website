@@ -28,10 +28,11 @@ export const CheckoutItem: React.FC<{ item: Item , quantity?:string}> = ({ item 
       <div className="flex w-16 h-16 border rounded-md border-border-base shrink-0">
         {Array.isArray(gallery) && gallery?.length > 0 ? (
           <Image
-            src={gallery[0].replace(
-              'http://localhost:4000/',
-              'http://localhost:5055/',
-            ) ?? '/assets/placeholder/order-product.svg'}
+            src={gallery[0] ?? '/assets/placeholder/order-product.svg'}
+            // src={gallery[0].replace(
+            //   'http://localhost:4000/',
+            //   'http://localhost:5055/',
+            // ) ?? '/assets/placeholder/order-product.svg'}
             alt={'item image'}
             className="rounded-md ltr:mr-5 rtl:ml-5"
             width={64}

@@ -26,10 +26,11 @@ export const OrderDetailsContent: React.FC<{ item?: any }> = ({ item }) => {
       <div className="self-center col-span-2">
       {Array.isArray(gallery) && gallery?.length > 0 ? (
           <Image
-            src={gallery[0].replace(
-              'http://localhost:4000/',
-              'http://localhost:5055/',
-            ) ?? '/assets/placeholder/order-product.svg'}
+            // src={gallery[0].replace(
+            //   'http://localhost:4000/',
+            //   'http://localhost:5055/',
+            // ) ?? '/assets/placeholder/order-product.svg'}
+            src={gallery[0] ?? '/assets/placeholder/order-product.svg'}
             alt={item?.productDetails.title || 'Product Image'}
             width="60"
             height="60"
