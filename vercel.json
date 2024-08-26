@@ -1,16 +1,12 @@
 {
   "env": {
-    "NEXT_PUBLIC_REST_API_ENDPOINT": "https://liha-website.vercel.app/api",
-    "NEXT_PUBLIC_SITE_URL": "https://liha-website.vercel.app/",
-    "NEXT_PUBLIC_STRIPE_PUBLIC_KEY": "Put your stripe public key here",
-    "NEXT_PUBLIC_GOOGLE_API_KEY": "Put your google api key here"
+    "NEXT_PUBLIC_REST_API_ENDPOINT": "https://lihabackend.mayonity.com/api",
+    "NEXT_PUBLIC_SITE_URL": "https://liha-website.vercel.app/"
   },
   "build": {
     "env": {
-      "NEXT_PUBLIC_REST_API_ENDPOINT": "https://liha-website.vercel.app/api",
-      "NEXT_PUBLIC_SITE_URL": "https://liha-website.vercel.app/",
-      "NEXT_PUBLIC_STRIPE_PUBLIC_KEY": "Put your stripe public key here",
-      "NEXT_PUBLIC_GOOGLE_API_KEY": "Put your google api key here"
+      "NEXT_PUBLIC_REST_API_ENDPOINT": "https://lihabackend.mayonity.com/api",
+      "NEXT_PUBLIC_SITE_URL": "https://liha-website.vercel.app/"
     }
   }
 }
