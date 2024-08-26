@@ -122,6 +122,7 @@
 
 'use client';
 import CheckoutCard from '@components/checkout/checkout-card';
+import { Suspense } from 'react';
 import Container from '@components/ui/container';
 import Divider from '@components/ui/divider';
 import { useState } from 'react';
@@ -138,7 +139,7 @@ import DeliveryInstructions from '@components/checkout/delivery-instruction';
 import Head from 'next/head';
 
 interface ContactFormValues {
-  address: string | null; 
+  address: string | null;
   phone: string | null;
   id: number | null;
 }
@@ -150,7 +151,6 @@ interface ContactFormValues {
 // };
 
 export default function CheckoutPage() {
-
   // let userData : ContactFormValues= { address: '', contact: null }
 
   const isBrowser = typeof window !== 'undefined';
@@ -163,8 +163,8 @@ export default function CheckoutPage() {
     return null;
   });
 
-
-  const [userData, setUserData] = useState<ContactFormValues>({ ...user , 
+  const [userData, setUserData] = useState<ContactFormValues>({
+    ...user,
     address: user?.address || '',
     phone: user?.phone || null,
     id: user?.id || null,
@@ -172,13 +172,12 @@ export default function CheckoutPage() {
 
   let handleUpdate = (values: ContactFormValues) => {
     // userData = values;
-    setUserData({...user , ...values});
+    setUserData({ ...user, ...values });
   };
 
-
   // console.log('<<<<<<<<<<<<<<< userData', userData);
-  
-  return ( 
+
+  return (
     <>
       <Head>
         <title>Checkout</title>
@@ -193,7 +192,9 @@ export default function CheckoutPage() {
               <DeliveryInstructions onUpdate={handleUpdate} />
             </div>
             <div className="w-full col-start-9 col-end-13 mt-7 lg:mt-0">
+            <Suspense fallback={<div>Loading...</div>}>
               <CheckoutCard userData={userData} />
+              </Suspense>
             </div>
           </div>
         </div>
