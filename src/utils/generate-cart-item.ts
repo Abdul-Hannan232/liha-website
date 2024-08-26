@@ -18,16 +18,16 @@ interface Variation {
   title: string;
   price: number;
   sale_price?: number;
-  quantity: number;
+  stock: number;
   [key: string]: unknown;
 }
 export function generateCartItem(item: Item, variation: Variation) {
-  const { id,title, name, slug, image, gallery, price, sale_price, quantity, unit } = item;
+  const { id,title, name, slug, image, gallery, price, sale_price, quantity, unit , stock} = item;
 
   // console.log('generateCartItem ', typeof gallery);
   
   let img =   JSON.parse(gallery as string)[0] || image;
-// console.log('------------------gallery ', img);
+// console.log('------------------gallery ', item);
 
   if (!isEmpty(variation)) {
     return {
@@ -37,7 +37,8 @@ export function generateCartItem(item: Item, variation: Variation) {
       // name: `${name} - ${variation.title}`,
       slug,
       unit,
-      stock: variation.quantity,
+      stock: stock as number,
+      // stock: variation.quantity,
       price: variation.sale_price ? variation.sale_price : variation.price,
       image: img ,
       // image: image?.thumbnail,
@@ -52,7 +53,7 @@ export function generateCartItem(item: Item, variation: Variation) {
     unit,
     image: img,
     // image: image?.thumbnail,
-    stock: quantity,
+    stock: stock as number,
     price: sale_price ? sale_price : price,
   };
 }

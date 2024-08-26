@@ -79,7 +79,7 @@ const Counter: React.FC<CounterProps> = ({
         onClick={onIncrement}
         disabled={disabled}
         className={cn(
-          ` group flex items-center justify-center h-full shrink-0 transition-all ease-in-out duration-300 focus:outline-none focus-visible:outline-none pr-2`,
+          `cursor-pointer group flex items-center justify-center h-full shrink-0 transition-all ease-in-out duration-300 focus:outline-none focus-visible:outline-none pr-2`,
           {
             'w-10 h-8 rounded-2xl text-heading hover:bg-fill-four !pr-0':
               variant === 'mercury',
@@ -95,7 +95,7 @@ const Counter: React.FC<CounterProps> = ({
       >
         <span className="sr-only">-</span>
         {/* <span className="sr-only">{t('button-plus')}</span> */}
-        <PlusIcon width={size} height={size} opacity="1" />
+        <PlusIcon width={size} height={size} opacity="1"  />
       </button>
     </div>
   );

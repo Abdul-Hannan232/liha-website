@@ -11,10 +11,11 @@ type CartItemProps = {
 };
 
 const CartItem: React.FC<CartItemProps> = ({ item }) => {
-  // console.log('cart ',item);
+  console.log('cart ',item);
 
-  const { isInStock, addItemToCart, removeItemFromCart, clearItemFromCart } =
+  const { isInStock, addItemToCart, removeItemFromCart, clearItemFromCart, isInCart, getItemFromCart } =
     useCart();
+   
   const { price: totalPrice } = usePrice({
     amount: item?.itemTotal,
     currencyCode: 'USD',
@@ -65,10 +66,20 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
           </div>
           <Counter
             value={item.quantity}
-            onIncrement={() => addItemToCart(item, 1)}
+            onIncrement={() => {
+              // console.log("Button clicked");
+              addItemToCart(item, 1);
+            }}
             onDecrement={() => removeItemFromCart(item.id)}
             variant="cart"
-            disabled={outOfStock}
+            disabled={
+              isInCart (item.id)
+                ? getItemFromCart(item.id).quantity  >=
+                  Number(item?.stock)
+                : getItemFromCart(item.id).quantity  >= Number(item?.stock)
+            }
+            // disabled={outOfStock}
+          
           />
         </div>
 

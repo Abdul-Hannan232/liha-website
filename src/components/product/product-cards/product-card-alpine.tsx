@@ -89,7 +89,7 @@ function RenderPopupOrAddToCart({ props }: { props: Object }) {
   );
 }
 const ProductCardAlpine: React.FC<ProductProps> = ({ product, className }) => {
-  // console.log('----------------- ', product.image);
+  // console.log('----------------- ', product);
 
   const { title, image, gallery, unit, stock, product_type } = product ?? {};
   // console.log('title,', title);

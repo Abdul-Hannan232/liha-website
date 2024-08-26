@@ -39,7 +39,7 @@ export function addItemWithQuantity(
     (existingItem) => existingItem.id === item.id,
   );
 
-  console.log('existingItemIndex ', existingItemIndex);
+  // console.log('existingItemIndex ', item);
 
   if (existingItemIndex > -1) {
     const newItems = [...items];
@@ -70,6 +70,8 @@ export function removeItemOrQuantity(
 }
 // Simple CRUD for Item
 export function addItem(items: Item[], item: Item) {
+  console.log(item);
+  
   return [...items, item];
 }
 
@@ -82,8 +84,9 @@ export function updateItem(
   id: Item['id'],
   item: UpdateItemInput,
 ) {
-  return items.map((existingItem) =>
-    existingItem.id === id ? { ...existingItem, ...item } : existingItem,
+  return items.map((existingItem) =>{
+    // console.log("Items after adding quantity:", items);
+    existingItem.id === id ? { ...existingItem, ...item } : existingItem}
   );
 }
 
@@ -93,7 +96,10 @@ export function removeItem(items: Item[], id: Item['id']) {
 
 export function inStock(items: Item[], id: Item['id']) {
   const item = getItem(items, id);
-  if (item) return item['quantity']! < item['stock']!;
+  
+  if (item){ 
+    // console.log(item)
+    return item['quantity']! < item['stock']!;}
   return true;
 }
 
